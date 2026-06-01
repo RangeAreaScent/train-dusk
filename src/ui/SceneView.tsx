@@ -263,7 +263,13 @@ export function SceneView({ state, setState }: Props) {
 
   return (
     <GameFrame
-      visual={<VisualArea visualKey={scene.visual} popup={scene.popup} />}
+      visual={
+        <VisualArea
+          visualKey={scene.visual}
+          popup={scene.popup}
+          cutscene={scene.isCutscene}
+        />
+      }
       notesEnabled={notesEnabled}
       notesLabel={notesLabel}
       settingsLabel={settingsLabel}
