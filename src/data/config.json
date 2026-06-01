@@ -42,9 +42,9 @@
   },
 
   "textSpeed": {
-    "slow": 80,
-    "normal": 40,
-    "fast": 15,
+    "slow": 90,
+    "normal": 60,
+    "fast": 25,
     "default": "normal"
   },
 

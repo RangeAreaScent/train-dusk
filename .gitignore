@@ -42,3 +42,7 @@ pnpm-debug.log*
 
 # Misc
 train_dusk_package.zip
+
+# Test / debug artifacts
+.playwright-mcp/
+td-*.png
