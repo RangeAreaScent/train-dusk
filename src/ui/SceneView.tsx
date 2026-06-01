@@ -4,11 +4,12 @@ import { getScene, getSceneText } from "../engine/scenes";
 import {
   applyChoice,
   clearSave,
-  initialState,
+  initStateFromPrefs,
   loadMeta,
   loadState,
   markSceneViewed,
   recordEnding,
+  savePref,
   saveState,
   startFreshRun,
 } from "../engine/state";
@@ -49,11 +50,12 @@ export function SceneView({ state, setState }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.id]);
 
-  // Auto-save on every state change, except after an ending card (we want a
-  // clean slate on next launch unless the user keeps playing past the card).
+  // Auto-save on every state change, except on meta scenes (title, settings)
+  // and ending cards. We want a clean save slot that points only at real
+  // story scenes the player is actually in the middle of.
   useEffect(() => {
     if (scene.isEndingCard) return;
-    if (scene.id === "title_screen") return;
+    if (scene.id === "title_screen" || scene.id === "settings_menu") return;
     saveState(state);
   }, [state, scene.id, scene.isEndingCard]);
 
@@ -124,16 +126,40 @@ export function SceneView({ state, setState }: Props) {
   };
 
   const handleSelect = (choice: Choice) => {
+    const target = choice.next;
+
     // Title-screen "이어하기" — load persisted state instead of routing.
-    if (choice.next === "load_save") {
+    if (target === "load_save") {
       const saved = loadState();
       if (saved) {
         setState(saved);
         return;
       }
-      // No save found — silently ignore.
       return;
     }
+
+    // Language toggle — flips ko↔en, stays on current scene.
+    if (target === "language_toggle") {
+      const next = state.language === "ko" ? "en" : "ko";
+      savePref({ language: next, textSpeed: state.textSpeed });
+      setState({ ...state, language: next });
+      return;
+    }
+
+    // Text speed presets — also stay in place.
+    if (target === "text_speed_slow" || target === "text_speed_normal" || target === "text_speed_fast") {
+      const next = target.replace("text_speed_", "") as GameState["textSpeed"];
+      savePref({ language: state.language, textSpeed: next });
+      setState({ ...state, textSpeed: next });
+      return;
+    }
+
+    // Back to title from settings.
+    if (target === "back_to_title") {
+      setState({ ...state, currentScene: "title_screen" });
+      return;
+    }
+
     setState(applyChoice(state, choice, inputValue));
   };
 
@@ -146,7 +172,7 @@ export function SceneView({ state, setState }: Props) {
   const handleMainMenu = () => {
     clearSave();
     const meta = loadMeta();
-    setState({ ...initialState, runCount: meta.runCount });
+    setState({ ...initStateFromPrefs(), runCount: meta.runCount });
   };
 
   // ─── Ending card branch ──────────────────────────────────────────────

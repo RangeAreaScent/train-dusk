@@ -7,6 +7,7 @@ import type {
 
 const SAVE_KEY = "trainDusk_save";
 const META_KEY = "trainDusk_meta";
+const PREF_KEY = "trainDusk_pref";
 
 export const initialState: GameState = {
   playerName: "",
@@ -169,6 +170,51 @@ export function recordEnding(endingId: EndingId): MetaSave {
 export function startFreshRun(prevMeta: MetaSave): GameState {
   return {
     ...initialState,
+    ...loadPref(),
     runCount: prevMeta.runCount,
   };
+}
+
+// ─── Preferences (language + text speed; survive runs) ────────────────────
+
+export interface Prefs {
+  language: GameState["language"];
+  textSpeed: GameState["textSpeed"];
+}
+
+export function loadPref(): Prefs {
+  const ls = safeLocalStorage();
+  const fallback: Prefs = {
+    language: initialState.language,
+    textSpeed: initialState.textSpeed,
+  };
+  if (!ls) return fallback;
+  try {
+    const raw = ls.getItem(PREF_KEY);
+    if (!raw) return fallback;
+    const p = JSON.parse(raw) as Partial<Prefs>;
+    return {
+      language: p.language === "en" || p.language === "ko" ? p.language : fallback.language,
+      textSpeed:
+        p.textSpeed === "slow" || p.textSpeed === "normal" || p.textSpeed === "fast"
+          ? p.textSpeed
+          : fallback.textSpeed,
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+export function savePref(p: Prefs): void {
+  const ls = safeLocalStorage();
+  if (!ls) return;
+  try {
+    ls.setItem(PREF_KEY, JSON.stringify(p));
+  } catch {
+    // ignore
+  }
+}
+
+export function initStateFromPrefs(): GameState {
+  return { ...initialState, ...loadPref() };
 }

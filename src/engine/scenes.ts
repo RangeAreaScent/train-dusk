@@ -42,6 +42,38 @@ function buildSceneMap(): {
     }
   }
 
+  // Synthetic settings_menu scene (title_screen routes here). All choices
+  // are intercepted by SceneView as in-place actions; none navigate further.
+  scenes.settings_menu = {
+    id: "settings_menu",
+    text: {
+      ko: ["설정"],
+      en: ["Settings"],
+    },
+    choices: [
+      {
+        label: { ko: "언어 / Language", en: "Language / 언어" },
+        next: "language_toggle",
+      },
+      {
+        label: { ko: "속도: 느림", en: "Speed: Slow" },
+        next: "text_speed_slow",
+      },
+      {
+        label: { ko: "속도: 보통", en: "Speed: Normal" },
+        next: "text_speed_normal",
+      },
+      {
+        label: { ko: "속도: 빠름", en: "Speed: Fast" },
+        next: "text_speed_fast",
+      },
+      {
+        label: { ko: "돌아가기", en: "Back" },
+        next: "back_to_title",
+      },
+    ],
+  };
+
   // Entry-name aliases. car_4_* scenes route to these names; we resolve
   // them to the first scene of each ending's sequence.
   const aliases: Record<string, string> = {
