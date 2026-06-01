@@ -253,6 +253,16 @@
       },
       {
         "label": {
+          "ko": "핸드폰 잠금을 다시 본다",
+          "en": "Look at the phone lock again"
+        },
+        "next": "car_1_phone_unlock_attempt",
+        "type": "hidden",
+        "requiresClue": "clock",
+        "viewOnce": true
+      },
+      {
+        "label": {
           "ko": "다음 칸으로 간다",
           "en": "Move to the next car"
         },

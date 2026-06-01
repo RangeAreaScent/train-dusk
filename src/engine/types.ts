@@ -23,6 +23,12 @@ export interface Choice {
   condition?: string;
   requiresInput?: boolean;
   requiresAllViewed?: string[];
+  /** Choice only appears after this clue has been collected. */
+  requiresClue?: string;
+  /** Choice only appears after this insight has been unlocked. */
+  requiresInsight?: string;
+  /** Choice only appears after this flag has been set true. */
+  requiresFlag?: string;
 }
 
 export interface ClueCheck {

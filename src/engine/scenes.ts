@@ -115,9 +115,18 @@ export function isChoiceAvailable(choice: Choice, state: GameState): boolean {
     return hasSavedGame(SAVE_KEY);
   }
   if (choice.requiresAllViewed) {
-    return choice.requiresAllViewed.every((id) =>
-      state.viewedScenes.includes(id),
-    );
+    if (!choice.requiresAllViewed.every((id) => state.viewedScenes.includes(id))) {
+      return false;
+    }
+  }
+  if (choice.requiresClue && !state.clues[choice.requiresClue]) {
+    return false;
+  }
+  if (choice.requiresInsight && !state.insights[choice.requiresInsight]) {
+    return false;
+  }
+  if (choice.requiresFlag && !state.flags[choice.requiresFlag]) {
+    return false;
   }
   return true;
 }
