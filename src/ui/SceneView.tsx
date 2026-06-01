@@ -168,9 +168,12 @@ export function SceneView({ state, setState }: Props) {
       return;
     }
 
-    // Back to title from settings.
+    // Back from settings — return to whatever scene was active before
+    // settings was opened, falling back to title if nothing was recorded.
     if (target === "back_to_title") {
-      setState({ ...state, currentScene: "title_screen" });
+      const dest = state.previousScene || "title_screen";
+      const { previousScene: _drop, ...rest } = state;
+      setState({ ...rest, currentScene: dest });
       return;
     }
 
@@ -202,7 +205,11 @@ export function SceneView({ state, setState }: Props) {
     !scene.isEndingCard;
 
   const openSettings = () => {
-    setState({ ...state, currentScene: "settings_menu" });
+    setState({
+      ...state,
+      previousScene: state.currentScene,
+      currentScene: "settings_menu",
+    });
   };
 
   // Settings is reachable from any non-meta scene, but on settings/title

@@ -91,6 +91,8 @@ export interface GameState {
   endingsReached: EndingId[];
   clues: Record<string, boolean>;
   insights: Record<string, boolean>;
+  /** Scene to return to when leaving settings_menu. Title if absent. */
+  previousScene?: string;
 }
 
 export interface ConnectResult {
