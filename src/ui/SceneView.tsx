@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import type { Choice, ConnectResult, GameState } from "../engine/types";
 import { getScene, getSceneText } from "../engine/scenes";
 import {
@@ -222,25 +223,53 @@ export function SceneView({ state, setState }: Props) {
   const notesLabel = state.language === "ko" ? "노트" : "Notes";
   const settingsLabel = state.language === "ko" ? "설정" : "Settings";
 
+  // Cutscenes get a slower, more deliberate fade than regular scenes.
+  const fadeDuration = scene.isCutscene ? 0.9 : 0.35;
+  const visualKeyForAnim = scene.visual ?? `__no_visual_${scene.id}`;
+
   // ─── Ending card branch ──────────────────────────────────────────────
   if (scene.isEndingCard && scene.endingId) {
     return (
       <GameFrame
-        visual={<VisualArea visualKey={`ending_${scene.endingId}`} />}
+        visual={
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={`v:${scene.endingId}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="h-full w-full"
+            >
+              <VisualArea visualKey={`ending_${scene.endingId}`} />
+            </motion.div>
+          </AnimatePresence>
+        }
         notesLabel={notesLabel}
         settingsLabel={settingsLabel}
         body={
-          <EndingCard
-            endingId={scene.endingId}
-            meta={{
-              runCount: state.runCount,
-              endingsReached: state.endingsReached,
-            }}
-            state={state}
-            lang={state.language}
-            onRestart={handleRestart}
-            onMainMenu={handleMainMenu}
-          />
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={`b:${scene.id}`}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.6 }}
+              className="h-full w-full"
+            >
+              <EndingCard
+                endingId={scene.endingId}
+                meta={{
+                  runCount: state.runCount,
+                  endingsReached: state.endingsReached,
+                }}
+                state={state}
+                lang={state.language}
+                onRestart={handleRestart}
+                onMainMenu={handleMainMenu}
+              />
+            </motion.div>
+          </AnimatePresence>
         }
       />
     );
@@ -264,11 +293,22 @@ export function SceneView({ state, setState }: Props) {
   return (
     <GameFrame
       visual={
-        <VisualArea
-          visualKey={scene.visual}
-          popup={scene.popup}
-          cutscene={scene.isCutscene}
-        />
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={`v:${visualKeyForAnim}`}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: fadeDuration }}
+            className="h-full w-full"
+          >
+            <VisualArea
+              visualKey={scene.visual}
+              popup={scene.popup}
+              cutscene={scene.isCutscene}
+            />
+          </motion.div>
+        </AnimatePresence>
       }
       notesEnabled={notesEnabled}
       notesLabel={notesLabel}
@@ -285,7 +325,15 @@ export function SceneView({ state, setState }: Props) {
             onClose={() => setNotesOpen(false)}
           />
         )}
-        <div className="flex h-full flex-col">
+        <AnimatePresence mode="wait" initial={false}>
+        <motion.div
+          key={`b:${scene.id}`}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: fadeDuration }}
+          className="flex h-full flex-col"
+        >
           <div
             ref={textAreaRef}
             className="flex-1 min-h-0 overflow-hidden relative"
@@ -333,7 +381,8 @@ export function SceneView({ state, setState }: Props) {
               />
             )}
           </div>
-        </div>
+        </motion.div>
+        </AnimatePresence>
         </>
       }
     />
