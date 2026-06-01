@@ -34,10 +34,8 @@ export function Choices({ choices, lang, state, inputValue, onSelect }: Props) {
           <button
             key={i}
             type="button"
-            className={`block text-left font-serif text-2xl ${baseStyle} ${consumedStyle} ${
-              disabled
-                ? "cursor-not-allowed"
-                : "cursor-pointer hover:opacity-70"
+            className={`choice-press block text-left font-serif text-2xl ${baseStyle} ${consumedStyle} ${
+              disabled ? "cursor-not-allowed" : "cursor-pointer"
             }`}
             disabled={disabled}
             onClick={() => onSelect(choice)}

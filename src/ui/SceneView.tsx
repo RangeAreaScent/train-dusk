@@ -294,7 +294,7 @@ export function SceneView({ state, setState }: Props) {
           <div className="shrink-0 mt-3 h-[170px] overflow-hidden">
             {textDone && hasMore && (
               <div
-                className="text-right text-black/60 text-2xl cursor-pointer select-none animate-pulse"
+                className="text-right text-black/60 text-2xl cursor-pointer select-none chevron-drift"
                 onClick={handleAdvance}
               >
                 ▾

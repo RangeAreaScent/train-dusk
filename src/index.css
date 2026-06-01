@@ -1,7 +1,35 @@
 @import "tailwindcss";
 
+@theme {
+  --font-serif:
+    "Gowun Batang", "EB Garamond", "Iowan Old Style", "Apple Garamond",
+    Georgia, "Times New Roman", serif;
+  --font-mono:
+    "Special Elite", "Courier Prime", ui-monospace, SFMono-Regular, Menlo,
+    Consolas, monospace;
+}
+
 html, body, #root {
   height: 100%;
   margin: 0;
   background: #000;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
+
+/* Slow, contemplative chevron — gentler than the default Tailwind pulse */
+@keyframes drift {
+  0%, 100% { opacity: 0.4; transform: translateY(0); }
+  50%      { opacity: 0.85; transform: translateY(2px); }
+}
+.chevron-drift {
+  animation: drift 1.6s ease-in-out infinite;
+}
+
+/* Press feedback for primary in-body choices */
+.choice-press {
+  transition: transform 80ms ease-out, opacity 120ms ease-out;
+}
+.choice-press:hover { opacity: 0.7; }
+.choice-press:active:not(:disabled) { transform: translateX(2px); }
