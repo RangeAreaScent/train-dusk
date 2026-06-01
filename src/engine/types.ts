@@ -58,6 +58,20 @@ export interface Scene {
   next?: string;
   trigger?: string;
   puzzleHook?: unknown;
+  isCutscene?: boolean;
+  isEndingCard?: boolean;
+  endingId?: EndingId;
+  cutsceneNote?: LocalizedText;
+}
+
+export interface MetaSave {
+  runCount: number;
+  endingsReached: EndingId[];
+}
+
+export interface EndingDef {
+  id: EndingId;
+  name: LocalizedText;
 }
 
 export interface GameState {

@@ -1,4 +1,12 @@
-import type { Choice, GameState } from "./types";
+import type {
+  Choice,
+  EndingId,
+  GameState,
+  MetaSave,
+} from "./types";
+
+const SAVE_KEY = "trainDusk_save";
+const META_KEY = "trainDusk_meta";
 
 export const initialState: GameState = {
   playerName: "",
@@ -62,5 +70,105 @@ export function markSceneViewed(state: GameState, sceneId: string): GameState {
   return {
     ...state,
     viewedScenes: [...state.viewedScenes, sceneId],
+  };
+}
+
+// ─── Persistence ──────────────────────────────────────────────────────────
+
+function safeLocalStorage(): Storage | null {
+  try {
+    if (typeof window === "undefined") return null;
+    return window.localStorage;
+  } catch {
+    return null;
+  }
+}
+
+export function saveState(state: GameState): void {
+  const ls = safeLocalStorage();
+  if (!ls) return;
+  try {
+    ls.setItem(SAVE_KEY, JSON.stringify(state));
+  } catch {
+    // quota or serialization issues — silently drop
+  }
+}
+
+export function loadState(): GameState | null {
+  const ls = safeLocalStorage();
+  if (!ls) return null;
+  try {
+    const raw = ls.getItem(SAVE_KEY);
+    if (!raw) return null;
+    const parsed = JSON.parse(raw) as Partial<GameState>;
+    // Merge with initialState so missing fields don't break newer engine logic.
+    return { ...initialState, ...parsed } as GameState;
+  } catch {
+    return null;
+  }
+}
+
+export function clearSave(): void {
+  const ls = safeLocalStorage();
+  if (!ls) return;
+  try {
+    ls.removeItem(SAVE_KEY);
+  } catch {
+    // ignore
+  }
+}
+
+export function hasSavedGame(_key: string = SAVE_KEY): boolean {
+  const ls = safeLocalStorage();
+  if (!ls) return false;
+  try {
+    return !!ls.getItem(_key);
+  } catch {
+    return false;
+  }
+}
+
+export function loadMeta(): MetaSave {
+  const ls = safeLocalStorage();
+  const fallback: MetaSave = { runCount: 1, endingsReached: [] };
+  if (!ls) return fallback;
+  try {
+    const raw = ls.getItem(META_KEY);
+    if (!raw) return fallback;
+    const parsed = JSON.parse(raw) as Partial<MetaSave>;
+    return {
+      runCount: parsed.runCount ?? 1,
+      endingsReached: Array.isArray(parsed.endingsReached)
+        ? (parsed.endingsReached as EndingId[])
+        : [],
+    };
+  } catch {
+    return fallback;
+  }
+}
+
+export function recordEnding(endingId: EndingId): MetaSave {
+  const meta = loadMeta();
+  const updated: MetaSave = {
+    runCount: meta.runCount + 1,
+    endingsReached: Array.from(
+      new Set<EndingId>([...meta.endingsReached, endingId]),
+    ),
+  };
+  const ls = safeLocalStorage();
+  if (ls) {
+    try {
+      ls.setItem(META_KEY, JSON.stringify(updated));
+    } catch {
+      // ignore
+    }
+  }
+  return updated;
+}
+
+export function startFreshRun(prevMeta: MetaSave): GameState {
+  return {
+    ...initialState,
+    runCount: prevMeta.runCount,
   };
 }

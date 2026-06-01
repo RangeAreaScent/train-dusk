@@ -1,12 +1,23 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { Choice, GameState } from "../engine/types";
 import { getScene, getSceneText } from "../engine/scenes";
-import { applyChoice, markSceneViewed } from "../engine/state";
+import {
+  applyChoice,
+  clearSave,
+  initialState,
+  loadMeta,
+  loadState,
+  markSceneViewed,
+  recordEnding,
+  saveState,
+  startFreshRun,
+} from "../engine/state";
 import { GameFrame } from "./GameFrame";
 import { VisualArea } from "./VisualArea";
 import { TypedText } from "./TypedText";
 import { Choices } from "./Choices";
 import { NameInputField } from "./NameInputField";
+import { EndingCard } from "./EndingCard";
 
 interface Props {
   state: GameState;
@@ -15,6 +26,7 @@ interface Props {
 
 export function SceneView({ state, setState }: Props) {
   const scene = getScene(state.currentScene);
+
   const lines = useMemo(
     () => getSceneText(scene, state.language, state.runCount),
     [scene, state.language, state.runCount],
@@ -28,6 +40,7 @@ export function SceneView({ state, setState }: Props) {
   const [textDone, setTextDone] = useState(false);
   const [inputValue, setInputValue] = useState("");
 
+  // Mark scene viewed + reset paging on scene change.
   useEffect(() => {
     setPageIndex(0);
     setTextDone(false);
@@ -36,6 +49,29 @@ export function SceneView({ state, setState }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.id]);
 
+  // Auto-save on every state change, except after an ending card (we want a
+  // clean slate on next launch unless the user keeps playing past the card).
+  useEffect(() => {
+    if (scene.isEndingCard) return;
+    if (scene.id === "title_screen") return;
+    saveState(state);
+  }, [state, scene.id, scene.isEndingCard]);
+
+  // When reaching an ending card, record the run in meta and wipe the save.
+  useEffect(() => {
+    if (scene.isEndingCard && scene.endingId) {
+      const meta = recordEnding(scene.endingId);
+      setState({
+        ...state,
+        endingsReached: meta.endingsReached,
+        runCount: meta.runCount,
+      });
+      clearSave();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [scene.id]);
+
+  // Dynamic pagination by DOM measurement.
   useLayoutEffect(() => {
     const text = textAreaRef.current;
     const m = measurerRef.current;
@@ -88,8 +124,52 @@ export function SceneView({ state, setState }: Props) {
   };
 
   const handleSelect = (choice: Choice) => {
+    // Title-screen "이어하기" — load persisted state instead of routing.
+    if (choice.next === "load_save") {
+      const saved = loadState();
+      if (saved) {
+        setState(saved);
+        return;
+      }
+      // No save found — silently ignore.
+      return;
+    }
     setState(applyChoice(state, choice, inputValue));
   };
+
+  const handleRestart = () => {
+    clearSave();
+    const meta = loadMeta();
+    setState(startFreshRun(meta));
+  };
+
+  const handleMainMenu = () => {
+    clearSave();
+    const meta = loadMeta();
+    setState({ ...initialState, runCount: meta.runCount });
+  };
+
+  // ─── Ending card branch ──────────────────────────────────────────────
+  if (scene.isEndingCard && scene.endingId) {
+    return (
+      <GameFrame
+        visual={<VisualArea visualKey={`ending_${scene.endingId}`} />}
+        body={
+          <EndingCard
+            endingId={scene.endingId}
+            meta={{
+              runCount: state.runCount,
+              endingsReached: state.endingsReached,
+            }}
+            state={state}
+            lang={state.language}
+            onRestart={handleRestart}
+            onMainMenu={handleMainMenu}
+          />
+        }
+      />
+    );
+  }
 
   const implicitContinue: Choice | null =
     !scene.choices && (scene.returnTo || scene.next)

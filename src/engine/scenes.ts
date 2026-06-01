@@ -1,11 +1,64 @@
 import scenesData from "../data/scenes.json";
-import type { Choice, GameState, Lang, Scene } from "./types";
-import { choiceKey } from "./state";
+import endingsData from "../data/endings.json";
+import type { Choice, EndingDef, GameState, Lang, Scene } from "./types";
+import { choiceKey, hasSavedGame } from "./state";
 
-const scenes = scenesData as unknown as Record<string, Scene>;
+const SAVE_KEY = "trainDusk_save";
+
+/**
+ * Build the full scene map by merging scenes.json with the ending sequences
+ * defined in endings.json. Ending sequence items become first-class scenes;
+ * items without an explicit next/choices/isEndingCard auto-flow to the next
+ * item in their sequence.
+ */
+function buildSceneMap(): {
+  scenes: Record<string, Scene>;
+  aliases: Record<string, string>;
+} {
+  const scenes: Record<string, Scene> = { ...(scenesData as unknown as Record<string, Scene>) };
+
+  const endingKeys: Array<keyof typeof endingsData> = [
+    "endingA",
+    "endingB",
+    "endingC",
+    "endingD",
+  ];
+
+  for (const key of endingKeys) {
+    const ending = (endingsData as unknown as Record<string, { sequence?: Scene[] }>)[key as string];
+    const seq = ending?.sequence;
+    if (!Array.isArray(seq)) continue;
+    for (let i = 0; i < seq.length; i++) {
+      const node: Scene = { ...seq[i] };
+      const auto =
+        !node.next &&
+        !node.returnTo &&
+        !node.choices &&
+        !node.isEndingCard &&
+        i + 1 < seq.length;
+      if (auto) node.next = seq[i + 1].id;
+      if (!node.text) node.text = { ko: [], en: [] };
+      scenes[node.id] = node;
+    }
+  }
+
+  // Entry-name aliases. car_4_* scenes route to these names; we resolve
+  // them to the first scene of each ending's sequence.
+  const aliases: Record<string, string> = {
+    ending_A_intro: "endA_intro",
+    ending_B_intro: "endB_intro",
+    ending_C_intro: "endC_intro",
+    ending_D_intro: "endD_realization",
+  };
+
+  return { scenes, aliases };
+}
+
+const { scenes, aliases } = buildSceneMap();
 
 export function getScene(id: string): Scene {
-  const s = scenes[id];
+  const resolved = aliases[id] ?? id;
+  const s = scenes[resolved];
   if (!s) throw new Error(`Scene not found: ${id}`);
   return s;
 }
@@ -26,7 +79,9 @@ export function getSceneText(
 }
 
 export function isChoiceAvailable(choice: Choice, state: GameState): boolean {
-  if (choice.condition === "hasSave") return false;
+  if (choice.condition === "hasSave") {
+    return hasSavedGame(SAVE_KEY);
+  }
   if (choice.requiresAllViewed) {
     return choice.requiresAllViewed.every((id) =>
       state.viewedScenes.includes(id),
@@ -41,38 +96,8 @@ export function isChoiceConsumed(choice: Choice, state: GameState): boolean {
   return key ? state.viewedChoices.includes(key) : false;
 }
 
-const MAX_CHARS_PER_PAGE = 200;
-
-export function paginate(lines: string[]): string[][] {
-  const paragraphs: string[][] = [];
-  let cur: string[] = [];
-  for (const l of lines) {
-    if (l === "") {
-      if (cur.length) {
-        paragraphs.push(cur);
-        cur = [];
-      }
-    } else {
-      cur.push(l);
-    }
-  }
-  if (cur.length) paragraphs.push(cur);
-
-  const pages: string[][] = [];
-  let page: string[] = [];
-  let pageChars = 0;
-
-  for (const p of paragraphs) {
-    const pChars = p.reduce((s, l) => s + l.length, 0);
-    if (page.length > 0 && pageChars + pChars > MAX_CHARS_PER_PAGE) {
-      pages.push(page);
-      page = [];
-      pageChars = 0;
-    }
-    if (page.length > 0) page.push("");
-    page.push(...p);
-    pageChars += pChars;
-  }
-  if (page.length) pages.push(page);
-  return pages.length > 0 ? pages : [[]];
+export function getEndingDef(endingId: string): EndingDef | null {
+  const key = `ending${endingId}`;
+  const e = (endingsData as unknown as Record<string, EndingDef>)[key];
+  return e ?? null;
 }
