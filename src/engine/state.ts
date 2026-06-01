@@ -1,8 +1,14 @@
+import cluesData from "../data/clues.json";
+import connectionsData from "../data/connections.json";
 import type {
   Choice,
+  ConnectResult,
   EndingId,
   GameState,
+  Lang,
+  LocalizedText,
   MetaSave,
+  Scene,
 } from "./types";
 
 const SAVE_KEY = "trainDusk_save";
@@ -24,6 +30,8 @@ export const initialState: GameState = {
   },
   flags: {},
   endingsReached: [],
+  clues: {},
+  insights: {},
 };
 
 export function choiceKey(choice: Choice): string {
@@ -72,6 +80,111 @@ export function markSceneViewed(state: GameState, sceneId: string): GameState {
     ...state,
     viewedScenes: [...state.viewedScenes, sceneId],
   };
+}
+
+// ─── Clues / Insights ─────────────────────────────────────────────────────
+
+interface ClueDef {
+  id: string;
+  name: LocalizedText;
+  minRun: number;
+}
+
+interface InsightDef {
+  id: string;
+  tier: string;
+  requires: string[];
+  requiresType?: string;
+  text: LocalizedText;
+  minRun: number;
+}
+
+const cluesIndex: Record<string, ClueDef> = (() => {
+  const raw = cluesData as unknown as Record<string, unknown>;
+  const out: Record<string, ClueDef> = {};
+  for (const [k, v] of Object.entries(raw)) {
+    const def = v as Partial<ClueDef> & { id?: string; name?: LocalizedText };
+    if (def && typeof def === "object" && def.id && def.name) {
+      out[k] = {
+        id: def.id,
+        name: def.name,
+        minRun: def.minRun ?? 1,
+      };
+    }
+  }
+  return out;
+})();
+
+const insightsIndex: Record<string, InsightDef> = (() => {
+  const raw = (connectionsData as unknown as { insights?: Record<string, InsightDef> })
+    .insights ?? {};
+  return raw;
+})();
+
+const invalidPool: Record<Lang, string[]> = (() => {
+  const raw = (connectionsData as unknown as { invalidMessages?: Record<Lang, string[]> })
+    .invalidMessages;
+  return {
+    ko: raw?.ko ?? [],
+    en: raw?.en ?? [],
+  };
+})();
+
+export function getClueDef(id: string): ClueDef | null {
+  return cluesIndex[id] ?? null;
+}
+
+export function getInsightDef(id: string): InsightDef | null {
+  return insightsIndex[id] ?? null;
+}
+
+export function applyClueChecks(state: GameState, scene: Scene): GameState {
+  if (!scene.clueChecks || scene.clueChecks.length === 0) return state;
+  const newClues = { ...state.clues };
+  let changed = false;
+  for (const c of scene.clueChecks) {
+    if (state.runCount >= c.minRun && !newClues[c.id]) {
+      newClues[c.id] = true;
+      changed = true;
+    }
+  }
+  if (!changed) return state;
+  return { ...state, clues: newClues };
+}
+
+export function collectedClueIds(state: GameState): string[] {
+  return Object.keys(state.clues).filter((k) => state.clues[k]);
+}
+
+export function unlockedInsightIds(state: GameState): string[] {
+  return Object.keys(state.insights).filter((k) => state.insights[k]);
+}
+
+export function tryConnect(
+  state: GameState,
+  aId: string,
+  bId: string,
+  lang: Lang,
+): { newState: GameState; result: ConnectResult } {
+  for (const [insightId, ins] of Object.entries(insightsIndex)) {
+    if (ins.minRun > state.runCount) continue;
+    if (state.insights[insightId]) continue;
+    const req = ins.requires;
+    if (req.length !== 2) continue;
+    const matches =
+      (req[0] === aId && req[1] === bId) || (req[0] === bId && req[1] === aId);
+    if (!matches) continue;
+    const newInsights = { ...state.insights, [insightId]: true };
+    return {
+      newState: { ...state, insights: newInsights },
+      result: { kind: "valid", insightId, insightText: ins.text },
+    };
+  }
+  const pool = invalidPool[lang] ?? [];
+  const message = pool.length
+    ? pool[Math.floor(Math.random() * pool.length)]
+    : "...";
+  return { newState: state, result: { kind: "invalid", message } };
 }
 
 // ─── Persistence ──────────────────────────────────────────────────────────

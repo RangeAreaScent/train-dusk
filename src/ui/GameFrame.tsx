@@ -3,9 +3,22 @@ import type { ReactNode } from "react";
 interface Props {
   visual: ReactNode;
   body: ReactNode;
+  notesEnabled?: boolean;
+  notesLabel?: string;
+  settingsLabel?: string;
+  onOpenNotes?: () => void;
+  onOpenSettings?: () => void;
 }
 
-export function GameFrame({ visual, body }: Props) {
+export function GameFrame({
+  visual,
+  body,
+  notesEnabled = false,
+  notesLabel = "노트",
+  settingsLabel = "설정",
+  onOpenNotes,
+  onOpenSettings,
+}: Props) {
   return (
     <div className="h-full w-full flex items-center justify-center bg-black p-4">
       <div
@@ -19,23 +32,33 @@ export function GameFrame({ visual, body }: Props) {
         <div className="flex gap-2 px-3 py-2 bg-white">
           <button
             type="button"
-            disabled
-            className="border border-black px-3 py-0.5 text-xs font-mono opacity-40 cursor-not-allowed"
+            disabled={!notesEnabled}
+            onClick={onOpenNotes}
+            className={`border border-black px-3 py-0.5 text-xs font-mono ${
+              notesEnabled
+                ? "hover:bg-black hover:text-white cursor-pointer"
+                : "opacity-40 cursor-not-allowed"
+            }`}
           >
-            노트
+            {notesLabel}
           </button>
           <button
             type="button"
-            disabled
-            className="border border-black px-3 py-0.5 text-xs font-mono opacity-40 cursor-not-allowed"
+            disabled={!onOpenSettings}
+            onClick={onOpenSettings}
+            className={`border border-black px-3 py-0.5 text-xs font-mono ${
+              onOpenSettings
+                ? "hover:bg-black hover:text-white cursor-pointer"
+                : "opacity-40 cursor-not-allowed"
+            }`}
           >
-            설정
+            {settingsLabel}
           </button>
         </div>
 
         <div className="h-px bg-black" />
 
-        <div className="flex-1 overflow-hidden bg-white p-5">{body}</div>
+        <div className="flex-1 overflow-hidden bg-white p-5 relative">{body}</div>
       </div>
     </div>
   );

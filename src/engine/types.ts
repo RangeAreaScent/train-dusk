@@ -89,4 +89,13 @@ export interface GameState {
   };
   flags: Record<string, boolean>;
   endingsReached: EndingId[];
+  clues: Record<string, boolean>;
+  insights: Record<string, boolean>;
+}
+
+export interface ConnectResult {
+  kind: "valid" | "invalid";
+  insightId?: string;
+  insightText?: LocalizedText;
+  message?: string;
 }

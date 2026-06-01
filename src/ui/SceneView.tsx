@@ -1,9 +1,11 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
-import type { Choice, GameState } from "../engine/types";
+import type { Choice, ConnectResult, GameState } from "../engine/types";
 import { getScene, getSceneText } from "../engine/scenes";
 import {
   applyChoice,
+  applyClueChecks,
   clearSave,
+  collectedClueIds,
   initStateFromPrefs,
   loadMeta,
   loadState,
@@ -12,6 +14,7 @@ import {
   savePref,
   saveState,
   startFreshRun,
+  tryConnect,
 } from "../engine/state";
 import { GameFrame } from "./GameFrame";
 import { VisualArea } from "./VisualArea";
@@ -19,6 +22,7 @@ import { TypedText } from "./TypedText";
 import { Choices } from "./Choices";
 import { NameInputField } from "./NameInputField";
 import { EndingCard } from "./EndingCard";
+import { NotesPanel } from "./NotesPanel";
 
 interface Props {
   state: GameState;
@@ -40,13 +44,15 @@ export function SceneView({ state, setState }: Props) {
   const [pageIndex, setPageIndex] = useState(0);
   const [textDone, setTextDone] = useState(false);
   const [inputValue, setInputValue] = useState("");
+  const [notesOpen, setNotesOpen] = useState(false);
 
-  // Mark scene viewed + reset paging on scene change.
+  // Mark scene viewed + reset paging + collect clues on scene change.
   useEffect(() => {
     setPageIndex(0);
     setTextDone(false);
     setInputValue("");
-    setState(markSceneViewed(state, scene.id));
+    setNotesOpen(false);
+    setState(applyClueChecks(markSceneViewed(state, scene.id), scene));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.id]);
 
@@ -175,11 +181,39 @@ export function SceneView({ state, setState }: Props) {
     setState({ ...initStateFromPrefs(), runCount: meta.runCount });
   };
 
+  const handleConnect = (a: string, b: string): ConnectResult => {
+    const { newState, result } = tryConnect(state, a, b, state.language);
+    if (result.kind === "valid") setState(newState);
+    return result;
+  };
+
+  const notesEnabled =
+    collectedClueIds(state).length >= 2 &&
+    scene.id !== "title_screen" &&
+    scene.id !== "settings_menu" &&
+    !scene.isEndingCard;
+
+  const openSettings = () => {
+    setState({ ...state, currentScene: "settings_menu" });
+  };
+
+  // Settings is reachable from any non-meta scene, but on settings/title
+  // we hide the duplicate header button.
+  const canOpenSettings =
+    scene.id !== "settings_menu" &&
+    scene.id !== "title_screen" &&
+    !scene.isEndingCard;
+
+  const notesLabel = state.language === "ko" ? "노트" : "Notes";
+  const settingsLabel = state.language === "ko" ? "설정" : "Settings";
+
   // ─── Ending card branch ──────────────────────────────────────────────
   if (scene.isEndingCard && scene.endingId) {
     return (
       <GameFrame
         visual={<VisualArea visualKey={`ending_${scene.endingId}`} />}
+        notesLabel={notesLabel}
+        settingsLabel={settingsLabel}
         body={
           <EndingCard
             endingId={scene.endingId}
@@ -215,7 +249,21 @@ export function SceneView({ state, setState }: Props) {
   return (
     <GameFrame
       visual={<VisualArea visualKey={scene.visual} popup={scene.popup} />}
+      notesEnabled={notesEnabled}
+      notesLabel={notesLabel}
+      settingsLabel={settingsLabel}
+      onOpenNotes={notesEnabled ? () => setNotesOpen(true) : undefined}
+      onOpenSettings={canOpenSettings ? openSettings : undefined}
       body={
+        <>
+        {notesOpen && (
+          <NotesPanel
+            state={state}
+            lang={state.language}
+            onConnect={handleConnect}
+            onClose={() => setNotesOpen(false)}
+          />
+        )}
         <div className="flex h-full flex-col">
           <div
             ref={textAreaRef}
@@ -265,6 +313,7 @@ export function SceneView({ state, setState }: Props) {
             )}
           </div>
         </div>
+        </>
       }
     />
   );
