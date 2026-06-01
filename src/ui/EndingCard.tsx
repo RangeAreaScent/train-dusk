@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import type { EndingId, GameState, Lang, MetaSave } from "../engine/types";
+import type { EndingId, GameState, Lang, MetaSave, PaperTheme } from "../engine/types";
 import { getEndingDef } from "../engine/scenes";
 import {
   buildEndingShareURL,
@@ -12,17 +12,25 @@ interface Props {
   meta: MetaSave;
   state: GameState;
   lang: Lang;
+  paperTheme?: PaperTheme;
   onRestart: () => void;
   onMainMenu: () => void;
 }
+
+const PAPER_BG: Record<PaperTheme, string> = {
+  white: "#ffffff",
+  cream: "#f5ecd6",
+};
 
 export function EndingCard({
   endingId,
   meta,
   lang,
+  paperTheme = "white",
   onRestart,
   onMainMenu,
 }: Props) {
+  const paperBg = PAPER_BG[paperTheme];
   const def = getEndingDef(endingId);
   const name = def ? def.name[lang] : endingId;
 
@@ -49,7 +57,7 @@ export function EndingCard({
     setBusy(true);
     try {
       const filename = `train-dusk_${endingId}_run${meta.runCount}.png`;
-      await exportElementToPng(cardRef.current, filename);
+      await exportElementToPng(cardRef.current, filename, paperBg);
       flash(T("저장됨", "Saved"));
     } catch (e) {
       console.error(e);
@@ -70,7 +78,8 @@ export function EndingCard({
     <div className="flex h-full flex-col items-center justify-between overflow-y-auto">
       <div
         ref={cardRef}
-        className="flex flex-col items-center text-center w-full pt-2 bg-white"
+        className="flex flex-col items-center text-center w-full pt-2"
+        style={{ backgroundColor: paperBg }}
       >
         <div className="text-black/70 tracking-widest text-sm">─────────</div>
         <div className="mt-3 font-serif text-3xl text-black">{name}</div>

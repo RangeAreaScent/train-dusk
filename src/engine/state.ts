@@ -21,6 +21,8 @@ export const initialState: GameState = {
   runCount: 1,
   language: "ko",
   textSpeed: "normal",
+  shellTheme: "black",
+  paperTheme: "white",
   viewedScenes: [],
   viewedChoices: [],
   counters: {
@@ -293,6 +295,8 @@ export function startFreshRun(prevMeta: MetaSave): GameState {
 export interface Prefs {
   language: GameState["language"];
   textSpeed: GameState["textSpeed"];
+  shellTheme: GameState["shellTheme"];
+  paperTheme: GameState["paperTheme"];
 }
 
 export function loadPref(): Prefs {
@@ -300,6 +304,8 @@ export function loadPref(): Prefs {
   const fallback: Prefs = {
     language: initialState.language,
     textSpeed: initialState.textSpeed,
+    shellTheme: initialState.shellTheme,
+    paperTheme: initialState.paperTheme,
   };
   if (!ls) return fallback;
   try {
@@ -312,6 +318,14 @@ export function loadPref(): Prefs {
         p.textSpeed === "slow" || p.textSpeed === "normal" || p.textSpeed === "fast"
           ? p.textSpeed
           : fallback.textSpeed,
+      shellTheme:
+        p.shellTheme === "black" || p.shellTheme === "gray"
+          ? p.shellTheme
+          : fallback.shellTheme,
+      paperTheme:
+        p.paperTheme === "white" || p.paperTheme === "cream"
+          ? p.paperTheme
+          : fallback.paperTheme,
     };
   } catch {
     return fallback;

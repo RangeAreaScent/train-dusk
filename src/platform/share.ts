@@ -4,10 +4,11 @@ import type { EndingId } from "../engine/types";
 export async function exportElementToPng(
   el: HTMLElement,
   filename: string,
+  backgroundColor: string = "#ffffff",
 ): Promise<void> {
   const { default: html2canvas } = await import("html2canvas");
   const canvas = await html2canvas(el, {
-    backgroundColor: "#ffffff",
+    backgroundColor,
     scale: 2,
     useCORS: true,
   });

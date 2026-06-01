@@ -156,7 +156,12 @@ export function SceneView({ state, setState }: Props) {
     // Language toggle — flips ko↔en, stays on current scene.
     if (target === "language_toggle") {
       const next = state.language === "ko" ? "en" : "ko";
-      savePref({ language: next, textSpeed: state.textSpeed });
+      savePref({
+        language: next,
+        textSpeed: state.textSpeed,
+        shellTheme: state.shellTheme,
+        paperTheme: state.paperTheme,
+      });
       setState({ ...state, language: next });
       return;
     }
@@ -164,8 +169,39 @@ export function SceneView({ state, setState }: Props) {
     // Text speed presets — also stay in place.
     if (target === "text_speed_slow" || target === "text_speed_normal" || target === "text_speed_fast") {
       const next = target.replace("text_speed_", "") as GameState["textSpeed"];
-      savePref({ language: state.language, textSpeed: next });
+      savePref({
+        language: state.language,
+        textSpeed: next,
+        shellTheme: state.shellTheme,
+        paperTheme: state.paperTheme,
+      });
       setState({ ...state, textSpeed: next });
+      return;
+    }
+
+    // Shell theme
+    if (target === "shell_black" || target === "shell_gray") {
+      const next = target === "shell_black" ? "black" : "gray";
+      savePref({
+        language: state.language,
+        textSpeed: state.textSpeed,
+        shellTheme: next,
+        paperTheme: state.paperTheme,
+      });
+      setState({ ...state, shellTheme: next });
+      return;
+    }
+
+    // Paper theme
+    if (target === "paper_white" || target === "paper_cream") {
+      const next = target === "paper_white" ? "white" : "cream";
+      savePref({
+        language: state.language,
+        textSpeed: state.textSpeed,
+        shellTheme: state.shellTheme,
+        paperTheme: next,
+      });
+      setState({ ...state, paperTheme: next });
       return;
     }
 
@@ -247,6 +283,8 @@ export function SceneView({ state, setState }: Props) {
         }
         notesLabel={notesLabel}
         settingsLabel={settingsLabel}
+        shellTheme={state.shellTheme}
+        paperTheme={state.paperTheme}
         body={
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
@@ -265,6 +303,7 @@ export function SceneView({ state, setState }: Props) {
                 }}
                 state={state}
                 lang={state.language}
+                paperTheme={state.paperTheme}
                 onRestart={handleRestart}
                 onMainMenu={handleMainMenu}
               />
@@ -313,6 +352,8 @@ export function SceneView({ state, setState }: Props) {
       notesEnabled={notesEnabled}
       notesLabel={notesLabel}
       settingsLabel={settingsLabel}
+      shellTheme={state.shellTheme}
+      paperTheme={state.paperTheme}
       onOpenNotes={notesEnabled ? () => setNotesOpen(true) : undefined}
       onOpenSettings={canOpenSettings ? openSettings : undefined}
       body={
@@ -352,7 +393,7 @@ export function SceneView({ state, setState }: Props) {
             />
           </div>
 
-          <div className="shrink-0 mt-3 h-[170px] overflow-hidden">
+          <div className={`shrink-0 mt-3 ${scene.id === "settings_menu" ? "h-[260px] overflow-y-auto" : "h-[170px] overflow-hidden"}`}>
             {textDone && hasMore && (
               <div
                 className="text-right text-black/60 text-2xl cursor-pointer select-none chevron-drift"

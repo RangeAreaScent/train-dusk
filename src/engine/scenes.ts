@@ -68,6 +68,22 @@ function buildSceneMap(): {
         next: "text_speed_fast",
       },
       {
+        label: { ko: "셸: 검정", en: "Shell: Black" },
+        next: "shell_black",
+      },
+      {
+        label: { ko: "셸: 그레이", en: "Shell: Gray" },
+        next: "shell_gray",
+      },
+      {
+        label: { ko: "종이: 흰색", en: "Paper: White" },
+        next: "paper_white",
+      },
+      {
+        label: { ko: "종이: 크림", en: "Paper: Cream" },
+        next: "paper_cream",
+      },
+      {
         label: { ko: "돌아가기", en: "Back" },
         next: "back_to_title",
       },
