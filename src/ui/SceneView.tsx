@@ -23,6 +23,7 @@ import { Choices } from "./Choices";
 import { NameInputField } from "./NameInputField";
 import { EndingCard } from "./EndingCard";
 import { NotesPanel } from "./NotesPanel";
+import { clearURLParams, pushEndingURL } from "../platform/share";
 
 interface Props {
   state: GameState;
@@ -65,9 +66,13 @@ export function SceneView({ state, setState }: Props) {
     saveState(state);
   }, [state, scene.id, scene.isEndingCard]);
 
-  // When reaching an ending card, record the run in meta and wipe the save.
+  // When reaching an ending card, record the run in meta, wipe the save,
+  // and stamp the URL so the card is shareable. Visitors who arrive via a
+  // shared URL get the flags.viewingShared sentinel and skip all of that —
+  // their local progress shouldn't be touched by viewing someone else's link.
   useEffect(() => {
     if (scene.isEndingCard && scene.endingId) {
+      if (state.flags.viewingShared) return;
       const meta = recordEnding(scene.endingId);
       setState({
         ...state,
@@ -75,6 +80,9 @@ export function SceneView({ state, setState }: Props) {
         runCount: meta.runCount,
       });
       clearSave();
+      pushEndingURL(scene.endingId, meta.runCount);
+    } else {
+      clearURLParams();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.id]);
