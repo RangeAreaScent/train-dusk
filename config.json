@@ -1,0 +1,104 @@
+{
+  "game": {
+    "title": "Train Dusk",
+    "version": "1.0.0",
+    "defaultLanguage": "ko",
+    "supportedLanguages": ["ko", "en"]
+  },
+
+  "ui": {
+    "aspectRatio": "5:8",
+    "visualAreaRatio": "4:3",
+    "splitRatio": "50:50",
+    "letterbox": true,
+    "buttons": ["notes", "settings"],
+    "log": false,
+    "choiceMarker": "▸",
+    "transitionDuration": 500,
+    "popupDimming": 0.2
+  },
+
+  "typography": {
+    "ko": {
+      "primary": "handwriting",
+      "fallback": "sans-serif",
+      "suggestedFonts": ["EF_Diary", "온글잎 한우리", "교보손글씨"]
+    },
+    "en": {
+      "primary": "monospace",
+      "fallback": "monospace",
+      "suggestedFonts": ["Courier Prime", "Special Elite"]
+    }
+  },
+
+  "colors": {
+    "background": "#FFFFFF",
+    "text": "#000000",
+    "border": "#000000",
+    "muted": "#888888",
+    "systemMessage": "#666666",
+    "whisperChoice": "#777777",
+    "hiddenChoice": "#DDDDDD"
+  },
+
+  "textSpeed": {
+    "slow": 80,
+    "normal": 40,
+    "fast": 15,
+    "default": "normal"
+  },
+
+  "save": {
+    "autoSaveKey": "trainDusk_save",
+    "metaKey": "trainDusk_meta",
+    "autoSaveInterval": "perScene"
+  },
+
+  "constants": {
+    "totalCars": 5,
+    "whisperTriggerThreshold": 3,
+    "exploreEndingCThreshold": 3,
+    "avoidEndingAThreshold": 2,
+    "endingDRequiredOthers": 2,
+    "endingDRequiredClues": 7,
+    "endingDRequiredInsights": 7
+  },
+
+  "endingConditions": {
+    "A": {
+      "name": { "ko": "확신", "en": "Certainty" },
+      "trigger": "default_fallback",
+      "description": "회피 누적 또는 명시적 선택 안 됨"
+    },
+    "B": {
+      "name": { "ko": "동행", "en": "Companion" },
+      "trigger": "hiddenTriggered && friendAppeared && choseFriendHand",
+      "description": "혼잣말 3회+ 누적 + 이름 응답 + 친구 손 잡음"
+    },
+    "C": {
+      "name": { "ko": "거울", "en": "Mirror" },
+      "trigger": "choseConductorPath",
+      "description": "차장 칸으로 향함 (인터폰 응답 + 중간 통찰 필요)"
+    },
+    "D": {
+      "name": { "ko": "각성", "en": "Awakening" },
+      "trigger": "insights.mustWakeUp && endingsReached.length >= 2 && choseAwakening",
+      "description": "모든 통찰 + 다른 엔딩 2개+ + 진실 선택"
+    }
+  },
+
+  "endingCard": {
+    "format": "PNG",
+    "exportLibrary": "html2canvas",
+    "shareUrlParam": "ending",
+    "decoration": "◇  ◇  ◇",
+    "subtitle": "─ Train Dusk ─"
+  },
+
+  "debug": {
+    "enabled": false,
+    "unlockAfter5TapsOnSettingsInfo": true,
+    "showState": true,
+    "forceEndingTriggers": true
+  }
+}

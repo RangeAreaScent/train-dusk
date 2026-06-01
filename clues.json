@@ -1,0 +1,199 @@
+{
+  "announcement": {
+    "id": "announcement",
+    "name": { "ko": "이상한 안내방송", "en": "Strange Announcement" },
+    "type": "truth",
+    "minRun": 1,
+    "appearsIn": ["all_cars"],
+    "trigger": "auto_descriptive",
+    "noteEntry": {
+      "run1": {
+        "ko": "안내방송이 자꾸 끊긴다.",
+        "en": "The announcements keep cutting out."
+      },
+      "run2": {
+        "ko": "안내방송에 내 이름이 섞여 있다.",
+        "en": "My name slips into the announcements."
+      },
+      "run3": {
+        "ko": "방송이 내게 손을 움직여 보라고 한다.",
+        "en": "The voice asks me to move my hand."
+      },
+      "run4": {
+        "ko": "방송은 의료진의 목소리다.",
+        "en": "The announcements are the voices of medical staff."
+      }
+    }
+  },
+
+  "phoneNotification": {
+    "id": "phoneNotification",
+    "name": { "ko": "핸드폰 알림", "en": "Phone Notification" },
+    "type": "truth",
+    "minRun": 2,
+    "appearsIn": ["car_1"],
+    "trigger": "choice_phone",
+    "noteEntry": {
+      "run2": {
+        "ko": "검진 결과 안내 알림이 와 있다.",
+        "en": "A notification about examination results."
+      },
+      "run3": {
+        "ko": "중환자실 면회 시간 변경 안내가 와 있다.",
+        "en": "A notice about changes to ICU visiting hours."
+      },
+      "run4": {
+        "ko": "환자 명단에 내 이름이 있다.",
+        "en": "My name is on the patient list."
+      }
+    }
+  },
+
+  "flowers": {
+    "id": "flowers",
+    "name": { "ko": "꽃다발", "en": "Bouquet" },
+    "type": "truth",
+    "minRun": 2,
+    "appearsIn": ["car_2"],
+    "trigger": "choice_seat_detail",
+    "noteEntry": {
+      "run2": {
+        "ko": "좌석 위에 하얀 국화 꽃다발이 놓여 있다.",
+        "en": "A bouquet of white chrysanthemums left on a seat."
+      },
+      "run3": {
+        "ko": "꽃다발의 카드 — \"빨리 일어나\"",
+        "en": "The card on the bouquet — \"Wake up soon.\""
+      },
+      "run4": {
+        "ko": "칸 전체의 좌석에 꽃다발들이 놓여 있다.",
+        "en": "Bouquets throughout the seats of the car."
+      }
+    }
+  },
+
+  "clock": {
+    "id": "clock",
+    "name": { "ko": "멈춘 시간", "en": "Stopped Time" },
+    "type": "truth",
+    "minRun": 1,
+    "appearsIn": ["car_1", "car_2"],
+    "trigger": "choice_clock",
+    "noteEntry": {
+      "run1": {
+        "ko": "시간은 23:54.",
+        "en": "The time reads 23:54."
+      },
+      "run2": {
+        "ko": "시간이 23:54에서 움직이지 않는다.",
+        "en": "The time has not moved from 23:54."
+      },
+      "run3": {
+        "ko": "멈춘 시간? — 23:54",
+        "en": "Stopped time? — 23:54"
+      }
+    }
+  },
+
+  "seatTrace": {
+    "id": "seatTrace",
+    "name": { "ko": "빈 좌석의 흔적", "en": "Trace on the Empty Seat" },
+    "type": "branch",
+    "minRun": 1,
+    "appearsIn": ["car_2"],
+    "trigger": "choice_seat_detail",
+    "noteEntry": {
+      "run1": {
+        "ko": "빈 좌석에 누군가 앉아 있던 흔적.",
+        "en": "A trace of someone on the empty seat."
+      }
+    }
+  },
+
+  "doorNoReturn": {
+    "id": "doorNoReturn",
+    "name": { "ko": "돌아갈 수 없는 문", "en": "A Door That Won't Return" },
+    "type": "atmosphere",
+    "minRun": 1,
+    "appearsIn": ["car_2_entry"],
+    "trigger": "auto_on_entry",
+    "noteEntry": {
+      "run1": {
+        "ko": "지나온 통로가 어둠 속으로 사라졌다.",
+        "en": "The passage I came through has vanished into the dark."
+      }
+    }
+  },
+
+  "bag": {
+    "id": "bag",
+    "name": { "ko": "가방 속 물건들", "en": "Things in the Bag" },
+    "type": "branch",
+    "minRun": 1,
+    "appearsIn": ["car_1"],
+    "trigger": "choice_bag",
+    "noteEntry": {
+      "run1": {
+        "ko": "가방 속 낯선 물건들. 흐릿한 사원증, 모르는 글씨의 노트, 라벨 벗겨진 약통, 흐려진 명함.",
+        "en": "Unfamiliar things in the bag. A blurred ID badge, a notebook in handwriting not mine, a label-peeled pill bottle, a faded business card."
+      },
+      "run3": {
+        "ko": "명함의 글씨가 조금 보인다. 병원 이름인 것 같다.",
+        "en": "Some of the card's writing returns. It seems to be a hospital name."
+      }
+    }
+  },
+
+  "puzzleClues": {
+    "description": {
+      "ko": "퍼즐을 풀어야만 노트에 기록되는 진실 단서들. 노트 추론 보드 카드에는 포함되지 않음.",
+      "en": "Truth clues recorded only when puzzles are solved. Not included in inference board cards."
+    },
+    "phoneUnlocked": {
+      "id": "phoneUnlocked",
+      "requires": "puzzle_phone_lock",
+      "noteEntry": {
+        "ko": "잠금이 풀린 핸드폰 — 모르는 가족, 누워 있는 나.",
+        "en": "The unlocked phone — strangers as family, me asleep."
+      }
+    },
+    "missingDate": {
+      "id": "missingDate",
+      "requires": "puzzle_seat_numbers",
+      "noteEntry": {
+        "run1": {
+          "ko": "03.15에 무언가 있었다.",
+          "en": "Something happened on 03.15."
+        },
+        "run2": {
+          "ko": "03.15 — \"오늘은 그날이다.\"",
+          "en": "03.15 — \"Today is the day.\""
+        },
+        "run3": {
+          "ko": "03.15 — \"가야 한다.\"",
+          "en": "03.15 — \"I have to go.\""
+        },
+        "run4": {
+          "ko": "03.15 — \"왜 못 갔지.\"",
+          "en": "03.15 — \"Why couldn't I.\""
+        }
+      }
+    },
+    "intercomVoice": {
+      "id": "intercomVoice",
+      "requires": "puzzle_intercom",
+      "noteEntry": {
+        "ko": "인터폰 — 내 목소리가 응답했다.",
+        "en": "The intercom — my own voice answered."
+      }
+    }
+  },
+
+  "tutorial": {
+    "trigger": "first_time_two_clues_collected",
+    "message": {
+      "ko": "두 단서를 골라 이어볼 수 있다. 무언가 떠오를지도 모른다.",
+      "en": "Two clues can be linked. Something may come to mind."
+    }
+  }
+}

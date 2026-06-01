@@ -1,0 +1,140 @@
+{
+  "insights": {
+    "moveForward": {
+      "id": "moveForward",
+      "tier": "basic",
+      "requires": ["seatTrace", "doorNoReturn"],
+      "text": {
+        "ko": "이 열차는 앞으로만 간다.",
+        "en": "This train only moves forward."
+      },
+      "unlocks": null,
+      "minRun": 1
+    },
+    "timeFrozen": {
+      "id": "timeFrozen",
+      "tier": "basic",
+      "requires": ["clock", "doorNoReturn"],
+      "text": {
+        "ko": "시간이 멈췄다.",
+        "en": "Time has stopped."
+      },
+      "unlocks": null,
+      "minRun": 1
+    },
+    "callsMyName": {
+      "id": "callsMyName",
+      "tier": "middle",
+      "requires": ["announcement", "phoneNotification"],
+      "text": {
+        "ko": "방송이 내 이름을 부른다.",
+        "en": "The voice calls my name."
+      },
+      "unlocks": "endingC_path",
+      "minRun": 2
+    },
+    "lostTime": {
+      "id": "lostTime",
+      "tier": "middle",
+      "requires": ["bag", "clock"],
+      "text": {
+        "ko": "나는 시간을 잃었다.",
+        "en": "I've lost time."
+      },
+      "unlocks": "endingC_path",
+      "minRun": 1
+    },
+    "bothHospital": {
+      "id": "bothHospital",
+      "tier": "core",
+      "requires": ["flowers", "phoneNotification"],
+      "text": {
+        "ko": "꽃과 알림. 둘 다 병원을 가리킨다.",
+        "en": "Flowers and notifications. Both point to a hospital."
+      },
+      "unlocks": null,
+      "minRun": 2
+    },
+    "flowersAndTime": {
+      "id": "flowersAndTime",
+      "tier": "core",
+      "requires": ["flowers", "clock"],
+      "text": {
+        "ko": "꽃과 시간, 모두 멈춰 있다.",
+        "en": "The flowers, the clock — both frozen."
+      },
+      "unlocks": null,
+      "minRun": 2
+    },
+    "mustWakeUp": {
+      "id": "mustWakeUp",
+      "tier": "final",
+      "requires": ["bothHospital", "flowersAndTime"],
+      "requiresType": "insights",
+      "text": {
+        "ko": "나는... 깨어나야 한다.",
+        "en": "I must... wake up."
+      },
+      "unlocks": "endingD",
+      "minRun": 2
+    }
+  },
+
+  "connectionRules": {
+    "interaction": "tap_two_cards",
+    "validConnectionCount": 7,
+    "invalidShows": "random_message_from_pool",
+    "validVisual": "solid_line_then_fade",
+    "invalidVisual": "dotted_line_disperse"
+  },
+
+  "invalidMessages": {
+    "ko": [
+      "...연결되지 않는다.",
+      "...아직 부족한 것 같다.",
+      "...뭔가 더 있다.",
+      "...이게 답은 아니다.",
+      "...아직 모르겠다."
+    ],
+    "en": [
+      "...It doesn't connect.",
+      "...Something's still missing.",
+      "...There's more to this.",
+      "...This isn't it.",
+      "...I don't see it yet."
+    ]
+  },
+
+  "endingTriggers": {
+    "endingC_path": {
+      "condition": "any insight in tier 'middle' unlocked",
+      "effect": "enables car_3 conductor reasoning choice"
+    },
+    "endingD": {
+      "condition": "mustWakeUp insight + endingsReached.length >= 2",
+      "effect": "enables car_5 awakening choice"
+    }
+  },
+
+  "boardUI": {
+    "layout": "card_grid",
+    "sections": [
+      {
+        "id": "seen",
+        "label": { "ko": "본 것들", "en": "Things I've Seen" },
+        "content": "discovered_clues"
+      },
+      {
+        "id": "thoughts",
+        "label": { "ko": "떠오르는 생각", "en": "Thoughts That Surface" },
+        "content": "unlocked_insights"
+      }
+    ],
+    "cardSize": { "width": 140, "height": 60 },
+    "selectionHighlight": "border_thickens",
+    "tutorialNote": {
+      "ko": "단서가 두 개 이상 모이면 노트 하단에 '떠오르는 생각'이 시작됩니다. 두 단서를 골라 이어보세요.",
+      "en": "Once two or more clues are gathered, 'Thoughts That Surface' appears below. Tap two cards to connect them."
+    }
+  }
+}

@@ -1,0 +1,3059 @@
+{
+  "metadata": {
+    "totalScenes": "approx 40",
+    "noteForEngine": "Each scene has 'text' (typed out line by line) and 'choices' (shown after text completes). 'returnTo' means viewing this scene returns to the parent. 'next' means auto-advance. 'variants.runN' replaces or appends text based on current run count. 'clueChecks' triggers clue discovery. 'effects' modifies gameState counters."
+  },
+  "title_screen": {
+    "id": "title_screen",
+    "visual": "title_logo",
+    "text": {
+      "ko": [
+        "TRAIN DUSK"
+      ],
+      "en": [
+        "TRAIN DUSK"
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "시작",
+          "en": "Start"
+        },
+        "next": "name_input"
+      },
+      {
+        "label": {
+          "ko": "이어하기",
+          "en": "Continue"
+        },
+        "next": "load_save",
+        "condition": "hasSave"
+      },
+      {
+        "label": {
+          "ko": "설정",
+          "en": "Settings"
+        },
+        "next": "settings_menu"
+      },
+      {
+        "label": {
+          "ko": "언어 / Language",
+          "en": "Language / 언어"
+        },
+        "next": "language_toggle"
+      }
+    ]
+  },
+  "name_input": {
+    "id": "name_input",
+    "visual": "black_screen",
+    "text": {
+      "ko": [
+        "당신의 이름을 입력해주세요."
+      ],
+      "en": [
+        "Please enter your name."
+      ]
+    },
+    "inputField": {
+      "id": "playerName",
+      "maxLength": 12,
+      "placeholder": {
+        "ko": "이름",
+        "en": "Name"
+      }
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "계속한다",
+          "en": "Continue"
+        },
+        "next": "prologue",
+        "requiresInput": true
+      }
+    ]
+  },
+  "prologue": {
+    "id": "prologue",
+    "visual": "car_1_wide",
+    "music": "train_ambient",
+    "text": {
+      "ko": [
+        "눈을 뜬다.",
+        "",
+        "흔들림. 익숙한 흔들림.",
+        "열차의 진동.",
+        "",
+        "좌석에 앉아 있다.",
+        "손에 가방을 쥐고 있다.",
+        "",
+        "긴 머리가",
+        "이마에 흘러내린다.",
+        "",
+        "쓸어 넘긴다.",
+        "",
+        "코트의 옷깃을 잡는다.",
+        "구겨져 있다.",
+        "",
+        "...",
+        "",
+        "어디로 가는 길이었지.",
+        "",
+        "생각이 나지 않는다."
+      ],
+      "en": [
+        "I open my eyes.",
+        "",
+        "Swaying. A familiar swaying.",
+        "The hum of a train.",
+        "",
+        "I'm sitting in a seat.",
+        "A bag in my hand.",
+        "",
+        "Long hair",
+        "falls over my forehead.",
+        "",
+        "I sweep it back.",
+        "",
+        "I grip the lapel of my trench coat.",
+        "It's wrinkled.",
+        "",
+        "...",
+        "",
+        "Where was I headed.",
+        "",
+        "I can't remember."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "append": {
+          "ko": [
+            "",
+            "...이 풍경, 본 적 있다."
+          ],
+          "en": [
+            "",
+            "...I've seen this before."
+          ]
+        }
+      },
+      "run3": {
+        "append": {
+          "ko": [
+            "",
+            "...또 여기다."
+          ],
+          "en": [
+            "",
+            "...Here again."
+          ]
+        }
+      }
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "계속한다",
+          "en": "Continue"
+        },
+        "next": "car_1"
+      }
+    ]
+  },
+  "car_1": {
+    "id": "car_1",
+    "visual": "car_1_wide",
+    "car": 1,
+    "text": {
+      "ko": [
+        "창밖은 어둡다.",
+        "당연한 일이다. 지하니까.",
+        "",
+        "맞은편 좌석은 비어 있다.",
+        "이 칸엔 나 혼자다.",
+        "",
+        "",
+        "[안내방송]",
+        "\"이번 역은... 입니다.",
+        "내리실 문은...\"",
+        "",
+        "지직거리는 소리에",
+        "말이 묻힌다."
+      ],
+      "en": [
+        "It's dark outside the window.",
+        "Of course it is. We're underground.",
+        "",
+        "The seat across from me is empty.",
+        "I'm alone in this car.",
+        "",
+        "",
+        "[Announcement]",
+        "\"The next station is...",
+        "The doors will open on...\"",
+        "",
+        "The words dissolve",
+        "into static."
+      ]
+    },
+    "clueChecks": [
+      {
+        "id": "announcement",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "choices": [
+      {
+        "label": {
+          "ko": "가방을 연다",
+          "en": "Open the bag"
+        },
+        "next": "car_1_bag",
+        "effects": {
+          "exploreCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "핸드폰을 본다",
+          "en": "Check my phone"
+        },
+        "next": "car_1_phone",
+        "effects": {
+          "exploreCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "창밖을 본다",
+          "en": "Look out the window"
+        },
+        "next": "car_1_window",
+        "effects": {},
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "\"...여기가 어디지.\"",
+          "en": "\"...Where is this.\""
+        },
+        "next": "car_1_whisper",
+        "effects": {
+          "whisperCount": 1
+        },
+        "type": "whisper",
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "다음 칸으로 간다",
+          "en": "Move to the next car"
+        },
+        "next": "car_2_entry",
+        "effects": {
+          "avoidCount": 1
+        },
+        "requiresAllViewed": [
+          "car_1_bag",
+          "car_1_phone",
+          "car_1_window"
+        ]
+      }
+    ]
+  },
+  "car_1_bag": {
+    "id": "car_1_bag",
+    "visual": "car_1_wide",
+    "popup": "bag_open",
+    "popupPosition": "top-right",
+    "car": 1,
+    "text": {
+      "ko": [
+        "가방을 연다.",
+        "",
+        "낯선 물건들이 들어 있다.",
+        "",
+        "사원증 하나.",
+        "이름도 얼굴도 흐릿하다.",
+        "",
+        "작은 노트.",
+        "펼쳐 보지만",
+        "내 글씨 같지가 않다.",
+        "",
+        "약통 하나.",
+        "라벨이 벗겨져 있다.",
+        "",
+        "...",
+        "",
+        "코트 안주머니에도 무언가 있다.",
+        "",
+        "손을 넣어본다.",
+        "",
+        "명함 한 장.",
+        "글자가 다 지워져 있다.",
+        "",
+        "...이게 다 내 건가?"
+      ],
+      "en": [
+        "I open the bag.",
+        "",
+        "It's full of things I don't recognize.",
+        "",
+        "An ID badge.",
+        "The name and face are blurred.",
+        "",
+        "A small notebook.",
+        "I flip it open,",
+        "but the handwriting isn't mine.",
+        "",
+        "A pill bottle.",
+        "The label's been peeled away.",
+        "",
+        "...",
+        "",
+        "Something's in my coat's inner pocket too.",
+        "",
+        "I reach inside.",
+        "",
+        "A business card.",
+        "All the text has faded.",
+        "",
+        "...Is all of this mine?"
+      ]
+    },
+    "variants": {
+      "run3": {
+        "append": {
+          "ko": [
+            "",
+            "...명함의 글씨가 조금 보인다.",
+            "",
+            "어느 병원 이름인 것 같다."
+          ],
+          "en": [
+            "",
+            "...Some of the writing on the card has returned.",
+            "",
+            "It seems to be the name of a hospital."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "bag",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "returnTo": "car_1"
+  },
+  "car_1_phone": {
+    "id": "car_1_phone",
+    "visual": "car_1_wide",
+    "popup": "phone_locked",
+    "popupPosition": "bottom-right",
+    "car": 1,
+    "text": {
+      "ko": [
+        "핸드폰을 꺼낸다.",
+        "",
+        "잠겨 있다.",
+        "비밀번호 네 자리.",
+        "",
+        "...뭐였더라.",
+        "",
+        "생각이 안 난다.",
+        "",
+        "...",
+        "",
+        "배경화면.",
+        "모르는 풍경 사진.",
+        "",
+        "알림은 없다.",
+        "신호도 없다.",
+        "",
+        "시간은 23:54."
+      ],
+      "en": [
+        "I take out my phone.",
+        "",
+        "Locked.",
+        "Four digits.",
+        "",
+        "...What was it.",
+        "",
+        "I can't remember.",
+        "",
+        "...",
+        "",
+        "The wallpaper.",
+        "A photo of a place I don't know.",
+        "",
+        "No notifications.",
+        "No signal.",
+        "",
+        "The time reads 23:54."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "핸드폰을 꺼낸다.",
+            "",
+            "잠겨 있다.",
+            "",
+            "...",
+            "",
+            "잠금 화면에",
+            "알림이 하나 와 있다.",
+            "",
+            "\"검진 결과 안내\"",
+            "",
+            "...스팸인가.",
+            "",
+            "시간은 23:54.",
+            "아까와 같은 시간이다."
+          ],
+          "en": [
+            "I take out my phone.",
+            "",
+            "Locked.",
+            "",
+            "...",
+            "",
+            "On the lock screen,",
+            "one notification.",
+            "",
+            "\"Examination results available\"",
+            "",
+            "...Spam, probably.",
+            "",
+            "The time reads 23:54.",
+            "The same as before."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "핸드폰을 꺼낸다.",
+            "",
+            "잠겨 있다.",
+            "",
+            "...",
+            "",
+            "알림.",
+            "",
+            "\"중환자실 면회 시간 변경 안내\"",
+            "",
+            "...중환자실?",
+            "",
+            "시간은 여전히 23:54."
+          ],
+          "en": [
+            "I take out my phone.",
+            "",
+            "Locked.",
+            "",
+            "...",
+            "",
+            "A notification.",
+            "",
+            "\"ICU visiting hours have changed\"",
+            "",
+            "...ICU?",
+            "",
+            "The time still reads 23:54."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "phoneNotification",
+        "trigger": "auto",
+        "minRun": 2
+      },
+      {
+        "id": "clock",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "returnTo": "car_1",
+    "puzzleHook": {
+      "id": "puzzle_phone_lock",
+      "trigger": "clock_clue_discovered",
+      "activatesAfter": "car_2",
+      "note": "Once clock clue is discovered, an additional choice appears in car_1 or notes: '핸드폰 잠금을 다시 본다 / 2354를 입력해본다'"
+    }
+  },
+  "car_1_phone_unlock_attempt": {
+    "id": "car_1_phone_unlock_attempt",
+    "visual": "car_1_wide",
+    "popup": "phone_locked",
+    "popupPosition": "bottom-right",
+    "car": 1,
+    "trigger": "after clock clue + revisit",
+    "text": {
+      "ko": [
+        "핸드폰을 다시 본다.",
+        "",
+        "잠금 화면.",
+        "",
+        "...",
+        "",
+        "23:54.",
+        "",
+        "시계의 숫자.",
+        "",
+        "...혹시."
+      ],
+      "en": [
+        "I look at the phone again.",
+        "",
+        "The lock screen.",
+        "",
+        "...",
+        "",
+        "23:54.",
+        "",
+        "The numbers on the clock.",
+        "",
+        "...Could it be."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "2354를 입력한다",
+          "en": "Enter 2354"
+        },
+        "next": "car_1_phone_unlocked",
+        "effects": {
+          "puzzlePhoneSolved": true
+        }
+      },
+      {
+        "label": {
+          "ko": "...일단 둔다",
+          "en": "...Leave it for now"
+        },
+        "returnTo": "car_1"
+      }
+    ]
+  },
+  "car_1_phone_unlocked": {
+    "id": "car_1_phone_unlocked",
+    "visual": "car_1_wide",
+    "popup": "phone_unlocked",
+    "popupPosition": "center",
+    "car": 1,
+    "text": {
+      "ko": [
+        "잠금이 풀린다.",
+        "",
+        "...",
+        "",
+        "배경화면.",
+        "",
+        "처음 보는 가족 사진.",
+        "",
+        "어머니로 보이는 사람.",
+        "형으로 보이는 사람.",
+        "그리고...",
+        "",
+        "내가 있다.",
+        "",
+        "침대에 누워 있다.",
+        "",
+        "눈을 감고.",
+        "",
+        "...",
+        "",
+        "(노트에 기록되었다: 잠금이 풀린 핸드폰 — 모르는 가족, 누워 있는 나)"
+      ],
+      "en": [
+        "The lock releases.",
+        "",
+        "...",
+        "",
+        "The wallpaper.",
+        "",
+        "A family photo I've never seen.",
+        "",
+        "A woman who looks like a mother.",
+        "A man who looks like an older brother.",
+        "And...",
+        "",
+        "Me.",
+        "",
+        "Lying in a bed.",
+        "",
+        "Eyes closed.",
+        "",
+        "...",
+        "",
+        "(Noted: The unlocked phone — strangers as family, me asleep)"
+      ]
+    },
+    "clueChecks": [
+      {
+        "id": "phoneUnlocked",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "returnTo": "car_1"
+  },
+  "car_1_window": {
+    "id": "car_1_window",
+    "visual": "window_dark",
+    "car": 1,
+    "text": {
+      "ko": [
+        "창문에 얼굴을 가까이 댄다.",
+        "",
+        "어둠 속에",
+        "내 모습이 비친다.",
+        "",
+        "긴 머리.",
+        "구겨진 트렌치 코트.",
+        "",
+        "피곤해 보인다.",
+        "",
+        "...평범하다."
+      ],
+      "en": [
+        "I lean close to the glass.",
+        "",
+        "In the darkness,",
+        "my reflection.",
+        "",
+        "Long hair.",
+        "A wrinkled trench coat.",
+        "",
+        "I look tired.",
+        "",
+        "...Ordinary."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "창에 비친 내 모습.",
+            "",
+            "긴 머리.",
+            "",
+            "...코트 위에",
+            "뭔가 묻어 있는 것 같다.",
+            "",
+            "자세히 보려 하면",
+            "보이지 않는다."
+          ],
+          "en": [
+            "My reflection.",
+            "",
+            "Long hair.",
+            "",
+            "...There seems to be something",
+            "on the coat.",
+            "",
+            "When I try to focus,",
+            "it vanishes."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "창에 비친 내 모습.",
+            "",
+            "머리가 헝클어져 있다.",
+            "",
+            "코트는...",
+            "",
+            "코트가 아니다.",
+            "",
+            "이건 무슨 옷이지.",
+            "",
+            "오늘 이 옷을 입었던가?"
+          ],
+          "en": [
+            "My reflection.",
+            "",
+            "My hair is tangled.",
+            "",
+            "The coat...",
+            "",
+            "It's not a coat.",
+            "",
+            "What is this.",
+            "",
+            "Did I put this on today?"
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "창에 비친 내 모습.",
+            "",
+            "흰 옷.",
+            "머리에 붕대.",
+            "",
+            "...",
+            "",
+            "거기서 시선을 거둔다."
+          ],
+          "en": [
+            "My reflection.",
+            "",
+            "White clothing.",
+            "A bandage on my head.",
+            "",
+            "...",
+            "",
+            "I look away."
+          ]
+        }
+      }
+    },
+    "returnTo": "car_1"
+  },
+  "car_1_whisper": {
+    "id": "car_1_whisper",
+    "visual": "car_1_wide",
+    "car": 1,
+    "text": {
+      "ko": [
+        "\"...여기가 어디지.\"",
+        "",
+        "내 목소리가",
+        "텅 빈 칸에 울린다.",
+        "",
+        "아무도 대답하지 않는다."
+      ],
+      "en": [
+        "\"...Where is this.\"",
+        "",
+        "My voice echoes",
+        "through the empty car.",
+        "",
+        "No one answers."
+      ]
+    },
+    "returnTo": "car_1"
+  },
+  "car_2_entry": {
+    "id": "car_2_entry",
+    "visual": "car_2_passage",
+    "car": 2,
+    "isPassage": true,
+    "text": {
+      "ko": [
+        "다음 칸으로 넘어왔다.",
+        "",
+        "문이 닫히는 소리.",
+        "",
+        "뒤를 돌아본다.",
+        "",
+        "...",
+        "",
+        "방금 지나온 통로는",
+        "어둠 속으로 사라졌다.",
+        "",
+        "돌아갈 수 없다.",
+        "",
+        "이상하게도,",
+        "그 사실이 놀랍지 않다."
+      ],
+      "en": [
+        "I've crossed into the next car.",
+        "",
+        "The sound of the door closing.",
+        "",
+        "I look back.",
+        "",
+        "...",
+        "",
+        "The passage I just came through",
+        "has vanished into the dark.",
+        "",
+        "There's no going back.",
+        "",
+        "Strangely,",
+        "that doesn't surprise me."
+      ]
+    },
+    "clueChecks": [
+      {
+        "id": "doorNoReturn",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "next": "car_2"
+  },
+  "car_2": {
+    "id": "car_2",
+    "visual": "car_2_wide",
+    "car": 2,
+    "text": {
+      "ko": [
+        "이 칸도 비어 있다.",
+        "",
+        "아니.",
+        "",
+        "좌석 하나에",
+        "무언가 놓여 있다."
+      ],
+      "en": [
+        "This car is empty too.",
+        "",
+        "No.",
+        "",
+        "On one of the seats,",
+        "something has been left behind."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "좌석을 자세히 본다",
+          "en": "Look closely at the seat"
+        },
+        "next": "car_2_seat",
+        "effects": {
+          "exploreCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "시계를 확인한다",
+          "en": "Check the time"
+        },
+        "next": "car_2_clock",
+        "effects": {},
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "비상 정지 버튼을 본다",
+          "en": "Look at the emergency stop button"
+        },
+        "next": "car_2_button",
+        "effects": {
+          "exploreCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "\"...누가 있었던 걸까.\"",
+          "en": "\"...Was someone here.\""
+        },
+        "next": "car_2_whisper",
+        "effects": {
+          "whisperCount": 1
+        },
+        "type": "whisper",
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "다음 칸으로 간다",
+          "en": "Move to the next car"
+        },
+        "next": "car_3_entry",
+        "requiresAllViewed": [
+          "car_2_seat",
+          "car_2_clock",
+          "car_2_button"
+        ],
+        "afterTrigger": "notes_first_hint_if_run1"
+      }
+    ]
+  },
+  "car_2_seat": {
+    "id": "car_2_seat",
+    "visual": "car_2_seat_close",
+    "popup": "seat_trace",
+    "popupPosition": "center",
+    "car": 2,
+    "text": {
+      "ko": [
+        "좌석에 다가간다.",
+        "",
+        "누군가 앉아 있던 흔적.",
+        "방석이 살짝 눌려 있다.",
+        "",
+        "손을 대본다.",
+        "온기는 없다.",
+        "",
+        "...방금까지 누가 있었나?",
+        "",
+        "빈 칸인데."
+      ],
+      "en": [
+        "I approach the seat.",
+        "",
+        "A trace of someone who sat here.",
+        "The cushion is slightly pressed.",
+        "",
+        "I touch it.",
+        "No warmth.",
+        "",
+        "...Was someone here just now?",
+        "",
+        "The car is empty."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "좌석에 다가간다.",
+            "",
+            "오늘은 꽃다발이 놓여 있다.",
+            "",
+            "낯익은 꽃들.",
+            "하얀 국화.",
+            "",
+            "...장례식에서 본 것 같은.",
+            "",
+            "아니, 그냥 비슷한 꽃이겠지."
+          ],
+          "en": [
+            "I approach the seat.",
+            "",
+            "Today, a bouquet has been left here.",
+            "",
+            "Familiar flowers.",
+            "White chrysanthemums.",
+            "",
+            "...The kind I've seen at funerals.",
+            "",
+            "No, just similar flowers, probably."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "좌석에 다가간다.",
+            "",
+            "꽃다발.",
+            "",
+            "카드가 끼워져 있다.",
+            "",
+            "흐릿한 글씨.",
+            "간신히 읽는다.",
+            "",
+            "\"빨리 일어나.\"",
+            "",
+            "...도대체 누가",
+            "꽃과 함께 이런 걸 남긴단 말인가."
+          ],
+          "en": [
+            "I approach the seat.",
+            "",
+            "The bouquet.",
+            "",
+            "A card tucked inside.",
+            "",
+            "Faded writing.",
+            "I barely make it out.",
+            "",
+            "\"Wake up soon.\"",
+            "",
+            "...Who on earth would leave",
+            "something like this with flowers."
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "좌석에 다가간다.",
+            "",
+            "꽃다발이.",
+            "",
+            "...한두 개가 아니다.",
+            "",
+            "칸 곳곳의 좌석에",
+            "하얀 꽃들이 놓여 있다.",
+            "",
+            "마치 누군가를",
+            "계속 기다린 것처럼."
+          ],
+          "en": [
+            "I approach the seat.",
+            "",
+            "Bouquets.",
+            "",
+            "...More than one or two.",
+            "",
+            "Throughout the car,",
+            "white flowers on the seats.",
+            "",
+            "As though",
+            "someone has been waiting."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "seatTrace",
+        "trigger": "auto",
+        "minRun": 1
+      },
+      {
+        "id": "flowers",
+        "trigger": "auto",
+        "minRun": 2
+      }
+    ],
+    "returnTo": "car_2"
+  },
+  "car_2_clock": {
+    "id": "car_2_clock",
+    "visual": "car_2_wide",
+    "car": 2,
+    "text": {
+      "ko": [
+        "시계를 본다.",
+        "",
+        "23:54."
+      ],
+      "en": [
+        "I check the time.",
+        "",
+        "23:54."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "시계를 본다.",
+            "",
+            "23:54.",
+            "",
+            "...아까와 같다.",
+            "",
+            "방금 한참 걸어왔는데."
+          ],
+          "en": [
+            "I check the time.",
+            "",
+            "23:54.",
+            "",
+            "...The same as before.",
+            "",
+            "Even though I've been walking."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "시계를 본다.",
+            "",
+            "23:54.",
+            "",
+            "...아까도 이 시간이었다.",
+            "그 전에도.",
+            "",
+            "시간이 멈춰버린 걸까?",
+            "",
+            "...그럴 리가."
+          ],
+          "en": [
+            "I check the time.",
+            "",
+            "23:54.",
+            "",
+            "...It was this time before.",
+            "And before that.",
+            "",
+            "Has time stopped?",
+            "",
+            "...That can't be."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "clock",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "returnTo": "car_2"
+  },
+  "car_2_button": {
+    "id": "car_2_button",
+    "visual": "car_2_button_close",
+    "popup": "emergency_button",
+    "popupPosition": "left",
+    "car": 2,
+    "text": {
+      "ko": [
+        "벽에 빨간 버튼이 있다.",
+        "",
+        "비상 정지.",
+        "",
+        "...이걸 누르면",
+        "열차가 멈출까?",
+        "",
+        "가까이 다가간다."
+      ],
+      "en": [
+        "A red button on the wall.",
+        "",
+        "Emergency stop.",
+        "",
+        "...If I press this,",
+        "will the train stop?",
+        "",
+        "I come closer."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "버튼을 누른다",
+          "en": "Press the button"
+        },
+        "next": "car_2_button_press"
+      },
+      {
+        "label": {
+          "ko": "그냥 둔다",
+          "en": "Leave it alone"
+        },
+        "next": "car_2_button_leave"
+      }
+    ]
+  },
+  "car_2_button_press": {
+    "id": "car_2_button_press",
+    "visual": "car_2_button_close",
+    "popup": "emergency_button",
+    "car": 2,
+    "text": {
+      "ko": [
+        "버튼을 누른다.",
+        "",
+        "...",
+        "",
+        "아무 일도 일어나지 않는다.",
+        "",
+        "다시 누른다.",
+        "한 번 더.",
+        "",
+        "또.",
+        "",
+        "버튼이 손가락 아래에서",
+        "물처럼 뭉개진다.",
+        "",
+        "...",
+        "",
+        "손을 뗀다.",
+        "",
+        "버튼은 원래 모양으로 돌아온다.",
+        "아무 일도 없었다는 듯이."
+      ],
+      "en": [
+        "I press the button.",
+        "",
+        "...",
+        "",
+        "Nothing happens.",
+        "",
+        "I press it again.",
+        "Once more.",
+        "",
+        "Again.",
+        "",
+        "The button melts",
+        "under my finger like water.",
+        "",
+        "...",
+        "",
+        "I let go.",
+        "",
+        "It returns to its original shape.",
+        "As if nothing had happened."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "버튼을 누른다.",
+            "",
+            "...",
+            "",
+            "버튼이 사라진다.",
+            "",
+            "벽에는",
+            "아무것도 없다.",
+            "",
+            "...",
+            "",
+            "다시 보면",
+            "있다."
+          ],
+          "en": [
+            "I press the button.",
+            "",
+            "...",
+            "",
+            "The button disappears.",
+            "",
+            "On the wall,",
+            "nothing.",
+            "",
+            "...",
+            "",
+            "When I look again",
+            "it is there."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "버튼을 누른다.",
+            "",
+            "...",
+            "",
+            "내 손이 사라진다.",
+            "",
+            "잠시.",
+            "",
+            "다시 나타난다.",
+            "",
+            "...",
+            "",
+            "버튼은 변하지 않았다."
+          ],
+          "en": [
+            "I press the button.",
+            "",
+            "...",
+            "",
+            "My hand vanishes.",
+            "",
+            "For a moment.",
+            "",
+            "Then it returns.",
+            "",
+            "...",
+            "",
+            "The button is unchanged."
+          ]
+        }
+      }
+    },
+    "returnTo": "car_2"
+  },
+  "car_2_button_leave": {
+    "id": "car_2_button_leave",
+    "visual": "car_2_wide",
+    "car": 2,
+    "text": {
+      "ko": [
+        "...괜한 짓이다.",
+        "",
+        "손을 거둔다."
+      ],
+      "en": [
+        "...There's no point.",
+        "",
+        "I draw my hand back."
+      ]
+    },
+    "effects": {
+      "avoidCount": 1
+    },
+    "returnTo": "car_2"
+  },
+  "car_2_whisper": {
+    "id": "car_2_whisper",
+    "visual": "car_2_wide",
+    "car": 2,
+    "text": {
+      "ko": [
+        "\"...누가 있었던 걸까.\"",
+        "",
+        "내 목소리가",
+        "빈 칸에 울린다.",
+        "",
+        "아무도 대답하지 않는다."
+      ],
+      "en": [
+        "\"...Was someone here.\"",
+        "",
+        "My voice echoes",
+        "through the empty car.",
+        "",
+        "No one answers."
+      ]
+    },
+    "returnTo": "car_2"
+  },
+  "notes_first_hint": {
+    "id": "notes_first_hint",
+    "trigger": "first run, after car_2 if 3+ clues collected",
+    "visual": "car_2_wide",
+    "text": {
+      "ko": [
+        "...",
+        "",
+        "머릿속에서",
+        "무언가 맴돈다.",
+        "",
+        "본 것들이.",
+        "",
+        "(노트를 열어볼 수 있다)"
+      ],
+      "en": [
+        "...",
+        "",
+        "Something",
+        "keeps circling in my head.",
+        "",
+        "What I've seen.",
+        "",
+        "(I can open the notes)"
+      ]
+    },
+    "uiHighlight": "notes_button_blinks",
+    "next": "car_3_entry"
+  },
+  "car_3_entry": {
+    "id": "car_3_entry",
+    "visual": "car_2_passage",
+    "car": 3,
+    "isPassage": true,
+    "text": {
+      "ko": [
+        "세 번째 칸.",
+        "",
+        "천장의 형광등이 깜빡인다.",
+        "",
+        "손잡이를 잡는다.",
+        "손이 차갑다.",
+        "",
+        "내 손이 이렇게 차가웠나.",
+        "",
+        "...",
+        "",
+        "이 칸은 다른 칸들과",
+        "어딘가 다르다."
+      ],
+      "en": [
+        "The third car.",
+        "",
+        "The fluorescent light flickers above.",
+        "",
+        "I grip the handrail.",
+        "My hand is cold.",
+        "",
+        "Was my hand always this cold.",
+        "",
+        "...",
+        "",
+        "This car feels",
+        "different from the others."
+      ]
+    },
+    "next": "car_3"
+  },
+  "car_3": {
+    "id": "car_3",
+    "visual": "car_3_wide",
+    "car": 3,
+    "text": {
+      "ko": [
+        "좌석에 앉으려다 멈춘다.",
+        "",
+        "좌석 등받이에",
+        "작은 표지판이 붙어 있다.",
+        "",
+        "번호가 적혀 있다.",
+        "",
+        "...번호가 이상하다."
+      ],
+      "en": [
+        "I'm about to sit down. I stop.",
+        "",
+        "On the backrest of the seat,",
+        "a small plate.",
+        "",
+        "A number on it.",
+        "",
+        "...The number is strange."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "좌석 번호를 자세히 본다",
+          "en": "Look closely at the seat numbers"
+        },
+        "next": "car_3_seats",
+        "effects": {
+          "exploreCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "인터폰을 살펴본다",
+          "en": "Examine the intercom"
+        },
+        "next": "car_3_intercom",
+        "effects": {
+          "exploreCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "창밖을 본다",
+          "en": "Look out the window"
+        },
+        "next": "car_3_window",
+        "effects": {},
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "\"...뭔가 이상하다.\"",
+          "en": "\"...Something is off.\""
+        },
+        "next": "car_3_whisper",
+        "effects": {
+          "whisperCount": 1
+        },
+        "type": "whisper",
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "다음 칸으로 간다",
+          "en": "Move to the next car"
+        },
+        "next": "car_3_branch_check",
+        "requiresAllViewed": [
+          "car_3_seats",
+          "car_3_intercom",
+          "car_3_window"
+        ]
+      }
+    ]
+  },
+  "car_3_seats": {
+    "id": "car_3_seats",
+    "visual": "car_3_seat_close",
+    "car": 3,
+    "text": {
+      "ko": [
+        "좌석 등받이를 본다.",
+        "",
+        "03.12.",
+        "",
+        "...번호가 아니다.",
+        "",
+        "날짜다.",
+        "",
+        "",
+        "옆 좌석을 본다.",
+        "",
+        "03.13.",
+        "",
+        "그 옆.",
+        "",
+        "03.14.",
+        "",
+        "그 옆.",
+        "",
+        "...비어 있다.",
+        "",
+        "표지판이 비어 있다.",
+        "",
+        "다음 좌석으로 넘어간다.",
+        "",
+        "03.16.",
+        "",
+        "03.17.",
+        "",
+        "...",
+        "",
+        "빠진 날짜가 있다.",
+        "",
+        "03.15."
+      ],
+      "en": [
+        "I read the plate.",
+        "",
+        "03.12.",
+        "",
+        "...Not a number.",
+        "",
+        "A date.",
+        "",
+        "",
+        "The seat beside it.",
+        "",
+        "03.13.",
+        "",
+        "The next.",
+        "",
+        "03.14.",
+        "",
+        "The next.",
+        "",
+        "...Empty.",
+        "",
+        "The plate is blank.",
+        "",
+        "I move on.",
+        "",
+        "03.16.",
+        "",
+        "03.17.",
+        "",
+        "...",
+        "",
+        "One date is missing.",
+        "",
+        "03.15."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "빈 자리에 앉는다",
+          "en": "Sit in the empty seat"
+        },
+        "next": "car_3_seat_sit"
+      },
+      {
+        "label": {
+          "ko": "등받이 안쪽을 살펴본다",
+          "en": "Check inside the backrest"
+        },
+        "next": "car_3_seat_check"
+      },
+      {
+        "label": {
+          "ko": "그냥 둔다",
+          "en": "Leave it alone"
+        },
+        "next": "car_3_seat_leave"
+      }
+    ]
+  },
+  "car_3_seat_sit": {
+    "id": "car_3_seat_sit",
+    "visual": "car_3_wide",
+    "car": 3,
+    "text": {
+      "ko": [
+        "빠진 자리에 앉는다.",
+        "",
+        "03.15.",
+        "",
+        "...",
+        "",
+        "다른 좌석들과",
+        "다를 게 없다.",
+        "",
+        "차가운 의자.",
+        "조용한 공기.",
+        "",
+        "그뿐이다.",
+        "",
+        "...",
+        "",
+        "그런데 왠지",
+        "이 자리는",
+        "오래전부터 비어 있었던 것 같다."
+      ],
+      "en": [
+        "I sit in the missing seat.",
+        "",
+        "03.15.",
+        "",
+        "...",
+        "",
+        "No different",
+        "from the others.",
+        "",
+        "A cold seat.",
+        "Still air.",
+        "",
+        "That's all.",
+        "",
+        "...",
+        "",
+        "And yet, somehow,",
+        "this seat feels",
+        "as if it's been empty for a long time."
+      ]
+    },
+    "returnTo": "car_3"
+  },
+  "car_3_seat_check": {
+    "id": "car_3_seat_check",
+    "visual": "car_3_seat_close",
+    "popup": "torn_paper",
+    "popupPosition": "right",
+    "car": 3,
+    "text": {
+      "ko": [
+        "손을 등받이 안쪽에 넣어본다.",
+        "",
+        "먼지.",
+        "그리고...",
+        "",
+        "종이 조각.",
+        "",
+        "펴 본다.",
+        "",
+        "작은 손글씨.",
+        "",
+        "\"3월 15일.\"",
+        "",
+        "...그 다음 줄은 찢겨 있다."
+      ],
+      "en": [
+        "I reach inside the backrest.",
+        "",
+        "Dust.",
+        "And...",
+        "",
+        "A scrap of paper.",
+        "",
+        "I unfold it.",
+        "",
+        "Tiny handwriting.",
+        "",
+        "\"March 15.\"",
+        "",
+        "...The next line is torn off."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "다시 등받이 안쪽으로 손을 넣는다.",
+            "",
+            "같은 종이.",
+            "",
+            "이번엔",
+            "찢긴 다음 줄이 조금 더 보인다.",
+            "",
+            "\"3월 15일.",
+            "오늘은 그날이다.\""
+          ],
+          "en": [
+            "I reach into the backrest again.",
+            "",
+            "The same paper.",
+            "",
+            "This time,",
+            "a bit more of the torn line.",
+            "",
+            "\"March 15.",
+            "Today is the day.\""
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "같은 종이.",
+            "",
+            "이번엔",
+            "더 많이 보인다.",
+            "",
+            "\"3월 15일.",
+            "오늘은 그날이다.",
+            "",
+            "가야 한다.\"",
+            "",
+            "...",
+            "",
+            "종이가 손에서 부스러진다."
+          ],
+          "en": [
+            "The same paper.",
+            "",
+            "More of it",
+            "shows itself now.",
+            "",
+            "\"March 15.",
+            "Today is the day.",
+            "",
+            "I have to go.\"",
+            "",
+            "...",
+            "",
+            "The paper crumbles in my hand."
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "같은 종이.",
+            "",
+            "이번엔",
+            "거의 다 보인다.",
+            "",
+            "\"3월 15일.",
+            "오늘은 그날이다.",
+            "",
+            "가야 한다.",
+            "",
+            "...왜 못 갔지.\""
+          ],
+          "en": [
+            "The same paper.",
+            "",
+            "Almost all of it now.",
+            "",
+            "\"March 15.",
+            "Today is the day.",
+            "",
+            "I have to go.",
+            "",
+            "...Why couldn't I.\""
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "missingDate",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "returnTo": "car_3"
+  },
+  "car_3_seat_leave": {
+    "id": "car_3_seat_leave",
+    "visual": "car_3_wide",
+    "car": 3,
+    "text": {
+      "ko": [
+        "...관심을 거둔다.",
+        "",
+        "빈 자리는 빈 자리일 뿐이다."
+      ],
+      "en": [
+        "...I look away.",
+        "",
+        "An empty seat is just an empty seat."
+      ]
+    },
+    "effects": {
+      "avoidCount": 1
+    },
+    "returnTo": "car_3"
+  },
+  "car_3_intercom": {
+    "id": "car_3_intercom",
+    "visual": "car_3_intercom_close",
+    "popup": "intercom",
+    "popupPosition": "left",
+    "car": 3,
+    "text": {
+      "ko": [
+        "벽에 인터폰이 있다.",
+        "",
+        "비상 통화용.",
+        "",
+        "...차장과 연결되어 있을 것이다.",
+        "",
+        "수화기를 든다.",
+        "",
+        "귀에 댄다.",
+        "",
+        "...",
+        "",
+        "잡음만 들린다.",
+        "",
+        "긴 잡음.",
+        "",
+        "말한다.",
+        "",
+        "\"...여보세요.\"",
+        "",
+        "대답이 없다.",
+        "",
+        "수화기를 다시 건다."
+      ],
+      "en": [
+        "An intercom on the wall.",
+        "",
+        "For emergencies.",
+        "",
+        "...It must connect to the conductor.",
+        "",
+        "I lift the receiver.",
+        "",
+        "Press it to my ear.",
+        "",
+        "...",
+        "",
+        "Only static.",
+        "",
+        "A long hiss.",
+        "",
+        "I speak.",
+        "",
+        "\"...Hello.\"",
+        "",
+        "No reply.",
+        "",
+        "I hang it back up."
+      ]
+    },
+    "returnTo": "car_3"
+  },
+  "car_3_window": {
+    "id": "car_3_window",
+    "visual": "window_dark",
+    "car": 3,
+    "text": {
+      "ko": [
+        "창밖.",
+        "",
+        "어둠.",
+        "",
+        "가끔 빛이 휙 지나간다.",
+        "",
+        "너무 빨라서",
+        "무엇인지 알 수 없다.",
+        "",
+        "...",
+        "",
+        "창에 비친 내 모습을 본다.",
+        "",
+        "피곤해 보인다.",
+        "",
+        "그뿐이다."
+      ],
+      "en": [
+        "Outside.",
+        "",
+        "Darkness.",
+        "",
+        "Now and then, a light flashes past.",
+        "",
+        "Too fast",
+        "to make out.",
+        "",
+        "...",
+        "",
+        "I look at my reflection.",
+        "",
+        "I look tired.",
+        "",
+        "That's all."
+      ]
+    },
+    "returnTo": "car_3"
+  },
+  "car_3_whisper": {
+    "id": "car_3_whisper",
+    "visual": "car_3_wide",
+    "car": 3,
+    "text": {
+      "ko": [
+        "\"...뭔가 이상하다.\"",
+        "",
+        "내 목소리.",
+        "",
+        "이번엔",
+        "나도 그렇게 느낀다."
+      ],
+      "en": [
+        "\"...Something is off.\"",
+        "",
+        "My voice.",
+        "",
+        "This time,",
+        "I feel it too."
+      ]
+    },
+    "returnTo": "car_3"
+  },
+  "car_3_branch_check": {
+    "id": "car_3_branch_check",
+    "visual": "car_3_wide",
+    "car": 3,
+    "isBranchCheck": true,
+    "logicNote": "Check if any middle-tier insight (callsMyName or lostTime) is unlocked. If yes, show reasoning. If no, go straight to car_4_entry.",
+    "branches": [
+      {
+        "condition": "hasMiddleInsight",
+        "next": "car_3_reasoning"
+      },
+      {
+        "condition": "default",
+        "next": "car_3_continue_simple"
+      }
+    ]
+  },
+  "car_3_continue_simple": {
+    "id": "car_3_continue_simple",
+    "visual": "car_3_wide",
+    "car": 3,
+    "text": {
+      "ko": [
+        "...",
+        "",
+        "생각하자.",
+        "",
+        "생각해."
+      ],
+      "en": [
+        "...",
+        "",
+        "Think.",
+        "",
+        "Think."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "다음 칸으로 간다",
+          "en": "Move to the next car"
+        },
+        "next": "car_4_entry"
+      },
+      {
+        "label": {
+          "ko": "노트를 다시 본다",
+          "en": "Open the notes again"
+        },
+        "action": "open_notes"
+      }
+    ]
+  },
+  "car_3_reasoning": {
+    "id": "car_3_reasoning",
+    "visual": "car_3_wide",
+    "car": 3,
+    "text": {
+      "ko": [
+        "...",
+        "",
+        "생각하자.",
+        "",
+        "생각해.",
+        "",
+        "...",
+        "",
+        "이 열차엔 무언가 있다.",
+        "",
+        "분명히.",
+        "",
+        "안내방송. 빈 좌석. 멈춘 시간.",
+        "",
+        "전부 연결되어 있다.",
+        "",
+        "...누군가 이 열차를 몰고 있다.",
+        "",
+        "차장.",
+        "",
+        "그래.",
+        "",
+        "차장은 알고 있을 거다."
+      ],
+      "en": [
+        "...",
+        "",
+        "Think.",
+        "",
+        "Think.",
+        "",
+        "...",
+        "",
+        "There's something on this train.",
+        "",
+        "I'm certain.",
+        "",
+        "The announcements. The empty seats. The frozen clock.",
+        "",
+        "It's all connected.",
+        "",
+        "...Someone is driving this train.",
+        "",
+        "The conductor.",
+        "",
+        "Yes.",
+        "",
+        "The conductor will know."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "차장 칸으로 향한다",
+          "en": "Head toward the conductor's car"
+        },
+        "next": "car_4_entry_conductor",
+        "effects": {
+          "choseConductorPath": true
+        }
+      },
+      {
+        "label": {
+          "ko": "...아직 더 둘러본다",
+          "en": "...Look around a little more"
+        },
+        "next": "car_4_entry"
+      }
+    ]
+  },
+  "car_4_entry": {
+    "id": "car_4_entry",
+    "visual": "car_4_passage",
+    "car": 4,
+    "isPassage": true,
+    "text": {
+      "ko": [
+        "네 번째 칸.",
+        "",
+        "지금까지 본 칸들과",
+        "조금 다르다.",
+        "",
+        "좌석들이 더 길게 늘어서 있다.",
+        "",
+        "또는 그렇게 보인다.",
+        "",
+        "천장의 불빛이",
+        "한 줄로 가늘게 떨어진다.",
+        "",
+        "...",
+        "",
+        "이 칸은",
+        "끝이 보이지 않는다."
+      ],
+      "en": [
+        "The fourth car.",
+        "",
+        "Different",
+        "from the ones before.",
+        "",
+        "The seats stretch out longer.",
+        "",
+        "Or appear to.",
+        "",
+        "The ceiling light",
+        "falls in a thin line.",
+        "",
+        "...",
+        "",
+        "This car",
+        "has no end in sight."
+      ]
+    },
+    "next": "car_4_routing"
+  },
+  "car_4_entry_conductor": {
+    "id": "car_4_entry_conductor",
+    "visual": "car_4_passage",
+    "car": 4,
+    "isPassage": true,
+    "trigger": "from car_3_reasoning with choseConductorPath",
+    "text": {
+      "ko": [
+        "네 번째 칸.",
+        "",
+        "나는 멈추지 않는다.",
+        "",
+        "차장에게 가야 한다.",
+        "",
+        "좌석들이 지나간다.",
+        "",
+        "내 옆을 스쳐 간다.",
+        "",
+        "...",
+        "",
+        "문이 보인다.",
+        "",
+        "다음 칸으로 가는 문.",
+        "",
+        "손을 뻗는다."
+      ],
+      "en": [
+        "The fourth car.",
+        "",
+        "I don't stop.",
+        "",
+        "I must reach the conductor.",
+        "",
+        "The seats pass by.",
+        "",
+        "Slipping past me.",
+        "",
+        "...",
+        "",
+        "A door comes into view.",
+        "",
+        "To the next car.",
+        "",
+        "I reach out my hand."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "다음 칸으로 간다",
+          "en": "Move to the next car"
+        },
+        "next": "ending_C_intro"
+      }
+    ]
+  },
+  "car_4_routing": {
+    "id": "car_4_routing",
+    "isRouter": true,
+    "logicNote": "Determine which car_4 path to take based on state. Order: friend trigger > avoid heavy > general.",
+    "branches": [
+      {
+        "condition": "whisperCount >= 3 && hiddenTriggered",
+        "next": "car_4_friend"
+      },
+      {
+        "condition": "avoidCount >= 4",
+        "next": "car_4_resignation"
+      },
+      {
+        "condition": "default",
+        "next": "car_4_general"
+      }
+    ]
+  },
+  "car_4_friend": {
+    "id": "car_4_friend",
+    "visual": "car_4_wide",
+    "car": 4,
+    "text": {
+      "ko": [
+        "좌석에 앉는다.",
+        "",
+        "긴 의자.",
+        "",
+        "내 옆은 비어 있다.",
+        "",
+        "당연히.",
+        "",
+        "...",
+        "",
+        "다시 한 번 둘러본다.",
+        "",
+        "아무도 없다.",
+        "",
+        "...",
+        "",
+        "조용하다.",
+        "",
+        "너무 조용하다."
+      ],
+      "en": [
+        "I sit down.",
+        "",
+        "A long bench.",
+        "",
+        "Empty beside me.",
+        "",
+        "Of course.",
+        "",
+        "...",
+        "",
+        "I look around once more.",
+        "",
+        "No one.",
+        "",
+        "...",
+        "",
+        "Quiet.",
+        "",
+        "Too quiet."
+      ]
+    },
+    "next": "car_4_friend_appears"
+  },
+  "car_4_friend_appears": {
+    "id": "car_4_friend_appears",
+    "visual": "cutscene_friend_appears",
+    "isCutscene": true,
+    "cutsceneNote": {
+      "ko": "그녀가 옆자리에 앉아 있는 모습. 옅게 웃음.",
+      "en": "She is seated beside, smiling faintly."
+    },
+    "text": {
+      "ko": [
+        "\"그러게요.\"",
+        "",
+        "옆에서 목소리가 들린다.",
+        "",
+        "\"...피곤해 보이세요.\"",
+        "",
+        "나는 천천히 옆을 본다.",
+        "",
+        "—",
+        "",
+        "검은 드레스의 그녀가",
+        "나를 보고 있다.",
+        "",
+        "옅게 웃는다.",
+        "",
+        "...",
+        "",
+        "\"그래서, 어떻게 할 거예요?\"",
+        "",
+        "그녀가 묻는다.",
+        "",
+        "마치 우리가 줄곧",
+        "이야기 중이었다는 것처럼."
+      ],
+      "en": [
+        "\"I know.\"",
+        "",
+        "A voice beside me.",
+        "",
+        "\"...You look tired.\"",
+        "",
+        "I slowly turn.",
+        "",
+        "—",
+        "",
+        "The woman in the black dress",
+        "is looking at me.",
+        "",
+        "A faint smile.",
+        "",
+        "...",
+        "",
+        "\"So, what are you going to do?\"",
+        "",
+        "She asks.",
+        "",
+        "As though we had been",
+        "talking all along."
+      ]
+    },
+    "effects": {
+      "friendAppeared": true
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "\"...어떻게라니?\"",
+          "en": "\"...What do you mean?\""
+        },
+        "next": "car_4_friend_invite"
+      },
+      {
+        "label": {
+          "ko": "\"글쎄요.\"",
+          "en": "\"I don't know.\""
+        },
+        "next": "car_4_friend_invite"
+      },
+      {
+        "label": {
+          "ko": "[잠깐만. 너 언제부터 여기 있었지?]",
+          "en": "[Wait. When did you get here?]"
+        },
+        "next": "car_4_friend_question",
+        "type": "whisper"
+      }
+    ]
+  },
+  "car_4_friend_question": {
+    "id": "car_4_friend_question",
+    "visual": "cutscene_friend_appears",
+    "car": 4,
+    "text": {
+      "ko": [
+        "\"잠깐만.\"",
+        "",
+        "내 목소리가 갈라진다.",
+        "",
+        "\"...너 언제부터 여기 있었지?\"",
+        "",
+        "그녀는 살짝 고개를 기울인다.",
+        "",
+        "\"...왜요?\"",
+        "",
+        "\"처음부터 같이 왔잖아요.\"",
+        "",
+        "나는 그녀를 본다.",
+        "",
+        "옅은 미소.",
+        "",
+        "...",
+        "",
+        "\"...그랬나.\"",
+        "",
+        "기억이 안 난다.",
+        "",
+        "하지만 그녀가 그렇게 말한다면.",
+        "",
+        "(그렇지.)"
+      ],
+      "en": [
+        "\"Wait.\"",
+        "",
+        "My voice catches.",
+        "",
+        "\"...When did you get here?\"",
+        "",
+        "She tilts her head slightly.",
+        "",
+        "\"...Why?\"",
+        "",
+        "\"We came together from the start.\"",
+        "",
+        "I look at her.",
+        "",
+        "A faint smile.",
+        "",
+        "...",
+        "",
+        "\"...Was it so.\"",
+        "",
+        "I don't remember.",
+        "",
+        "But if she says so.",
+        "",
+        "(Then it must be.)"
+      ]
+    },
+    "next": "car_4_friend_invite"
+  },
+  "car_4_friend_invite": {
+    "id": "car_4_friend_invite",
+    "visual": "cutscene_friend_hand",
+    "isCutscene": true,
+    "cutsceneNote": {
+      "ko": "그녀가 손을 내미는 모습. 작은 손, 장갑.",
+      "en": "She extends her hand. Small hand, gloved."
+    },
+    "text": {
+      "ko": [
+        "\"글쎄요.\"",
+        "",
+        "그녀는 잠시 나를 바라본다.",
+        "",
+        "\"...그러면.\"",
+        "",
+        "\"같이 갈까요?\"",
+        "",
+        "—",
+        "",
+        "손이 보인다.",
+        "",
+        "작은 손.",
+        "",
+        "장갑을 끼고 있다.",
+        "",
+        "..."
+      ],
+      "en": [
+        "\"I don't know.\"",
+        "",
+        "She watches me for a moment.",
+        "",
+        "\"...Then.\"",
+        "",
+        "\"Shall we go together?\"",
+        "",
+        "—",
+        "",
+        "A hand appears.",
+        "",
+        "A small hand.",
+        "",
+        "Wearing a glove.",
+        "",
+        "..."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "그녀의 손을 잡는다",
+          "en": "Take her hand"
+        },
+        "next": "car_4_friend_accept",
+        "effects": {
+          "choseFriendHand": true
+        }
+      },
+      {
+        "label": {
+          "ko": "...아직은",
+          "en": "...Not yet"
+        },
+        "next": "car_4_friend_wait"
+      }
+    ]
+  },
+  "car_4_friend_accept": {
+    "id": "car_4_friend_accept",
+    "visual": "car_4_wide_with_friend",
+    "car": 4,
+    "text": {
+      "ko": [
+        "손을 잡는다.",
+        "",
+        "차갑다.",
+        "",
+        "하지만 익숙한 차가움.",
+        "",
+        "..."
+      ],
+      "en": [
+        "I take her hand.",
+        "",
+        "Cold.",
+        "",
+        "But a familiar cold.",
+        "",
+        "..."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "다음 칸으로 간다",
+          "en": "Move to the next car"
+        },
+        "next": "ending_B_intro"
+      }
+    ]
+  },
+  "car_4_friend_wait": {
+    "id": "car_4_friend_wait",
+    "visual": "cutscene_friend_lowers_hand",
+    "isCutscene": true,
+    "text": {
+      "ko": [
+        "\"...아직은.\"",
+        "",
+        "그녀는 손을 거두지 않는다.",
+        "",
+        "\"...괜찮아요.\"",
+        "",
+        "\"기다릴게요.\"",
+        "",
+        "—",
+        "",
+        "그녀의 미소는 변하지 않는다.",
+        "",
+        "..."
+      ],
+      "en": [
+        "\"...Not yet.\"",
+        "",
+        "She doesn't withdraw her hand.",
+        "",
+        "\"...It's all right.\"",
+        "",
+        "\"I'll wait.\"",
+        "",
+        "—",
+        "",
+        "Her smile doesn't change.",
+        "",
+        "..."
+      ]
+    },
+    "next": "car_4_general"
+  },
+  "car_4_general": {
+    "id": "car_4_general",
+    "visual": "car_4_wide",
+    "car": 4,
+    "text": {
+      "ko": [
+        "좌석에 앉는다.",
+        "",
+        "긴 의자.",
+        "",
+        "...",
+        "",
+        "이 칸은 너무 조용하다.",
+        "",
+        "벽의 인터폰이 보인다.",
+        "",
+        "칸 3에서 본 그것과 같은.",
+        "",
+        "...아니, 같은 거다.",
+        "",
+        "다시 시도해 봐야겠다."
+      ],
+      "en": [
+        "I sit down.",
+        "",
+        "A long bench.",
+        "",
+        "...",
+        "",
+        "This car is too quiet.",
+        "",
+        "The intercom on the wall.",
+        "",
+        "The same as the one before.",
+        "",
+        "...No, it is the same.",
+        "",
+        "I should try again."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "인터폰을 든다",
+          "en": "Lift the intercom"
+        },
+        "next": "car_4_intercom",
+        "effects": {
+          "exploreCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "창밖을 본다",
+          "en": "Look outside"
+        },
+        "next": "car_4_window",
+        "effects": {},
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "\"...누가 좀 있었으면.\"",
+          "en": "\"...I wish someone were here.\""
+        },
+        "next": "car_4_whisper",
+        "effects": {
+          "whisperCount": 1
+        },
+        "type": "whisper",
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "그냥 앉아 있는다",
+          "en": "Just sit there"
+        },
+        "next": "car_4_sit",
+        "effects": {
+          "avoidCount": 1
+        },
+        "viewOnce": true
+      },
+      {
+        "label": {
+          "ko": "다음 칸으로 간다",
+          "en": "Move to the next car"
+        },
+        "next": "car_4_final_branch",
+        "requiresAllViewed": [
+          "car_4_intercom",
+          "car_4_window",
+          "car_4_sit"
+        ]
+      }
+    ]
+  },
+  "car_4_intercom": {
+    "id": "car_4_intercom",
+    "visual": "car_4_intercom_close",
+    "popup": "intercom",
+    "popupPosition": "left",
+    "car": 4,
+    "text": {
+      "ko": [
+        "수화기를 든다.",
+        "",
+        "귀에 댄다.",
+        "",
+        "...",
+        "",
+        "여전히 잡음.",
+        "",
+        "\"...여보세요.\"",
+        "",
+        "대답이 없다.",
+        "",
+        "수화기를 내려놓는다."
+      ],
+      "en": [
+        "I lift the receiver.",
+        "",
+        "Press it to my ear.",
+        "",
+        "...",
+        "",
+        "Still static.",
+        "",
+        "\"...Hello.\"",
+        "",
+        "No reply.",
+        "",
+        "I hang it back."
+      ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "수화기를 든다.",
+            "",
+            "귀에 댄다.",
+            "",
+            "...",
+            "",
+            "잡음 사이로",
+            "무언가 들린다.",
+            "",
+            "\"...여보세요.\"",
+            "",
+            "내가 말한다.",
+            "",
+            "—",
+            "",
+            "\"...너 누구야.\"",
+            "",
+            "수화기 너머에서",
+            "누군가 말한다.",
+            "",
+            "내 목소리다.",
+            "",
+            "—",
+            "",
+            "내가 묻는다.",
+            "",
+            "\"...너야말로.\"",
+            "",
+            "수화기 너머의 내가",
+            "대답한다.",
+            "",
+            "\"...글쎄.\"",
+            "",
+            "—",
+            "",
+            "수화기가 손에서 떨어진다."
+          ],
+          "en": [
+            "I lift the receiver.",
+            "",
+            "Press it to my ear.",
+            "",
+            "...",
+            "",
+            "Through the static,",
+            "something.",
+            "",
+            "\"...Hello.\"",
+            "",
+            "I speak.",
+            "",
+            "—",
+            "",
+            "\"...Who are you.\"",
+            "",
+            "Through the line,",
+            "someone speaks.",
+            "",
+            "My voice.",
+            "",
+            "—",
+            "",
+            "I ask back.",
+            "",
+            "\"...And you.\"",
+            "",
+            "The voice on the other end",
+            "answers.",
+            "",
+            "\"...I don't know.\"",
+            "",
+            "—",
+            "",
+            "The receiver falls from my hand."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "intercomVoice",
+        "trigger": "auto",
+        "minRun": 2
+      }
+    ],
+    "effects": {
+      "run2": {
+        "conductorTrigger": true
+      }
+    },
+    "returnTo": "car_4_general"
+  },
+  "car_4_window": {
+    "id": "car_4_window",
+    "visual": "window_dark",
+    "car": 4,
+    "text": {
+      "ko": [
+        "창밖.",
+        "",
+        "어둠은 여전하다.",
+        "",
+        "이제는 그것이 익숙하다.",
+        "",
+        "...",
+        "",
+        "가끔 빛이 지나간다.",
+        "",
+        "지난 칸에서보다",
+        "더 자주.",
+        "",
+        "빨라지고 있다.",
+        "",
+        "...",
+        "",
+        "이 열차가",
+        "어디로 가고 있는지",
+        "나는 모른다."
+      ],
+      "en": [
+        "Outside.",
+        "",
+        "The darkness, unchanged.",
+        "",
+        "By now it is familiar.",
+        "",
+        "...",
+        "",
+        "Now and then a light passes.",
+        "",
+        "More often",
+        "than in the cars before.",
+        "",
+        "It's quickening.",
+        "",
+        "...",
+        "",
+        "Where this train is going,",
+        "I do not know."
+      ]
+    },
+    "returnTo": "car_4_general"
+  },
+  "car_4_whisper": {
+    "id": "car_4_whisper",
+    "visual": "car_4_wide",
+    "car": 4,
+    "text": {
+      "ko": [
+        "\"...누가 좀 있었으면.\"",
+        "",
+        "내 목소리.",
+        "",
+        "말한 후에",
+        "나도 놀란다.",
+        "",
+        "내가 그런 말을 했다는 것에."
+      ],
+      "en": [
+        "\"...I wish someone were here.\"",
+        "",
+        "My voice.",
+        "",
+        "I'm surprised",
+        "after I say it.",
+        "",
+        "That I would say such a thing."
+      ]
+    },
+    "returnTo": "car_4_general"
+  },
+  "car_4_sit": {
+    "id": "car_4_sit",
+    "visual": "car_4_wide",
+    "car": 4,
+    "text": {
+      "ko": [
+        "나는 움직이지 않는다.",
+        "",
+        "조용히 앉아 있는다.",
+        "",
+        "...",
+        "",
+        "시간이 흐르지 않는다.",
+        "",
+        "그래도 흐른 듯하다."
+      ],
+      "en": [
+        "I don't move.",
+        "",
+        "I sit quietly.",
+        "",
+        "...",
+        "",
+        "Time doesn't pass.",
+        "",
+        "And yet it feels as though it has."
+      ]
+    },
+    "returnTo": "car_4_general"
+  },
+  "car_4_resignation": {
+    "id": "car_4_resignation",
+    "visual": "car_4_wide",
+    "car": 4,
+    "trigger": "high avoidCount",
+    "text": {
+      "ko": [
+        "좌석에 앉는다.",
+        "",
+        "긴 의자.",
+        "",
+        "...",
+        "",
+        "피곤하다.",
+        "",
+        "너무 피곤하다.",
+        "",
+        "...",
+        "",
+        "집에 가고 싶다.",
+        "",
+        "...",
+        "",
+        "집.",
+        "",
+        "그래.",
+        "",
+        "집으로 가는 길이었다.",
+        "",
+        "그게 다다."
+      ],
+      "en": [
+        "I sit down.",
+        "",
+        "A long bench.",
+        "",
+        "...",
+        "",
+        "I'm tired.",
+        "",
+        "So tired.",
+        "",
+        "...",
+        "",
+        "I want to go home.",
+        "",
+        "...",
+        "",
+        "Home.",
+        "",
+        "Yes.",
+        "",
+        "I was on my way home.",
+        "",
+        "That's all."
+      ]
+    },
+    "effects": {
+      "avoidCount": 2
+    },
+    "next": "ending_A_intro"
+  },
+  "car_4_final_branch": {
+    "id": "car_4_final_branch",
+    "isRouter": true,
+    "logicNote": "Determine ending path based on triggers. Priority: dual trigger (B+C) > C > D-eligible > A fallback.",
+    "branches": [
+      {
+        "condition": "conductorTrigger && hasMiddleInsight && hiddenTriggered && whisperCount >= 3",
+        "next": "car_4_dual_choice"
+      },
+      {
+        "condition": "conductorTrigger && hasMiddleInsight",
+        "next": "car_4_conductor_choice"
+      },
+      {
+        "condition": "insights.mustWakeUp && endingsReached.length >= 2",
+        "next": "ending_D_intro"
+      },
+      {
+        "condition": "default",
+        "next": "ending_A_intro"
+      }
+    ]
+  },
+  "car_4_conductor_choice": {
+    "id": "car_4_conductor_choice",
+    "visual": "car_4_wide",
+    "car": 4,
+    "text": {
+      "ko": [
+        "...",
+        "",
+        "수화기 너머의 목소리.",
+        "",
+        "내 목소리였다.",
+        "",
+        "...",
+        "",
+        "차장 칸에 누가 있는지",
+        "나는 알아야 한다."
+      ],
+      "en": [
+        "...",
+        "",
+        "The voice through the line.",
+        "",
+        "My own.",
+        "",
+        "...",
+        "",
+        "I have to know",
+        "who's in the conductor's car."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "차장 칸으로 향한다",
+          "en": "Head toward the conductor's car"
+        },
+        "next": "ending_C_intro",
+        "effects": {
+          "choseConductorPath": true
+        }
+      },
+      {
+        "label": {
+          "ko": "그냥 다음 칸으로 간다",
+          "en": "Just move to the next car"
+        },
+        "next": "ending_A_intro"
+      }
+    ]
+  },
+  "car_4_dual_choice": {
+    "id": "car_4_dual_choice",
+    "visual": "car_4_wide",
+    "car": 4,
+    "trigger": "both friend and conductor paths qualify",
+    "text": {
+      "ko": [
+        "...",
+        "",
+        "옆자리.",
+        "",
+        "비어 있지만",
+        "누군가 있어야 할 자리.",
+        "",
+        "—",
+        "",
+        "수화기 너머의 목소리.",
+        "",
+        "내 목소리였다.",
+        "",
+        "..."
+      ],
+      "en": [
+        "...",
+        "",
+        "The empty seat beside me.",
+        "",
+        "Where someone should be.",
+        "",
+        "—",
+        "",
+        "The voice through the line.",
+        "",
+        "My own.",
+        "",
+        "..."
+      ]
+    },
+    "choices": [
+      {
+        "label": {
+          "ko": "...이름을 부르는 소리에 답한다",
+          "en": "...Respond to the voice calling my name"
+        },
+        "next": "car_4_friend_appears",
+        "effects": {
+          "hiddenTriggered": true
+        }
+      },
+      {
+        "label": {
+          "ko": "차장 칸으로 향한다",
+          "en": "Head toward the conductor's car"
+        },
+        "next": "ending_C_intro",
+        "effects": {
+          "choseConductorPath": true
+        }
+      },
+      {
+        "label": {
+          "ko": "...아직은 둘러본다",
+          "en": "...Look around a little more"
+        },
+        "next": "car_4_general"
+      }
+    ]
+  },
+  "ending_router": {
+    "id": "ending_router",
+    "isRouter": true,
+    "logicNote": "Maps ending entry points to actual ending sequences in endings.json",
+    "mappings": {
+      "ending_A_intro": "endingA.sequence[0]",
+      "ending_B_intro": "endingB.sequence[0]",
+      "ending_C_intro": "endingC.sequence[0]",
+      "ending_D_intro": "endingD.sequence[0]"
+    }
+  }
+}

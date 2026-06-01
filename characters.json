@@ -1,0 +1,183 @@
+{
+  "protagonist": {
+    "id": "protagonist",
+    "name": "player_input",
+    "age": "mid-30s",
+    "gender": "male",
+    "height": "180cm",
+    "build": "average",
+    "hair": {
+      "length": "long",
+      "color": "brown"
+    },
+    "outfit": {
+      "main": {
+        "ko": "트렌치 코트 (구겨짐)",
+        "en": "Trench coat (wrinkled)"
+      },
+      "underneath": {
+        "ko": "정장 (노타이)",
+        "en": "Suit (no tie)"
+      },
+      "accessories": ["bag", "phone", "pillBottle", "businessCard"]
+    },
+    "occupation": {
+      "ko": "모름 (게임 내 단서로 추적)",
+      "en": "Unknown (traced through clues in-game)"
+    },
+    "family": {
+      "marital": "single",
+      "members": ["mother", "brother", "sisterInLaw"]
+    },
+    "incidentDate": "03.15",
+    "truthRevealed": {
+      "ko": "병원 입원 중 코마 상태. 머리 부상.",
+      "en": "Comatose in hospital. Head injury."
+    },
+    "expressions": [
+      "calm",
+      "uneasy",
+      "fearful",
+      "madSmile",
+      "relief",
+      "facing"
+    ]
+  },
+
+  "friend": {
+    "id": "friend",
+    "name": {
+      "ko": "그녀",
+      "en": "She"
+    },
+    "appearance": {
+      "ko": "빅토리안 풍 검은 드레스. 높은 칼라, 긴 소매. 단정하게 묶은 머리. 작은 장갑.",
+      "en": "Victorian-style black dress. High collar, long sleeves. Neatly tied hair. Small gloves."
+    },
+    "age": "ambiguous",
+    "ageDescription": {
+      "ko": "특정 각도에선 어려 보이고, 다른 각도에선 더 들어 보임.",
+      "en": "Looks young from one angle, older from another."
+    },
+    "visualDistinction": {
+      "ko": "다른 인물보다 살짝 흐릿한 외곽선. 그림자 없음. 디더링 패턴 불규칙.",
+      "en": "Slightly blurred outline. No shadow. Irregular dithering pattern."
+    },
+    "personality": {
+      "ko": "친절하고 거리감 있음. 존댓말. 본인을 안다는 듯한 어조.",
+      "en": "Kind but distant. Formal speech. Speaks as if she knows him."
+    },
+    "speechStyle": {
+      "ko": "존댓말, 다정함과 압박감의 경계",
+      "en": "Formal but warm; somewhere between affection and pressure"
+    },
+    "interpretiveAmbiguity": {
+      "ko": "선배, 연인, 할머니, 선생님 — 누구로든 해석 가능",
+      "en": "Could be a senior, lover, grandmother, or teacher — open to interpretation"
+    },
+    "expressions": [
+      "faintSmile",
+      "softLook",
+      "endingDSmile"
+    ],
+    "truth": {
+      "ko": "주인공의 외로움이 만들어낸 상상의 존재. 진엔딩 D에서 병실로 침범함.",
+      "en": "A figment born of the protagonist's loneliness. Appears in the hospital in Ending D."
+    }
+  },
+
+  "conductor": {
+    "id": "conductor",
+    "name": {
+      "ko": "차장",
+      "en": "Conductor"
+    },
+    "appearance": {
+      "ko": "검은 제복, 검은 모자. 비정상적으로 곧은 자세. 그림자가 강조됨.",
+      "en": "Black uniform, black cap. Posture too straight. Heavy shadow."
+    },
+    "visualNotes": {
+      "ko": "뒷모습이 대부분. 얼굴은 엔딩 C에서만 공개.",
+      "en": "Mostly shown from behind. Face revealed only in Ending C."
+    },
+    "truth": {
+      "ko": "주인공 자신. 시점이 전환되면 본인이 차장이 됨.",
+      "en": "The protagonist himself. The viewpoint shifts and he becomes the conductor."
+    },
+    "expressions": [
+      "backView",
+      "turnedFace"
+    ],
+    "signature": {
+      "ko": "엔딩 C의 시그니처 일러스트. 본인 그림체의 광기 어린 무표정.",
+      "en": "Ending C signature illustration. Mad, expressionless face."
+    }
+  },
+
+  "hospital": {
+    "id": "hospital",
+    "displayMode": "combined_scene",
+    "renderingNote": {
+      "ko": "네 명을 개별로 그리지 않고 한 장면으로. 주인공을 둘러싼 실루엣들. 대사로 누군지 구분.",
+      "en": "Not drawn individually but as one scene — silhouettes surrounding the protagonist. Dialogue identifies each."
+    },
+    "members": {
+      "mother": {
+        "role": "mother",
+        "age": "60s",
+        "description": {
+          "ko": "한국적 외모, 단정한 차림. 울고 있음. 손을 모으거나 침대 옆에 앉아 있음.",
+          "en": "Modest dress, weeping. Hands clasped or seated by the bed."
+        },
+        "firstLine": {
+          "ko": "\"우리 아들...\"",
+          "en": "\"My son...\""
+        }
+      },
+      "brother": {
+        "role": "older brother",
+        "age": "late 30s to early 40s",
+        "description": {
+          "ko": "주인공과 닮은 외모. 어머니를 부축. 안도와 피로가 섞인 표정.",
+          "en": "Resembles the protagonist. Supports the mother. Mixed relief and exhaustion."
+        },
+        "firstLine": {
+          "ko": "\"...진짜 깨어났네.\"",
+          "en": "\"...He's really awake.\""
+        }
+      },
+      "sisterInLaw": {
+        "role": "brother's wife",
+        "age": "30s",
+        "description": {
+          "ko": "형 옆에 서 있음. 책임감의 표정. 본인을 보면서 살짝 머뭇거림.",
+          "en": "Beside the brother. Sense of duty. Slight hesitation when looking at the protagonist."
+        }
+      },
+      "doctor": {
+        "role": "doctor",
+        "age": "50s",
+        "gender": "male",
+        "description": {
+          "ko": "흰 가운, 안경. 차분하고 직업적인 표정.",
+          "en": "White coat, glasses. Calm, professional demeanor."
+        },
+        "firstLine": {
+          "ko": "\"...씨. 들리세요?\"",
+          "en": "\"...Sir. Can you hear me?\""
+        }
+      }
+    },
+    "appearanceOrder": ["mother", "brother", "sisterInLaw", "doctor"],
+    "appearanceOrderNote": {
+      "ko": "어머니 먼저 (가장 본능적). 의사 마지막 (직업적 거리).",
+      "en": "Mother first (most instinctive). Doctor last (professional distance)."
+    },
+    "protagonistRecognition": {
+      "mother": { "ko": "엄마다.", "en": "Mother." },
+      "brother": { "ko": "형이다.", "en": "My brother." },
+      "sisterInLaw": { "ko": "형수다.", "en": "His wife." },
+      "doctor": { "ko": "어쩐지 익숙하다.", "en": "Familiar, somehow." }
+    }
+  }
+}
