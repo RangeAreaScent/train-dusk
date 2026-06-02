@@ -48,6 +48,7 @@ export function SceneView({ state, setState }: Props) {
   const [textDone, setTextDone] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [notesOpen, setNotesOpen] = useState(false);
+  const [choicesReady, setChoicesReady] = useState(false);
 
   // Mark scene viewed + reset paging + collect clues on scene change.
   useEffect(() => {
@@ -55,9 +56,15 @@ export function SceneView({ state, setState }: Props) {
     setTextDone(false);
     setInputValue("");
     setNotesOpen(false);
+    setChoicesReady(false);
     setState(applyClueChecks(markSceneViewed(state, scene.id), scene));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.id]);
+
+  // Reset choicesReady when moving between pages within a scene.
+  useEffect(() => {
+    setChoicesReady(false);
+  }, [pageIndex]);
 
   // Auto-save on every state change, except on meta scenes (title, settings)
   // and ending cards. We want a clean save slot that points only at real
@@ -136,6 +143,13 @@ export function SceneView({ state, setState }: Props) {
       return out;
     };
 
+    /** Cap of "content" (non-blank) lines per page. Keeps the reader's
+     *  field of view tight even when more would physically fit. */
+    const MAX_CONTENT_LINES_PER_PAGE = 5;
+
+    const countContent = (slice: string[]) =>
+      slice.reduce((n, l) => (l === "" ? n : n + 1), 0);
+
     const compute = () => {
       const maxH = text.clientHeight;
       if (maxH <= 0) return;
@@ -145,8 +159,6 @@ export function SceneView({ state, setState }: Props) {
 
       let i = 0;
       while (i < paragraphs.length) {
-        // Build up by paragraphs first — only split a paragraph if it
-        // alone exceeds the page.
         let lastFitParas: string[] = [];
         let lastFitIdx = i;
 
@@ -157,7 +169,9 @@ export function SceneView({ state, setState }: Props) {
             candidate.push(...paragraphs[k].lines);
           }
           fillMeasurer(candidate);
-          if (m.scrollHeight <= maxH) {
+          const fitsHeight = m.scrollHeight <= maxH;
+          const fitsLineCap = countContent(candidate) <= MAX_CONTENT_LINES_PER_PAGE;
+          if (fitsHeight && fitsLineCap) {
             lastFitParas = candidate;
             lastFitIdx = j + 1;
           } else {
@@ -171,16 +185,25 @@ export function SceneView({ state, setState }: Props) {
           continue;
         }
 
-        // Single paragraph too tall — fall back to line-by-line within it.
+        // Single paragraph too tall / too many content lines — split within.
         const single = paragraphs[i].lines;
         let take = 1;
         while (take < single.length) {
-          fillMeasurer(single.slice(0, take + 1));
-          if (m.scrollHeight > maxH) break;
+          const slice = single.slice(0, take + 1);
+          fillMeasurer(slice);
+          if (
+            m.scrollHeight > maxH ||
+            countContent(slice) > MAX_CONTENT_LINES_PER_PAGE
+          ) {
+            break;
+          }
           take++;
         }
         result.push(single.slice(0, take));
-        paragraphs[i] = { lines: single.slice(take), trailingBlank: paragraphs[i].trailingBlank };
+        paragraphs[i] = {
+          lines: single.slice(take),
+          trailingBlank: paragraphs[i].trailingBlank,
+        };
         if (paragraphs[i].lines.length === 0) i++;
       }
 
@@ -201,6 +224,8 @@ export function SceneView({ state, setState }: Props) {
     if (hasMore) {
       setPageIndex((i) => i + 1);
       setTextDone(false);
+    } else if (!choicesReady) {
+      setChoicesReady(true);
     }
   };
 
@@ -390,8 +415,12 @@ export function SceneView({ state, setState }: Props) {
   const choicesToShow =
     scene.choices ?? (implicitContinue ? [implicitContinue] : []);
 
-  const showInput = textDone && isLastPage && !!scene.inputField;
-  const showChoices = textDone && isLastPage && choicesToShow.length > 0;
+  const showInput = textDone && isLastPage && choicesReady && !!scene.inputField;
+  const showChoices = textDone && isLastPage && choicesReady && choicesToShow.length > 0;
+  // The ▾ is shown after typing finishes and until either we move to the
+  // next page (hasMore) or the user reveals the choices (isLastPage path).
+  const showAdvanceChevron =
+    textDone && !choicesReady && (hasMore || choicesToShow.length > 0);
 
   return (
     <GameFrame
@@ -439,9 +468,11 @@ export function SceneView({ state, setState }: Props) {
           transition={{ duration: fadeDuration }}
           className="flex h-full flex-col relative"
         >
+          {/* Text occupies the top portion only — never marches all the
+              way down to the choices area. */}
           <div
             ref={textAreaRef}
-            className="flex-1 min-h-0 overflow-hidden relative"
+            className="basis-[55%] grow-0 shrink-0 overflow-hidden relative"
           >
             <TypedText
               lines={pages[safeIndex] ?? []}
@@ -455,38 +486,42 @@ export function SceneView({ state, setState }: Props) {
               aria-hidden
               className="absolute inset-x-0 top-0 invisible pointer-events-none font-serif text-2xl leading-snug"
             />
+          </div>
 
-            {textDone && hasMore && (
+          {/* Bottom area — holds the ▾ trigger and, once revealed, the
+              choices/input popup. */}
+          <div className="flex-1 min-h-0 relative">
+            {showAdvanceChevron && (
               <div
-                className="absolute bottom-1 right-1 text-black/60 text-2xl cursor-pointer select-none chevron-drift"
+                className="absolute top-1 right-1 text-black/60 text-2xl cursor-pointer select-none chevron-drift"
                 onClick={handleAdvance}
               >
                 ▾
               </div>
             )}
-          </div>
 
-          {(showInput || showChoices) && (
-            <ChoicesPopup paperTheme={state.paperTheme}>
-              {showInput && scene.inputField && (
-                <NameInputField
-                  placeholder={scene.inputField.placeholder[state.language]}
-                  value={inputValue}
-                  maxLength={scene.inputField.maxLength}
-                  onChange={setInputValue}
-                />
-              )}
-              {showChoices && (
-                <Choices
-                  choices={choicesToShow}
-                  lang={state.language}
-                  state={state}
-                  inputValue={inputValue}
-                  onSelect={handleSelect}
-                />
-              )}
-            </ChoicesPopup>
-          )}
+            {(showInput || showChoices) && (
+              <ChoicesPopup paperTheme={state.paperTheme}>
+                {showInput && scene.inputField && (
+                  <NameInputField
+                    placeholder={scene.inputField.placeholder[state.language]}
+                    value={inputValue}
+                    maxLength={scene.inputField.maxLength}
+                    onChange={setInputValue}
+                  />
+                )}
+                {showChoices && (
+                  <Choices
+                    choices={choicesToShow}
+                    lang={state.language}
+                    state={state}
+                    inputValue={inputValue}
+                    onSelect={handleSelect}
+                  />
+                )}
+              </ChoicesPopup>
+            )}
+          </div>
         </motion.div>
         </AnimatePresence>
         </>
