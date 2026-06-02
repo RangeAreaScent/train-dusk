@@ -9,6 +9,8 @@ interface Props {
   /** When true and typing finishes, render a ▶ on the line below the
    *  last text line as a "tap to continue" cue. */
   showNextIndicator?: boolean;
+  /** Render the text centered (used by the title screen). */
+  centered?: boolean;
   onComplete?: () => void;
   onAdvance?: () => void;
 }
@@ -20,6 +22,7 @@ export function TypedText({
   speed,
   resetKey,
   showNextIndicator,
+  centered,
   onComplete,
   onAdvance,
 }: Props) {
@@ -55,7 +58,9 @@ export function TypedText({
 
   return (
     <div
-      className="text-black font-serif text-xl leading-snug cursor-pointer select-none"
+      className={`text-black font-serif text-xl leading-snug cursor-pointer select-none ${
+        centered ? "text-center" : ""
+      }`}
       onClick={handleClick}
     >
       {parts.map((line, i) => {
@@ -78,7 +83,9 @@ export function TypedText({
       })}
       {done && showNextIndicator && (
         <div
-          className="mt-1 text-right text-4xl text-black/70 chevron-drift leading-none"
+          className={`mt-2 text-2xl text-black/70 chevron-drift leading-none ${
+            centered ? "text-center" : "text-right"
+          }`}
           onClick={(e) => {
             e.stopPropagation();
             onAdvance?.();

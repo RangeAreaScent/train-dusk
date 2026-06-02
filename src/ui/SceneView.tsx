@@ -492,6 +492,7 @@ export function SceneView({ state, setState }: Props) {
               speed={state.textSpeed}
               resetKey={`${scene.id}:${safeIndex}`}
               showNextIndicator={showAdvanceChevron}
+              centered={scene.id === "title_screen"}
               onComplete={() => setTextDone(true)}
               onAdvance={handleAdvance}
             />

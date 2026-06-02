@@ -15,13 +15,17 @@ interface Props {
 
 const SHELL_GRADIENTS: Record<ShellTheme, string> = {
   black: "linear-gradient(180deg, #2a2a2c 0%, #1a1a1c 50%, #0e0e10 100%)",
-  gray: "linear-gradient(180deg, #7a7a82 0%, #5e5e66 50%, #44444c 100%)",
+  // Warm pale gray — Game Boy DMG-01 body color.
+  gray: "linear-gradient(180deg, #dcdbd2 0%, #c8c7be 50%, #b4b3aa 100%)",
 };
 
 const SHELL_HINGE: Record<ShellTheme, string> = {
   black: "linear-gradient(180deg, #1a1a1c 0%, #0c0c0e 50%, #1a1a1c 100%)",
-  gray: "linear-gradient(180deg, #50505a 0%, #3a3a44 50%, #50505a 100%)",
+  gray: "linear-gradient(180deg, #a8a7a0 0%, #908f88 50%, #a8a7a0 100%)",
 };
+
+const GB_PINK = "#c44579";
+const GB_PINK_HOVER = "#b03568";
 
 const PAPER_BG: Record<PaperTheme, string> = {
   white: "#ffffff",
@@ -50,11 +54,10 @@ export function GameFrame({
 
   return (
     <div className="h-full w-full flex items-center justify-center bg-black p-0 sm:p-4">
-      {/* Outer shell — dark plastic body. On mobile we let the shell hit
-       *  the viewport edges (no padding, square-ish rounding); on tablet+
-       *  it sits centered with breathing room. */}
+      {/* Outer shell — plastic body. Rounded corners everywhere so the
+       *  handheld feel survives on mobile too. */}
       <div
-        className="relative flex flex-col overflow-hidden rounded-none sm:rounded-[28px] shadow-2xl"
+        className="relative flex flex-col overflow-hidden rounded-[24px] sm:rounded-[28px] shadow-2xl"
         style={{
           aspectRatio: "5 / 8",
           width: "min(100vw, calc(min(95vh, 860px) * 5 / 8))",
@@ -102,40 +105,28 @@ export function GameFrame({
                 key={i}
                 className="w-[3px] h-[3px] rounded-full"
                 style={{
-                  background: shellTheme === "gray" ? "#2a2a30" : "#2e2e34",
+                  background: shellTheme === "gray" ? "#5a5950" : "#2e2e34",
                 }}
               />
             ))}
           </div>
 
-          <button
-            type="button"
-            disabled={!notesEnabled}
+          <ShellButton
+            label={notesLabel}
+            enabled={notesEnabled}
+            shellTheme={shellTheme}
             onClick={onOpenNotes}
-            className={`px-2 py-0.5 text-[11px] font-mono rounded border transition-colors ${
-              notesEnabled
-                ? "border-neutral-600 bg-neutral-800 text-neutral-200 hover:bg-neutral-700 hover:text-white cursor-pointer active:translate-y-[1px]"
-                : "border-neutral-700 bg-neutral-900 text-neutral-600 opacity-50 cursor-not-allowed"
-            }`}
-          >
-            {notesLabel}
-          </button>
-          <button
-            type="button"
-            disabled={!onOpenSettings}
+          />
+          <ShellButton
+            label={settingsLabel}
+            enabled={!!onOpenSettings}
+            shellTheme={shellTheme}
             onClick={onOpenSettings}
-            className={`px-2 py-0.5 text-[11px] font-mono rounded border transition-colors ${
-              onOpenSettings
-                ? "border-neutral-600 bg-neutral-800 text-neutral-200 hover:bg-neutral-700 hover:text-white cursor-pointer active:translate-y-[1px]"
-                : "border-neutral-700 bg-neutral-900 text-neutral-600 opacity-50 cursor-not-allowed"
-            }`}
-          >
-            {settingsLabel}
-          </button>
+          />
 
           <div
             className="ml-auto text-[9px] font-mono tracking-[0.4em] select-none"
-            style={{ color: shellTheme === "gray" ? "#2c2c34" : "#666670" }}
+            style={{ color: shellTheme === "gray" ? "#5a3a4a" : "#666670" }}
           >
             TRAIN · DUSK
           </div>
@@ -146,7 +137,7 @@ export function GameFrame({
                 key={i}
                 className="w-[3px] h-[3px] rounded-full"
                 style={{
-                  background: shellTheme === "gray" ? "#2a2a30" : "#2e2e34",
+                  background: shellTheme === "gray" ? "#5a5950" : "#2e2e34",
                 }}
               />
             ))}
@@ -168,5 +159,60 @@ export function GameFrame({
         </div>
       </div>
     </div>
+  );
+}
+
+/** Hinge button. In black-shell mode it's a dark bezelled mono chip;
+ *  in gray-shell mode it borrows the Game Boy A/B button palette
+ *  (magenta-pink pill with a bevelled top highlight). */
+function ShellButton({
+  label,
+  enabled,
+  shellTheme,
+  onClick,
+}: {
+  label: string;
+  enabled: boolean;
+  shellTheme: ShellTheme;
+  onClick?: () => void;
+}) {
+  if (shellTheme === "gray") {
+    return (
+      <button
+        type="button"
+        disabled={!enabled}
+        onClick={onClick}
+        className={`px-2.5 py-0.5 text-[11px] font-mono rounded-full border transition-all ${
+          enabled
+            ? "text-white cursor-pointer active:translate-y-[1px]"
+            : "opacity-40 cursor-not-allowed text-white/70"
+        }`}
+        style={{
+          background: enabled
+            ? `linear-gradient(180deg, ${GB_PINK} 0%, ${GB_PINK_HOVER} 100%)`
+            : "linear-gradient(180deg, #b89aa3 0%, #a3838d 100%)",
+          borderColor: "rgba(0,0,0,0.25)",
+          boxShadow: enabled
+            ? "inset 0 1px 0 rgba(255,255,255,0.35), 0 1px 1px rgba(0,0,0,0.25)"
+            : "inset 0 1px 0 rgba(255,255,255,0.15)",
+        }}
+      >
+        {label}
+      </button>
+    );
+  }
+  return (
+    <button
+      type="button"
+      disabled={!enabled}
+      onClick={onClick}
+      className={`px-2 py-0.5 text-[11px] font-mono rounded border transition-colors ${
+        enabled
+          ? "border-neutral-600 bg-neutral-800 text-neutral-200 hover:bg-neutral-700 hover:text-white cursor-pointer active:translate-y-[1px]"
+          : "border-neutral-700 bg-neutral-900 text-neutral-600 opacity-50 cursor-not-allowed"
+      }`}
+    >
+      {label}
+    </button>
   );
 }

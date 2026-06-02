@@ -14,7 +14,7 @@ export function Choices({ choices, lang, state, inputValue, onSelect }: Props) {
   const marker = config.ui.choiceMarker;
 
   return (
-    <div className="mt-6 space-y-2">
+    <div className="space-y-1">
       {choices.map((choice, i) => {
         if (!isChoiceAvailable(choice, state)) return null;
         const consumed = isChoiceConsumed(choice, state);
