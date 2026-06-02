@@ -545,7 +545,7 @@ function ChoicesPopup({
         initial={{ opacity: 0, y: 12, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className="pointer-events-auto w-full max-h-[60%] overflow-y-auto border-[2px] border-black p-3"
+        className="popup-scroll pointer-events-auto w-full max-h-[80%] overflow-y-scroll border-[2px] border-black p-3"
         style={{
           backgroundColor: bg,
           boxShadow: "4px 4px 0 #000",
