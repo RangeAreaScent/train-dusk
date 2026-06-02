@@ -14,7 +14,7 @@ export function NameInputField({
   return (
     <input
       type="text"
-      className="mt-4 w-full bg-transparent border-b border-black text-black font-serif text-2xl px-1 py-1 focus:outline-none placeholder:text-neutral-400"
+      className="mt-2 w-full bg-transparent border-b border-black text-black font-serif text-xl px-1 py-1 focus:outline-none placeholder:text-neutral-400"
       placeholder={placeholder}
       value={value}
       maxLength={maxLength}

@@ -49,13 +49,16 @@ export function GameFrame({
   const paperBg = PAPER_BG[paperTheme];
 
   return (
-    <div className="h-full w-full flex items-center justify-center bg-black p-4">
-      {/* Outer shell — dark plastic body */}
+    <div className="h-full w-full flex items-center justify-center bg-black p-0 sm:p-4">
+      {/* Outer shell — dark plastic body. On mobile we let the shell hit
+       *  the viewport edges (no padding, square-ish rounding); on tablet+
+       *  it sits centered with breathing room. */}
       <div
-        className="relative flex flex-col overflow-hidden rounded-[28px] shadow-2xl"
+        className="relative flex flex-col overflow-hidden rounded-none sm:rounded-[28px] shadow-2xl"
         style={{
           aspectRatio: "5 / 8",
-          height: "min(95vh, 860px)",
+          width: "min(100vw, calc(min(95vh, 860px) * 5 / 8))",
+          maxHeight: "100vh",
           background: shellBg,
           boxShadow:
             "0 20px 60px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.06), inset 0 -1px 0 rgba(0,0,0,0.6)",

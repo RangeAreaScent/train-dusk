@@ -6,19 +6,20 @@ interface Props {
   lines: string[];
   speed: TextSpeed;
   resetKey: string;
+  /** When true and typing finishes, render a ▶ on the line below the
+   *  last text line as a "tap to continue" cue. */
+  showNextIndicator?: boolean;
   onComplete?: () => void;
   onAdvance?: () => void;
 }
 
-/** Height of an "empty" line — a soft paragraph break, much smaller than
- * a real line of text. Keeps the page rhythm tight so 4+ lines actually
- * fit instead of two short sentences stranded with white space. */
 const BLANK_GAP_EM = 0.35;
 
 export function TypedText({
   lines,
   speed,
   resetKey,
+  showNextIndicator,
   onComplete,
   onAdvance,
 }: Props) {
@@ -54,7 +55,7 @@ export function TypedText({
 
   return (
     <div
-      className="text-black font-serif text-2xl leading-snug cursor-pointer select-none"
+      className="text-black font-serif text-xl leading-snug cursor-pointer select-none"
       onClick={handleClick}
     >
       {parts.map((line, i) => {
@@ -75,6 +76,17 @@ export function TypedText({
           </div>
         );
       })}
+      {done && showNextIndicator && (
+        <div
+          className="mt-1 text-right text-4xl text-black/70 chevron-drift leading-none"
+          onClick={(e) => {
+            e.stopPropagation();
+            onAdvance?.();
+          }}
+        >
+          ▶
+        </div>
+      )}
     </div>
   );
 }

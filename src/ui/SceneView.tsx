@@ -49,6 +49,9 @@ export function SceneView({ state, setState }: Props) {
   const [inputValue, setInputValue] = useState("");
   const [notesOpen, setNotesOpen] = useState(false);
   const [choicesReady, setChoicesReady] = useState(false);
+  /** When true, the choices popup is temporarily hidden so the player
+   *  can re-read the text behind it. Tapping the text area toggles it. */
+  const [popupHidden, setPopupHidden] = useState(false);
 
   // Mark scene viewed + reset paging + collect clues on scene change.
   useEffect(() => {
@@ -57,13 +60,15 @@ export function SceneView({ state, setState }: Props) {
     setInputValue("");
     setNotesOpen(false);
     setChoicesReady(false);
+    setPopupHidden(false);
     setState(applyClueChecks(markSceneViewed(state, scene.id), scene));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.id]);
 
-  // Reset choicesReady when moving between pages within a scene.
+  // Reset choicesReady + popup-hidden state on page change.
   useEffect(() => {
     setChoicesReady(false);
+    setPopupHidden(false);
   }, [pageIndex]);
 
   // Auto-save on every state change, except on meta scenes (title, settings)
@@ -468,60 +473,56 @@ export function SceneView({ state, setState }: Props) {
           transition={{ duration: fadeDuration }}
           className="flex h-full flex-col relative"
         >
-          {/* Text occupies the top portion only — never marches all the
-              way down to the choices area. */}
+          {/* Text area fills the full body — the choices popup overlays
+              the bottom when revealed and can grow up to 60% of body for
+              long lists; the user can tap the text to dismiss the popup
+              and re-read the prose, then tap again to bring it back. */}
           <div
             ref={textAreaRef}
-            className="basis-[55%] grow-0 shrink-0 overflow-hidden relative"
+            onClickCapture={(e) => {
+              if (choicesReady) {
+                e.stopPropagation();
+                setPopupHidden((h) => !h);
+              }
+            }}
+            className="flex-1 min-h-0 overflow-hidden relative"
           >
             <TypedText
               lines={pages[safeIndex] ?? []}
               speed={state.textSpeed}
               resetKey={`${scene.id}:${safeIndex}`}
+              showNextIndicator={showAdvanceChevron}
               onComplete={() => setTextDone(true)}
               onAdvance={handleAdvance}
             />
             <div
               ref={measurerRef}
               aria-hidden
-              className="absolute inset-x-0 top-0 invisible pointer-events-none font-serif text-2xl leading-snug"
+              className="absolute inset-x-0 top-0 invisible pointer-events-none font-serif text-xl leading-snug"
             />
           </div>
 
-          {/* Bottom area — holds the ▾ trigger and, once revealed, the
-              choices/input popup. */}
-          <div className="flex-1 min-h-0 relative">
-            {showAdvanceChevron && (
-              <div
-                className="absolute top-1 right-1 text-black/60 text-2xl cursor-pointer select-none chevron-drift"
-                onClick={handleAdvance}
-              >
-                ▾
-              </div>
-            )}
-
-            {(showInput || showChoices) && (
-              <ChoicesPopup paperTheme={state.paperTheme}>
-                {showInput && scene.inputField && (
-                  <NameInputField
-                    placeholder={scene.inputField.placeholder[state.language]}
-                    value={inputValue}
-                    maxLength={scene.inputField.maxLength}
-                    onChange={setInputValue}
-                  />
-                )}
-                {showChoices && (
-                  <Choices
-                    choices={choicesToShow}
-                    lang={state.language}
-                    state={state}
-                    inputValue={inputValue}
-                    onSelect={handleSelect}
-                  />
-                )}
-              </ChoicesPopup>
-            )}
-          </div>
+          {(showInput || showChoices) && !popupHidden && (
+            <ChoicesPopup paperTheme={state.paperTheme}>
+              {showInput && scene.inputField && (
+                <NameInputField
+                  placeholder={scene.inputField.placeholder[state.language]}
+                  value={inputValue}
+                  maxLength={scene.inputField.maxLength}
+                  onChange={setInputValue}
+                />
+              )}
+              {showChoices && (
+                <Choices
+                  choices={choicesToShow}
+                  lang={state.language}
+                  state={state}
+                  inputValue={inputValue}
+                  onSelect={handleSelect}
+                />
+              )}
+            </ChoicesPopup>
+          )}
         </motion.div>
         </AnimatePresence>
         </>
@@ -544,7 +545,7 @@ function ChoicesPopup({
         initial={{ opacity: 0, y: 12, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className="pointer-events-auto w-full max-h-[75%] overflow-y-auto border-[2px] border-black p-4"
+        className="pointer-events-auto w-full max-h-[60%] overflow-y-auto border-[2px] border-black p-3"
         style={{
           backgroundColor: bg,
           boxShadow: "4px 4px 0 #000",
