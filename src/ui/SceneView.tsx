@@ -20,7 +20,7 @@ import {
   tryConnect,
 } from "../engine/state";
 import { setTypewriterEnabled } from "../audio/typewriter";
-import { armMusicOnFirstGesture, setMusicEnabled } from "../audio/music";
+import { armMusicOnFirstGesture, setMusicEnabled, setMusicTrack } from "../audio/music";
 import { GameFrame } from "./GameFrame";
 import { VisualArea } from "./VisualArea";
 import { TypedText } from "./TypedText";
@@ -86,6 +86,12 @@ export function SceneView({ state, setState }: Props) {
   useEffect(() => {
     setMusicEnabled(state.music !== "off");
   }, [state.music]);
+
+  // Swap between main and ending tracks when crossing into / out of an
+  // ending card. The ending track is non-looping and fades out on its own.
+  useEffect(() => {
+    setMusicTrack(scene.isEndingCard ? "ending" : "main");
+  }, [scene.isEndingCard]);
 
   // Auto-save on every state change, except on meta scenes (title, settings)
   // and ending cards. We want a clean save slot that points only at real
