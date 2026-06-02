@@ -10,6 +10,11 @@ interface Props {
   onAdvance?: () => void;
 }
 
+/** Height of an "empty" line — a soft paragraph break, much smaller than
+ * a real line of text. Keeps the page rhythm tight so 4+ lines actually
+ * fit instead of two short sentences stranded with white space. */
+const BLANK_GAP_EM = 0.35;
+
 export function TypedText({
   lines,
   speed,
@@ -44,13 +49,32 @@ export function TypedText({
     }
   };
 
+  const visibleText = fullText.slice(0, shown);
+  const parts = visibleText.split("\n");
+
   return (
     <div
-      className="whitespace-pre-line text-black font-serif text-2xl leading-relaxed cursor-pointer select-none"
+      className="text-black font-serif text-2xl leading-snug cursor-pointer select-none"
       onClick={handleClick}
     >
-      {fullText.slice(0, shown)}
-      {!done && <span className="opacity-50">▍</span>}
+      {parts.map((line, i) => {
+        const isLast = i === parts.length - 1;
+        if (line === "") {
+          return (
+            <div
+              key={i}
+              aria-hidden
+              style={{ height: `${BLANK_GAP_EM}em` }}
+            />
+          );
+        }
+        return (
+          <div key={i}>
+            {line}
+            {isLast && !done && <span className="opacity-50">▍</span>}
+          </div>
+        );
+      })}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import type { Choice, ConnectResult, GameState } from "../engine/types";
+import type { Choice, ConnectResult, GameState, PaperTheme } from "../engine/types";
 import { getScene, getSceneText } from "../engine/scenes";
 import {
   applyChoice,
@@ -88,38 +89,101 @@ export function SceneView({ state, setState }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [scene.id]);
 
-  // Dynamic pagination by DOM measurement.
+  // Dynamic pagination by DOM measurement — paragraph-aware so a single
+  // paragraph never gets split across pages unless it physically doesn't
+  // fit on its own. Blank lines render as small (0.35em) gaps in both the
+  // measurer and TypedText so the rhythm matches what the user sees.
   useLayoutEffect(() => {
     const text = textAreaRef.current;
     const m = measurerRef.current;
     if (!text || !m) return;
 
+    const BLANK_GAP_EM = 0.35;
+
+    /** Replace measurer contents with the structured rendering of `slice`. */
+    const fillMeasurer = (slice: string[]) => {
+      m.innerHTML = "";
+      for (const l of slice) {
+        const d = document.createElement("div");
+        if (l === "") {
+          d.style.height = `${BLANK_GAP_EM}em`;
+          d.setAttribute("aria-hidden", "true");
+        } else {
+          d.textContent = l;
+        }
+        m.appendChild(d);
+      }
+    };
+
+    /** Group lines into paragraphs (runs of non-empty lines), preserving
+     *  one blank line between consecutive groups as a "soft" separator. */
+    const groupParagraphs = (
+      ls: string[],
+    ): { lines: string[]; trailingBlank: boolean }[] => {
+      const out: { lines: string[]; trailingBlank: boolean }[] = [];
+      let cur: string[] = [];
+      for (const l of ls) {
+        if (l === "") {
+          if (cur.length) {
+            out.push({ lines: cur, trailingBlank: true });
+            cur = [];
+          }
+        } else {
+          cur.push(l);
+        }
+      }
+      if (cur.length) out.push({ lines: cur, trailingBlank: false });
+      return out;
+    };
+
     const compute = () => {
       const maxH = text.clientHeight;
       if (maxH <= 0) return;
 
+      const paragraphs = groupParagraphs(lines);
       const result: string[][] = [];
-      let start = 0;
-      while (start < lines.length) {
-        while (start < lines.length && lines[start] === "") start++;
-        if (start >= lines.length) break;
 
-        let lastFit = start + 1;
-        let end = start + 1;
-        while (end <= lines.length) {
-          m.textContent = lines.slice(start, end).join("\n");
+      let i = 0;
+      while (i < paragraphs.length) {
+        // Build up by paragraphs first — only split a paragraph if it
+        // alone exceeds the page.
+        let lastFitParas: string[] = [];
+        let lastFitIdx = i;
+
+        for (let j = i; j < paragraphs.length; j++) {
+          const candidate: string[] = [];
+          for (let k = i; k <= j; k++) {
+            if (k > i) candidate.push("");
+            candidate.push(...paragraphs[k].lines);
+          }
+          fillMeasurer(candidate);
           if (m.scrollHeight <= maxH) {
-            lastFit = end;
-            end++;
+            lastFitParas = candidate;
+            lastFitIdx = j + 1;
           } else {
             break;
           }
         }
-        let pageEnd = lastFit;
-        while (pageEnd > start + 1 && lines[pageEnd - 1] === "") pageEnd--;
-        result.push(lines.slice(start, pageEnd));
-        start = lastFit;
+
+        if (lastFitParas.length > 0) {
+          result.push(lastFitParas);
+          i = lastFitIdx;
+          continue;
+        }
+
+        // Single paragraph too tall — fall back to line-by-line within it.
+        const single = paragraphs[i].lines;
+        let take = 1;
+        while (take < single.length) {
+          fillMeasurer(single.slice(0, take + 1));
+          if (m.scrollHeight > maxH) break;
+          take++;
+        }
+        result.push(single.slice(0, take));
+        paragraphs[i] = { lines: single.slice(take), trailingBlank: paragraphs[i].trailingBlank };
+        if (paragraphs[i].lines.length === 0) i++;
       }
+
       setPages(result.length > 0 ? result : [[]]);
     };
 
@@ -373,7 +437,7 @@ export function SceneView({ state, setState }: Props) {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: fadeDuration }}
-          className="flex h-full flex-col"
+          className="flex h-full flex-col relative"
         >
           <div
             ref={textAreaRef}
@@ -389,43 +453,70 @@ export function SceneView({ state, setState }: Props) {
             <div
               ref={measurerRef}
               aria-hidden
-              className="absolute inset-x-0 top-0 invisible pointer-events-none whitespace-pre-line font-serif text-2xl leading-relaxed"
+              className="absolute inset-x-0 top-0 invisible pointer-events-none font-serif text-2xl leading-snug"
             />
-          </div>
 
-          <div className={`shrink-0 mt-3 ${scene.id === "settings_menu" ? "h-[260px] overflow-y-auto" : "h-[170px] overflow-hidden"}`}>
             {textDone && hasMore && (
               <div
-                className="text-right text-black/60 text-2xl cursor-pointer select-none chevron-drift"
+                className="absolute bottom-1 right-1 text-black/60 text-2xl cursor-pointer select-none chevron-drift"
                 onClick={handleAdvance}
               >
                 ▾
               </div>
             )}
-
-            {showInput && scene.inputField && (
-              <NameInputField
-                placeholder={scene.inputField.placeholder[state.language]}
-                value={inputValue}
-                maxLength={scene.inputField.maxLength}
-                onChange={setInputValue}
-              />
-            )}
-
-            {showChoices && (
-              <Choices
-                choices={choicesToShow}
-                lang={state.language}
-                state={state}
-                inputValue={inputValue}
-                onSelect={handleSelect}
-              />
-            )}
           </div>
+
+          {(showInput || showChoices) && (
+            <ChoicesPopup paperTheme={state.paperTheme}>
+              {showInput && scene.inputField && (
+                <NameInputField
+                  placeholder={scene.inputField.placeholder[state.language]}
+                  value={inputValue}
+                  maxLength={scene.inputField.maxLength}
+                  onChange={setInputValue}
+                />
+              )}
+              {showChoices && (
+                <Choices
+                  choices={choicesToShow}
+                  lang={state.language}
+                  state={state}
+                  inputValue={inputValue}
+                  onSelect={handleSelect}
+                />
+              )}
+            </ChoicesPopup>
+          )}
         </motion.div>
         </AnimatePresence>
         </>
       }
     />
+  );
+}
+
+function ChoicesPopup({
+  children,
+  paperTheme,
+}: {
+  children: ReactNode;
+  paperTheme: PaperTheme;
+}) {
+  const bg = paperTheme === "cream" ? "#f5ecd6" : "#ffffff";
+  return (
+    <div className="absolute inset-0 z-20 flex items-end justify-center p-3 pointer-events-none">
+      <motion.div
+        initial={{ opacity: 0, y: 12, scale: 0.98 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        transition={{ duration: 0.22, ease: "easeOut" }}
+        className="pointer-events-auto w-full max-h-[75%] overflow-y-auto border-[2px] border-black p-4"
+        style={{
+          backgroundColor: bg,
+          boxShadow: "4px 4px 0 #000",
+        }}
+      >
+        {children}
+      </motion.div>
+    </div>
   );
 }
