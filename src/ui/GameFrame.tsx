@@ -80,10 +80,9 @@ export function GameFrame({
         {/* TOP SCREEN */}
         <div className="basis-1/2 grow-0 shrink-0 px-3 pt-6 pb-2">
           <div
-            className="h-full w-full rounded-md overflow-hidden bg-black"
+            className="h-full w-full rounded-md overflow-hidden bg-black border-2 border-black"
             style={{
-              boxShadow:
-                "inset 0 0 0 2px #050505, inset 0 2px 6px rgba(0,0,0,0.8)",
+              boxShadow: "inset 0 2px 6px rgba(0,0,0,0.8)",
             }}
           >
             {visual}
@@ -147,11 +146,10 @@ export function GameFrame({
         {/* BOTTOM SCREEN — paper */}
         <div className="flex-1 px-3 pt-2 pb-6 min-h-0">
           <div
-            className="h-full w-full rounded-md overflow-hidden text-black p-5 relative"
+            className="h-full w-full rounded-md overflow-hidden text-black p-5 relative border-2 border-black"
             style={{
               backgroundColor: paperBg,
-              boxShadow:
-                "inset 0 0 0 2px #050505, inset 0 2px 6px rgba(0,0,0,0.4)",
+              boxShadow: "inset 0 2px 6px rgba(0,0,0,0.4)",
             }}
           >
             {body}
