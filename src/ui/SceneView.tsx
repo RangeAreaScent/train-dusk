@@ -16,8 +16,10 @@ import {
   savePref,
   saveState,
   startFreshRun,
+  statePrefs,
   tryConnect,
 } from "../engine/state";
+import { setTypewriterEnabled } from "../audio/typewriter";
 import { GameFrame } from "./GameFrame";
 import { VisualArea } from "./VisualArea";
 import { TypedText } from "./TypedText";
@@ -70,6 +72,11 @@ export function SceneView({ state, setState }: Props) {
     setChoicesReady(false);
     setPopupHidden(false);
   }, [pageIndex]);
+
+  // Keep the global typewriter audio module in sync with the user pref.
+  useEffect(() => {
+    setTypewriterEnabled(state.sound !== "off");
+  }, [state.sound]);
 
   // Auto-save on every state change, except on meta scenes (title, settings)
   // and ending cards. We want a clean save slot that points only at real
@@ -249,53 +256,46 @@ export function SceneView({ state, setState }: Props) {
 
     // Language toggle — flips ko↔en, stays on current scene.
     if (target === "language_toggle") {
-      const next = state.language === "ko" ? "en" : "ko";
-      savePref({
-        language: next,
-        textSpeed: state.textSpeed,
-        shellTheme: state.shellTheme,
-        paperTheme: state.paperTheme,
-      });
-      setState({ ...state, language: next });
+      const next: GameState["language"] = state.language === "ko" ? "en" : "ko";
+      const updated = { ...state, language: next };
+      savePref(statePrefs(updated));
+      setState(updated);
       return;
     }
 
     // Text speed presets — also stay in place.
     if (target === "text_speed_slow" || target === "text_speed_normal" || target === "text_speed_fast") {
       const next = target.replace("text_speed_", "") as GameState["textSpeed"];
-      savePref({
-        language: state.language,
-        textSpeed: next,
-        shellTheme: state.shellTheme,
-        paperTheme: state.paperTheme,
-      });
-      setState({ ...state, textSpeed: next });
+      const updated = { ...state, textSpeed: next };
+      savePref(statePrefs(updated));
+      setState(updated);
       return;
     }
 
     // Shell theme
     if (target === "shell_black" || target === "shell_gray") {
-      const next = target === "shell_black" ? "black" : "gray";
-      savePref({
-        language: state.language,
-        textSpeed: state.textSpeed,
-        shellTheme: next,
-        paperTheme: state.paperTheme,
-      });
-      setState({ ...state, shellTheme: next });
+      const next: GameState["shellTheme"] = target === "shell_black" ? "black" : "gray";
+      const updated = { ...state, shellTheme: next };
+      savePref(statePrefs(updated));
+      setState(updated);
       return;
     }
 
     // Paper theme
     if (target === "paper_white" || target === "paper_cream") {
-      const next = target === "paper_white" ? "white" : "cream";
-      savePref({
-        language: state.language,
-        textSpeed: state.textSpeed,
-        shellTheme: state.shellTheme,
-        paperTheme: next,
-      });
-      setState({ ...state, paperTheme: next });
+      const next: GameState["paperTheme"] = target === "paper_white" ? "white" : "cream";
+      const updated = { ...state, paperTheme: next };
+      savePref(statePrefs(updated));
+      setState(updated);
+      return;
+    }
+
+    // Sound on/off
+    if (target === "sound_on" || target === "sound_off") {
+      const next: GameState["sound"] = target === "sound_on" ? "on" : "off";
+      const updated = { ...state, sound: next };
+      savePref(statePrefs(updated));
+      setState(updated);
       return;
     }
 

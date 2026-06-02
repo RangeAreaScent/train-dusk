@@ -2,6 +2,7 @@ export type Lang = "ko" | "en";
 export type TextSpeed = "slow" | "normal" | "fast";
 export type ShellTheme = "black" | "gray";
 export type PaperTheme = "white" | "cream";
+export type SoundPref = "on" | "off";
 
 export interface LocalizedText {
   ko: string;
@@ -90,6 +91,7 @@ export interface GameState {
   textSpeed: TextSpeed;
   shellTheme: ShellTheme;
   paperTheme: PaperTheme;
+  sound: SoundPref;
   viewedScenes: string[];
   viewedChoices: string[];
   counters: {

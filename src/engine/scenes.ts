@@ -84,6 +84,14 @@ function buildSceneMap(): {
         next: "paper_cream",
       },
       {
+        label: { ko: "사운드: 켬", en: "Sound: On" },
+        next: "sound_on",
+      },
+      {
+        label: { ko: "사운드: 끔", en: "Sound: Off" },
+        next: "sound_off",
+      },
+      {
         label: { ko: "돌아가기", en: "Back" },
         next: "back_to_title",
       },
