@@ -92,6 +92,14 @@ function buildSceneMap(): {
         next: "sound_off",
       },
       {
+        label: { ko: "음악: 켬", en: "Music: On" },
+        next: "music_on",
+      },
+      {
+        label: { ko: "음악: 끔", en: "Music: Off" },
+        next: "music_off",
+      },
+      {
         label: { ko: "돌아가기", en: "Back" },
         next: "back_to_title",
       },

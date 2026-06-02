@@ -20,6 +20,7 @@ import {
   tryConnect,
 } from "../engine/state";
 import { setTypewriterEnabled } from "../audio/typewriter";
+import { armMusicOnFirstGesture, setMusicEnabled } from "../audio/music";
 import { GameFrame } from "./GameFrame";
 import { VisualArea } from "./VisualArea";
 import { TypedText } from "./TypedText";
@@ -77,6 +78,14 @@ export function SceneView({ state, setState }: Props) {
   useEffect(() => {
     setTypewriterEnabled(state.sound !== "off");
   }, [state.sound]);
+
+  // Music: arm the first-gesture autoplay handler once, and sync pref.
+  useEffect(() => {
+    armMusicOnFirstGesture();
+  }, []);
+  useEffect(() => {
+    setMusicEnabled(state.music !== "off");
+  }, [state.music]);
 
   // Auto-save on every state change, except on meta scenes (title, settings)
   // and ending cards. We want a clean save slot that points only at real
@@ -294,6 +303,15 @@ export function SceneView({ state, setState }: Props) {
     if (target === "sound_on" || target === "sound_off") {
       const next: GameState["sound"] = target === "sound_on" ? "on" : "off";
       const updated = { ...state, sound: next };
+      savePref(statePrefs(updated));
+      setState(updated);
+      return;
+    }
+
+    // Music on/off
+    if (target === "music_on" || target === "music_off") {
+      const next: GameState["music"] = target === "music_on" ? "on" : "off";
+      const updated = { ...state, music: next };
       savePref(statePrefs(updated));
       setState(updated);
       return;

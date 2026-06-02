@@ -24,6 +24,7 @@ export const initialState: GameState = {
   shellTheme: "black",
   paperTheme: "white",
   sound: "on",
+  music: "on",
   viewedScenes: [],
   viewedChoices: [],
   counters: {
@@ -299,6 +300,7 @@ export interface Prefs {
   shellTheme: GameState["shellTheme"];
   paperTheme: GameState["paperTheme"];
   sound: GameState["sound"];
+  music: GameState["music"];
 }
 
 export function statePrefs(s: GameState): Prefs {
@@ -308,6 +310,7 @@ export function statePrefs(s: GameState): Prefs {
     shellTheme: s.shellTheme,
     paperTheme: s.paperTheme,
     sound: s.sound,
+    music: s.music,
   };
 }
 
@@ -319,6 +322,7 @@ export function loadPref(): Prefs {
     shellTheme: initialState.shellTheme,
     paperTheme: initialState.paperTheme,
     sound: initialState.sound,
+    music: initialState.music,
   };
   if (!ls) return fallback;
   try {
@@ -340,6 +344,7 @@ export function loadPref(): Prefs {
           ? p.paperTheme
           : fallback.paperTheme,
       sound: p.sound === "off" ? "off" : fallback.sound,
+      music: p.music === "off" ? "off" : fallback.music,
     };
   } catch {
     return fallback;

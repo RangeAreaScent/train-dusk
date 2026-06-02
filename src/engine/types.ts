@@ -3,6 +3,7 @@ export type TextSpeed = "slow" | "normal" | "fast";
 export type ShellTheme = "black" | "gray";
 export type PaperTheme = "white" | "cream";
 export type SoundPref = "on" | "off";
+export type MusicPref = "on" | "off";
 
 export interface LocalizedText {
   ko: string;
@@ -92,6 +93,7 @@ export interface GameState {
   shellTheme: ShellTheme;
   paperTheme: PaperTheme;
   sound: SoundPref;
+  music: MusicPref;
   viewedScenes: string[];
   viewedChoices: string[];
   counters: {
