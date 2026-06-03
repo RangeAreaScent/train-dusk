@@ -174,3 +174,66 @@ export function getEndingDef(endingId: string): EndingDef | null {
   const e = (endingsData as unknown as Record<string, EndingDef>)[key];
   return e ?? null;
 }
+
+// ─── Branch-check resolution ──────────────────────────────────────────────
+
+function hasMiddleInsight(state: GameState): boolean {
+  return !!(state.insights.callsMyName || state.insights.lostTime);
+}
+
+function evalCondition(cond: string, state: GameState): boolean {
+  switch (cond) {
+    case "default":
+      return true;
+    case "hasMiddleInsight":
+      return hasMiddleInsight(state);
+    case "whisperCount >= 3 && hiddenTriggered":
+      return (
+        state.counters.whisperCount >= 3 && !!state.flags.hiddenTriggered
+      );
+    case "avoidCount >= 4":
+      return state.counters.avoidCount >= 4;
+    case "conductorTrigger && hasMiddleInsight && hiddenTriggered && whisperCount >= 3":
+      return (
+        !!state.flags.conductorTrigger &&
+        hasMiddleInsight(state) &&
+        !!state.flags.hiddenTriggered &&
+        state.counters.whisperCount >= 3
+      );
+    case "conductorTrigger && hasMiddleInsight":
+      return !!state.flags.conductorTrigger && hasMiddleInsight(state);
+    case "insights.mustWakeUp && endingsReached.length >= 2":
+      return (
+        !!state.insights.mustWakeUp && state.endingsReached.length >= 2
+      );
+    default:
+      return false;
+  }
+}
+
+/**
+ * Resolve a target scene ID through any chain of branch-check scenes —
+ * picking the first matching branch at each step — so the player lands
+ * on a real scene with text/choices, never a blank router. Capped at
+ * 10 hops so bad data can't loop forever.
+ */
+export function resolveBranches(targetId: string, state: GameState): string {
+  let id = targetId;
+  for (let depth = 0; depth < 10; depth++) {
+    const resolved = aliases[id] ?? id;
+    const sc = scenes[resolved];
+    if (!sc || !sc.isBranchCheck) return id;
+    const branches = sc.branches;
+    if (!branches || branches.length === 0) return id;
+    let next: string | null = null;
+    for (const b of branches) {
+      if (evalCondition(b.condition, state)) {
+        next = b.next;
+        break;
+      }
+    }
+    if (!next || next === id) return id;
+    id = next;
+  }
+  return id;
+}

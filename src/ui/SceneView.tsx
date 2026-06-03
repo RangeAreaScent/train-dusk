@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Choice, ConnectResult, GameState, PaperTheme } from "../engine/types";
-import { getScene, getSceneText } from "../engine/scenes";
+import { getScene, getSceneText, resolveBranches } from "../engine/scenes";
 import {
   applyChoice,
   applyClueChecks,
@@ -259,6 +259,12 @@ export function SceneView({ state, setState }: Props) {
   const handleSelect = (choice: Choice) => {
     const target = choice.next;
 
+    // Data-driven UX action: open the notes panel.
+    if (choice.action === "open_notes") {
+      if (notesEnabled) setNotesOpen(true);
+      return;
+    }
+
     // Title-screen "이어하기" — load persisted state instead of routing.
     if (target === "load_save") {
       const saved = loadState();
@@ -332,7 +338,19 @@ export function SceneView({ state, setState }: Props) {
       return;
     }
 
-    setState(applyChoice(state, choice, inputValue));
+    // Resolve through any chain of branch-check scenes so the player
+    // never lands on a blank router.
+    const resolvedNext =
+      choice.next ? resolveBranches(choice.next, state) : choice.next;
+    const resolvedReturn =
+      choice.returnTo ? resolveBranches(choice.returnTo, state) : choice.returnTo;
+    setState(
+      applyChoice(
+        state,
+        { ...choice, next: resolvedNext, returnTo: resolvedReturn },
+        inputValue,
+      ),
+    );
   };
 
   const handleRestart = () => {

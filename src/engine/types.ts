@@ -72,6 +72,19 @@ export interface Scene {
   isEndingCard?: boolean;
   endingId?: EndingId;
   cutsceneNote?: LocalizedText;
+  /** Synthetic router scene — engine auto-evaluates branches and
+   *  forwards before render. */
+  isBranchCheck?: boolean;
+  branches?: BranchRule[];
+}
+
+export interface BranchRule {
+  condition: string;
+  next: string;
+}
+
+export interface Choice {
+  action?: string;
 }
 
 export interface MetaSave {
