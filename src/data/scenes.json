@@ -1638,8 +1638,7 @@
   },
   "car_4_friend_appears": {
     "id": "car_4_friend_appears",
-    "visual": "cutscene_friend_appears",
-    "isCutscene": true,
+    "visual": "friend_in_train",
     "cutsceneNote": {
       "ko": "그녀가 옆자리에 앉아 있는 모습. 옅게 웃음.",
       "en": "She is seated beside, smiling faintly."
@@ -1698,7 +1697,7 @@
   },
   "car_4_friend_question": {
     "id": "car_4_friend_question",
-    "visual": "cutscene_friend_appears",
+    "visual": "friend_in_train",
     "car": 4,
     "text": {
       "ko": [
