@@ -514,7 +514,7 @@
     "sequence": [
       {
         "id": "endD_realization",
-        "visual": "car_5_quiet",
+        "visual": "protagonist_in_train",
         "text": {
           "ko": [
             "다섯 번째 칸. 마지막 칸이다. 처음 보는 것이 아니다 — 여러 번 와 본 자리. 그런데 이번엔, 다른 어떤 회차도 아닌 이번엔, 이게 마지막이라는 것을 직감으로 안다.",
