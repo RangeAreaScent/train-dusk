@@ -55,6 +55,7 @@ export interface InputField {
 export interface Scene {
   id: string;
   visual?: string;
+  overlay?: string;
   popup?: string;
   popupPosition?: string;
   music?: string;

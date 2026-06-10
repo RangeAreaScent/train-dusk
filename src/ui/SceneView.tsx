@@ -521,6 +521,7 @@ export function SceneView({ state, setState }: Props) {
               visualKey={scene.visual}
               popup={scene.popup}
               cutscene={scene.isCutscene}
+              overlay={scene.overlay}
             />
           </motion.div>
         </AnimatePresence>

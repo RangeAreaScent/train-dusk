@@ -10,6 +10,8 @@ interface Props {
   popup?: string;
   /** If true, look under /assets/cutscenes/ instead. */
   cutscene?: boolean;
+  /** Character sprite id — /assets/characters/<id>.png, rendered over background. */
+  overlay?: string;
 }
 
 type ImgState = "loading" | "ok" | "missing";
@@ -57,7 +59,7 @@ function useFirstAvailable(srcs: string[]): { src: string | null; state: ImgStat
   return { src: resolved, state };
 }
 
-export function VisualArea({ visualKey, popup, cutscene, fallback }: Props) {
+export function VisualArea({ visualKey, popup, cutscene, fallback, overlay }: Props) {
   const folder = cutscene ? "cutscenes" : "visuals";
   const chain = useMemo(() => {
     const ids: string[] = [];
@@ -72,6 +74,8 @@ export function VisualArea({ visualKey, popup, cutscene, fallback }: Props) {
   const { src: popupResolved, state: popupState } = useFirstAvailable(
     popupSrc ? [popupSrc] : [],
   );
+  const overlaySrc = overlay ? `/assets/characters/${overlay}.png` : null;
+  const { src: overlayResolved } = useFirstAvailable(overlaySrc ? [overlaySrc] : []);
 
   return (
     <div className="relative h-full w-full bg-neutral-900 overflow-hidden">
@@ -84,6 +88,15 @@ export function VisualArea({ visualKey, popup, cutscene, fallback }: Props) {
         />
       ) : (
         <Placeholder label={visualKey ?? "—"} />
+      )}
+
+      {overlayResolved && (
+        <img
+          src={overlayResolved}
+          alt=""
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[85%] w-auto object-contain pointer-events-none"
+          style={{ imageRendering: "pixelated" }}
+        />
       )}
 
       {popup && (
