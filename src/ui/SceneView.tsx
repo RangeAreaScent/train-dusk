@@ -725,8 +725,8 @@ function SettingsPanel({
   ];
 
   return (
-    <div className="h-full flex flex-col justify-between py-1">
-      <div className="flex flex-col gap-5 pt-1">
+    <div className="h-full flex flex-col py-1">
+      <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-5 pt-1 pb-2">
         {rows.map((row) => (
           <div key={row.label} className="flex items-baseline gap-0">
             <span className="text-[11px] font-mono text-neutral-500 w-16 shrink-0">
