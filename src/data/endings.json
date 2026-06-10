@@ -279,8 +279,7 @@
       },
       {
         "id": "endB_final",
-        "visual": "cutscene_two_seated",
-        "isCutscene": true,
+        "visual": "friend_hand",
         "cutsceneNote": {
           "ko": "둘이 나란히 앉음. 단 한 프레임만 그녀의 자리가 비어 있음. 그 후 다시 둘이 있는 모습.",
           "en": "Two seated side by side. For a single frame her seat is empty. Then back to two together."
