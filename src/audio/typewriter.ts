@@ -81,13 +81,13 @@ export function playKeyClick(): void {
 
   const filter = c.createBiquadFilter();
   filter.type = "lowpass";
-  filter.frequency.value = 420 + Math.random() * 180;
-  filter.Q.value = 0.7;
+  filter.frequency.value = 900 + Math.random() * 300;
+  filter.Q.value = 0.8;
 
   const gain = c.createGain();
   gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.13, now + 0.001);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.035);
+  gain.gain.linearRampToValueAtTime(0.22, now + 0.002);
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
 
   source.connect(filter);
   filter.connect(gain);
