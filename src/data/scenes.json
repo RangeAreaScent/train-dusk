@@ -218,34 +218,16 @@
     "car": 1,
     "text": {
       "ko": [
-        "창밖은 어둡다.",
-        "당연한 일이다. 지하니까.",
-        "",
-        "맞은편 좌석은 비어 있다.",
-        "이 칸엔 나 혼자다.",
-        "",
-        "",
-        "[안내방송]",
-        "\"이번 역은... 입니다.",
-        "내리실 문은...\"",
-        "",
-        "지직거리는 소리에",
-        "말이 묻힌다."
+        "창밖은 어둡다. 당연한 일이다 — 지하니까. 그렇게 자기에게 말한다. 그 한 마디가 다른 모든 의문을 잠시 누른다.",
+        "맞은편 좌석은 비어 있다. 옆 좌석도, 그 옆도. 이 칸엔 나 혼자다. 그 사실이 한 박자, 평범한지 이상한지 가늠되지 않는다.",
+        "스피커에서 안내방송이 시작된다. \"이번 역은... 입니다. 내리실 문은...\" 단어와 단어 사이를 지직거리는 소리가 갉아먹는다. 끝까지 들리지 않는다.",
+        "그러나 그 어조의 결을 안다. 어딘가, 들은 적이 있는 어조다. 그게 어디였는지를 짚으면 — 무언가 다른 것이 함께 떠오를 것 같아서, 짚지 않는다."
       ],
       "en": [
-        "It's dark outside the window.",
-        "Of course it is. We're underground.",
-        "",
-        "The seat across from me is empty.",
-        "I'm alone in this car.",
-        "",
-        "",
-        "[Announcement]",
-        "\"The next station is...",
-        "The doors will open on...\"",
-        "",
-        "The words dissolve",
-        "into static."
+        "Outside the window, darkness. Of course — we are underground. I say that to myself. The single phrase presses down, for a beat, all the other questions.",
+        "The seat across from me is empty. The seat beside me, the seat past that, also. I am alone in this car. For one beat, I cannot gauge whether that fact is ordinary or strange.",
+        "From the speaker, an announcement begins. \"The next station is... The doors will open on...\" A scraping static eats the spaces between the words. It does not reach its end.",
+        "And yet — I know the grain of that cadence. I have heard it, somewhere. To place where would be to remember something else along with it. So I do not place it."
       ]
     },
     "clueChecks": [
@@ -334,56 +316,20 @@
     "car": 1,
     "text": {
       "ko": [
-        "가방을 연다.",
-        "",
-        "낯선 물건들이 들어 있다.",
-        "",
-        "사원증 하나.",
-        "이름도 얼굴도 흐릿하다.",
-        "",
-        "작은 노트.",
-        "펼쳐 보지만",
-        "내 글씨 같지가 않다.",
-        "",
-        "약통 하나.",
-        "라벨이 벗겨져 있다.",
-        "",
-        "...",
-        "",
-        "코트 안주머니에도 무언가 있다.",
-        "",
-        "손을 넣어본다.",
-        "",
-        "명함 한 장.",
-        "글자가 다 지워져 있다.",
-        "",
-        "...이게 다 내 건가?"
+        "가방을 연다. 안에는 — 내 것이라기엔 낯선, 그러나 남의 것이라기엔 어딘가 익숙한 물건들이 있다.",
+        "사원증 하나. 이름도 사진도 흐릿하다. 흰 가운을 입은 윤곽만이 어렴풋이 보인다. 그 윤곽이 — 내가 한 번도 입어 본 적 없는 옷처럼 느껴지면서도, 내 어깨가 그 옷의 무게를 기억하고 있는 것 같기도 하다.",
+        "작은 노트. 펼쳐 본다. 글씨가 빽빽이 적혀 있다. 어딘가 의료 기록 같기도 하다. 그러나 — 내 글씨라고 부르기엔 낯설다. 그러면서도, 손가락이 다음 줄로 자연스럽게 넘어가는 그 박자가, 이 노트를 한 번이라도 직접 쓴 사람의 박자다.",
+        "약통 하나. 라벨이 벗겨져 있다. 처방자의 이름은 보이지 않는다.",
+        "코트 안주머니에 무언가 더 있다. 손을 넣어 본다. 명함 한 장. 글자가 다 지워져 있다. 다만 — 종이의 결만이 또렷하다. 자주 만져 본 명함의 결이다.",
+        "...이게 다 내 건가? 답을 찾기 전에, 이미 답을 알고 있는 것 같은 — 그런 종류의 질문."
       ],
       "en": [
-        "I open the bag.",
-        "",
-        "It's full of things I don't recognize.",
-        "",
-        "An ID badge.",
-        "The name and face are blurred.",
-        "",
-        "A small notebook.",
-        "I flip it open,",
-        "but the handwriting isn't mine.",
-        "",
-        "A pill bottle.",
-        "The label's been peeled away.",
-        "",
-        "...",
-        "",
-        "Something's in my coat's inner pocket too.",
-        "",
-        "I reach inside.",
-        "",
-        "A business card.",
-        "All the text has faded.",
-        "",
-        "...Is all of this mine?"
+        "I open the bag. Inside — things too unfamiliar to be mine, and yet too familiar to belong to a stranger.",
+        "An ID badge. The name and the photograph are blurred. Only the outline of a white coat shows, faintly. That outline — it feels like a garment I have never worn, and at the same time, like a weight my shoulder remembers.",
+        "A small notebook. I open it. The writing is dense. It looks, vaguely, like a medical record. And yet — calling the writing mine feels wrong. And yet again — the rhythm with which my finger moves to the next line is the rhythm of someone who has, in fact, written in this notebook himself.",
+        "A pill bottle. The label is peeled away. The prescriber's name cannot be made out.",
+        "There is something else in the inner pocket of the coat. I reach in. A single business card. The text is completely worn off. Only the grain of the paper is clear — the grain of a card touched often.",
+        "...Is all of this mine? The kind of question one already knows the answer to, before searching for it."
       ]
     },
     "variants": {
@@ -421,116 +367,48 @@
     "car": 1,
     "text": {
       "ko": [
-        "핸드폰을 꺼낸다.",
-        "",
-        "잠겨 있다.",
-        "비밀번호 네 자리.",
-        "",
-        "...뭐였더라.",
-        "",
-        "생각이 안 난다.",
-        "",
-        "...",
-        "",
-        "배경화면.",
-        "모르는 풍경 사진.",
-        "",
-        "알림은 없다.",
-        "신호도 없다.",
-        "",
-        "시간은 23:54."
+        "핸드폰을 꺼낸다. 잠겨 있다. 비밀번호 네 자리.",
+        "...뭐였더라. 생각이 안 난다. 손가락은 익숙한 곳을 짚으려 하는데, 머리가 그것을 따라가지 못한다.",
+        "배경화면이 흐릿하게 보인다. 풍경 사진. 처음 보는 풍경. 그러나 어딘가 — 한 번 가 본 적이 있는 듯한 풍경.",
+        "알림은 없다. 신호도 없다. 시간은 23:54. 한 자리에 멈춰 있는 듯이 또렷한 숫자."
       ],
       "en": [
-        "I take out my phone.",
-        "",
-        "Locked.",
-        "Four digits.",
-        "",
-        "...What was it.",
-        "",
-        "I can't remember.",
-        "",
-        "...",
-        "",
-        "The wallpaper.",
-        "A photo of a place I don't know.",
-        "",
-        "No notifications.",
-        "No signal.",
-        "",
-        "The time reads 23:54."
+        "I take out my phone. Locked. A four-digit passcode.",
+        "...What was it. I cannot remember. My finger goes to the familiar place, and my mind cannot quite follow it there.",
+        "The wallpaper is faintly visible. A photograph of a place. A place I have never seen. And yet — a place that feels, somewhere, like I have been there once.",
+        "No notifications. No signal. The time reads 23:54. The digits sharp, as if held in place."
       ]
     },
     "variants": {
       "run2": {
         "replace": {
           "ko": [
-            "핸드폰을 꺼낸다.",
-            "",
-            "잠겨 있다.",
-            "",
-            "...",
-            "",
-            "잠금 화면에",
-            "알림이 하나 와 있다.",
-            "",
-            "\"검진 결과 안내\"",
-            "",
-            "...스팸인가.",
-            "",
-            "시간은 23:54.",
-            "아까와 같은 시간이다."
+            "핸드폰을 꺼낸다. 잠겨 있다.",
+            "잠금 화면에 알림이 하나 와 있다. \"동료의 부재중 전화 — 오늘 회의 빠지면 어떡해.\" 들을 마음은 처음부터 없었다.",
+            "...스팸이라 부르고 싶지만, 스팸이 아닌 줄 안다. 알면서도, 스팸이라 부른다. 그게 더 견디기 쉬우니까.",
+            "시간은 23:54. 아까와 같은 시간이다. 한 박자도 가지 않았다."
           ],
           "en": [
-            "I take out my phone.",
-            "",
-            "Locked.",
-            "",
-            "...",
-            "",
-            "On the lock screen,",
-            "one notification.",
-            "",
-            "\"Examination results available\"",
-            "",
-            "...Spam, probably.",
-            "",
-            "The time reads 23:54.",
-            "The same as before."
+            "I take out my phone. Locked.",
+            "On the lock screen, one notification. \"Missed call from a colleague — 'You can't skip the meeting today.'\" There was no will to hear it, from the start.",
+            "...I want to call it spam. I know it is not. Knowing, I still call it that. It is easier to bear that way.",
+            "The time reads 23:54. The same as before. Not one beat has passed."
           ]
         }
       },
       "run3": {
         "replace": {
           "ko": [
-            "핸드폰을 꺼낸다.",
-            "",
-            "잠겨 있다.",
-            "",
-            "...",
-            "",
-            "알림.",
-            "",
-            "\"중환자실 면회 시간 변경 안내\"",
-            "",
-            "...중환자실?",
-            "",
-            "시간은 여전히 23:54."
+            "핸드폰을 꺼낸다. 잠겨 있다.",
+            "알림이 하나 더 있다. 보관함의 오래된 문자. \"고맙다. 네가 맡아 줘서 마음 놓는다.\" 보낸 날짜는 3월 14일. 보낸 사람의 이름이 — 익숙하다. 그러나 이 사람은 이미 세상에 없다.",
+            "한 박자, 손가락이 멈춘다. 그러고는 — 화면을 다시 꺼 버린다. 본 적 없는 척하기로 한다.",
+            "시간은 여전히 23:54. 시간만이 한 번도 거짓을 말한 적 없다."
           ],
           "en": [
-            "I take out my phone.",
-            "",
-            "Locked.",
-            "",
-            "...",
-            "",
-            "A notification.",
-            "",
-            "\"ICU visiting hours have changed\"",
-            "",
-            "...ICU?",
-            "",
-            "The time still reads 23:54."
+            "I take out my phone. Locked.",
+            "One more notification. An old text in the archive. \"Thank you. Knowing it's you, I can rest easy.\" Sent on March 14. The name of the sender is — familiar. And yet this person is no longer in this world.",
+            "For one beat, my finger stops. And then — I turn the screen off again. I decide to pretend I never saw it.",
+            "The time still reads 23:54. Only the time has never, not once, told me a lie."
           ]
         }
       }
@@ -564,30 +442,14 @@
     "trigger": "after clock clue + revisit",
     "text": {
       "ko": [
-        "핸드폰을 다시 본다.",
-        "",
-        "잠금 화면.",
-        "",
-        "...",
-        "",
-        "23:54.",
-        "",
-        "시계의 숫자.",
-        "",
-        "...혹시."
+        "핸드폰을 다시 본다. 잠금 화면. 23:54.",
+        "그 숫자가, 한 번도 움직이지 않은 채로, 시계와 잠금 화면 양쪽에 동시에 박혀 있다.",
+        "...혹시. 한 박자, 그 생각이 든다. 시간이 비밀번호로 들어가는 그 시절이, 누구에게나 한 번쯤은 있지 않았나."
       ],
       "en": [
-        "I look at the phone again.",
-        "",
-        "The lock screen.",
-        "",
-        "...",
-        "",
-        "23:54.",
-        "",
-        "The numbers on the clock.",
-        "",
-        "...Could it be."
+        "I look at the phone again. The lock screen. 23:54.",
+        "Those digits, never having moved, lodged in both the clock and the lock screen at once.",
+        "...Could it be. For one beat, the thought arrives. A passcode the shape of a time — surely everyone passes through that phase, once."
       ]
     },
     "choices": [
@@ -618,50 +480,18 @@
     "car": 1,
     "text": {
       "ko": [
-        "잠금이 풀린다.",
-        "",
-        "...",
-        "",
-        "배경화면.",
-        "",
-        "처음 보는 가족 사진.",
-        "",
-        "어머니로 보이는 사람.",
-        "형으로 보이는 사람.",
-        "그리고...",
-        "",
-        "내가 있다.",
-        "",
-        "침대에 누워 있다.",
-        "",
-        "눈을 감고.",
-        "",
-        "...",
-        "",
-        "(노트에 기록되었다: 잠금이 풀린 핸드폰 — 모르는 가족, 누워 있는 나)"
+        "잠금이 풀린다. 한 번의 시도로. 너무 한 번의 시도로.",
+        "배경화면이 또렷이 보인다. 가족 사진 한 장. 처음 보는 사진이지만, 가운데 인물들의 이름과 표정의 결을 — 보지 않고도 안다.",
+        "어머니로 보이는 사람. 형으로 보이는 사람. 그리고 — 침대에 누워 있는 사람. 흰 시트 위, 흰 옷. 눈을 감고.",
+        "그 누워 있는 사람의 얼굴이 — 내 얼굴이다. 한 박자, 그 사실이 정확히 무엇을 의미하는지를 머리가 거부한다.",
+        "(노트에 기록되었다: 잠금이 풀린 핸드폰 — 모르는 가족, 누워 있는 나.)"
       ],
       "en": [
-        "The lock releases.",
-        "",
-        "...",
-        "",
-        "The wallpaper.",
-        "",
-        "A family photo I've never seen.",
-        "",
-        "A woman who looks like a mother.",
-        "A man who looks like an older brother.",
-        "And...",
-        "",
-        "Me.",
-        "",
-        "Lying in a bed.",
-        "",
-        "Eyes closed.",
-        "",
-        "...",
-        "",
-        "(Noted: The unlocked phone — strangers as family, me asleep)"
+        "The lock releases. On the first try. Too easily.",
+        "The wallpaper comes into focus. A family photo. A photo I have never seen, and yet — I know the names and the grain of the expressions of the people at its center without looking.",
+        "A woman who looks like a mother. A man who looks like a brother. And — someone lying in a bed. White sheet, white clothing. Eyes closed.",
+        "The face of the one lying there — is my face. For one beat, my mind refuses to know precisely what that means.",
+        "(Noted: The unlocked phone — strangers as family, me asleep.)"
       ]
     },
     "clueChecks": [
@@ -679,110 +509,56 @@
     "car": 1,
     "text": {
       "ko": [
-        "창문에 얼굴을 가까이 댄다.",
-        "",
-        "어둠 속에",
-        "내 모습이 비친다.",
-        "",
-        "긴 머리.",
-        "구겨진 트렌치 코트.",
-        "",
-        "피곤해 보인다.",
-        "",
-        "...평범하다."
+        "창문에 얼굴을 가까이 댄다. 어둠 속에 내 모습이 비친다.",
+        "긴 머리. 구겨진 트렌치 코트. 피곤해 보인다.",
+        "...평범하다. 평범하다고 한 번 더 말한다. 그 한 번이, 안심이 되는지 어색해지는지, 잠시 가늠되지 않는다."
       ],
       "en": [
-        "I lean close to the glass.",
-        "",
-        "In the darkness,",
-        "my reflection.",
-        "",
-        "Long hair.",
-        "A wrinkled trench coat.",
-        "",
-        "I look tired.",
-        "",
-        "...Ordinary."
+        "I lean close to the window. In the darkness, my reflection.",
+        "Long hair. A wrinkled trench coat. I look tired.",
+        "...Ordinary. I say it once more — ordinary. Whether that single repetition reassures or unsettles, for a beat, I cannot say."
       ]
     },
     "variants": {
       "run2": {
         "replace": {
           "ko": [
-            "창에 비친 내 모습.",
-            "",
-            "긴 머리.",
-            "",
-            "...코트 위에",
-            "뭔가 묻어 있는 것 같다.",
-            "",
-            "자세히 보려 하면",
-            "보이지 않는다."
+            "창에 비친 내 모습. 긴 머리.",
+            "...코트 위에 무언가 묻어 있는 것 같다. 색을 짚으려 하면 — 그 자리에서 사라진다.",
+            "한 번 보지 않은 척, 다시 본다. 그래도 한 박자, 거기 묻어 있던 것 같다."
           ],
           "en": [
-            "My reflection.",
-            "",
-            "Long hair.",
-            "",
-            "...There seems to be something",
-            "on the coat.",
-            "",
-            "When I try to focus,",
-            "it vanishes."
+            "My reflection in the glass. Long hair.",
+            "...Something seems to be on the coat. When I try to place its color — it goes from there.",
+            "I pretend I did not see it, and look again. Even so, for one beat, it seems to have been there."
           ]
         }
       },
       "run3": {
         "replace": {
           "ko": [
-            "창에 비친 내 모습.",
-            "",
-            "머리가 헝클어져 있다.",
-            "",
-            "코트는...",
-            "",
-            "코트가 아니다.",
-            "",
-            "이건 무슨 옷이지.",
-            "",
-            "오늘 이 옷을 입었던가?"
+            "창에 비친 내 모습. 머리가 헝클어져 있다.",
+            "코트는 — 코트가 아니다. 옷의 결이 매끄럽고, 가슴께에 사원증 모양의 무엇이 매달려 있다.",
+            "이건 무슨 옷이지. 오늘 이 옷을 입었던가. 입은 적이 있다면 — 매일 입었던 것 같기도 하다."
           ],
           "en": [
-            "My reflection.",
-            "",
-            "My hair is tangled.",
-            "",
-            "The coat...",
-            "",
-            "It's not a coat.",
-            "",
-            "What is this.",
-            "",
-            "Did I put this on today?"
+            "My reflection in the glass. My hair is tangled.",
+            "The coat — is not a coat. The cloth is smooth, and something shaped like an ID badge hangs at the chest.",
+            "What is this. Did I put this on today. If I have worn this before — it almost feels as though I have worn it every day."
           ]
         }
       },
       "run4": {
         "replace": {
           "ko": [
-            "창에 비친 내 모습.",
-            "",
-            "흰 옷.",
-            "머리에 붕대.",
-            "",
-            "...",
-            "",
-            "거기서 시선을 거둔다."
+            "창에 비친 내 모습. 흰 옷. 머리에 가는 띠. 손목에도.",
+            "내 얼굴인지조차, 한 박자 흐릿하다.",
+            "거기서 시선을 거둔다. 본 것을 못 본 것으로 만드는 — 그 일이 가장 잘 해 온 일 중 하나다."
           ],
           "en": [
-            "My reflection.",
-            "",
-            "White clothing.",
-            "A bandage on my head.",
-            "",
-            "...",
-            "",
-            "I look away."
+            "My reflection in the glass. White clothing. A thin band on my head. Another on my wrist.",
+            "Even whether the face is mine — blurs for one beat.",
+            "I take my gaze away. Unseeing something I have already seen — is one of the things I have done best, for a long time."
           ]
         }
       }
@@ -795,20 +571,14 @@
     "car": 1,
     "text": {
       "ko": [
-        "\"...여기가 어디지.\"",
-        "",
-        "내 목소리가",
-        "텅 빈 칸에 울린다.",
-        "",
-        "아무도 대답하지 않는다."
+        "\"...여기가 어디지.\" 내 목소리가 텅 빈 칸에 울린다. 익숙한 울림이다 — 누군가에게 답을 듣지 못한 채 끝났던 어떤 방의 울림과, 결이 같다.",
+        "아무도 대답하지 않는다. 대답이 없을 때 내가 어떻게 행동하는지를, 나는 이미 안다. 자기에게 답을 만들어 준다. 그리고 그 답을 진짜라고 부르기로 한다.",
+        "오늘도 그 일을 한다."
       ],
       "en": [
-        "\"...Where is this.\"",
-        "",
-        "My voice echoes",
-        "through the empty car.",
-        "",
-        "No one answers."
+        "\"...Where is this.\" My voice carries through the empty car. A familiar carrying — the same grain as the carrying of some room, once, where no one had answered.",
+        "No one answers. How I behave when there is no answer, I already know. I make my own answer. And I decide to call that answer real.",
+        "Today, too, I do that work."
       ]
     },
     "returnTo": "car_1"
