@@ -82,74 +82,80 @@
     "music": "train_ambient",
     "text": {
       "ko": [
-        "눈을 뜬다.",
-        "",
-        "흔들림. 익숙한 흔들림.",
-        "열차의 진동.",
-        "",
-        "좌석에 앉아 있다.",
-        "손에 가방을 쥐고 있다.",
-        "",
-        "긴 머리가",
-        "이마에 흘러내린다.",
-        "",
-        "쓸어 넘긴다.",
-        "",
-        "코트의 옷깃을 잡는다.",
-        "구겨져 있다.",
-        "",
-        "...",
-        "",
-        "어디로 가는 길이었지.",
-        "",
-        "생각이 나지 않는다."
+        "눈을 뜬다. 흔들림. 익숙한 흔들림이다.",
+        "열차의 진동이 의자를 통해 등을 두드린다. 일정한 간격으로, 어딘가 익숙한 박자로.",
+        "좌석에 앉아 있다. 손에 가방을 쥐고 있다. 언제부터 들고 있었는지, 기억이 잘 나지 않는다.",
+        "긴 머리가 이마에 흘러내린다. 쓸어 넘긴다. 손가락 끝에 머리카락 한 올이 걸려, 그것을 천천히 떼어낸다.",
+        "코트의 옷깃이 한쪽으로 구겨져 있다. 언제 잠들었는지, 얼마나 잠들어 있었는지, 떠오르지 않는다.",
+        "차창에 내 얼굴이 비친다. 희미하게. 어두운 유리 너머로 어둠 외에는 아무것도 보이지 않는다."
       ],
       "en": [
-        "I open my eyes.",
-        "",
-        "Swaying. A familiar swaying.",
-        "The hum of a train.",
-        "",
-        "I'm sitting in a seat.",
-        "A bag in my hand.",
-        "",
-        "Long hair",
-        "falls over my forehead.",
-        "",
-        "I sweep it back.",
-        "",
-        "I grip the lapel of my trench coat.",
-        "It's wrinkled.",
-        "",
-        "...",
-        "",
-        "Where was I headed.",
-        "",
-        "I can't remember."
+        "I open my eyes. A tremor. The familiar tremor.",
+        "The train's vibration thumps through the seat into my back, in steady intervals, in a rhythm I somehow already know.",
+        "I'm in a seat. A bag is in my hand. I can't quite remember when I started holding it.",
+        "Long hair falls across my forehead. I sweep it back. A single strand catches on my fingertip, and I peel it slowly away.",
+        "The lapel of my coat is creased on one side. When I fell asleep, how long I slept — none of it comes back to me.",
+        "My face is reflected in the window, faintly. Past the dark glass, only darkness."
       ]
     },
     "variants": {
       "run2": {
-        "append": {
+        "replace": {
           "ko": [
-            "",
-            "...이 풍경, 본 적 있다."
+            "눈을 뜬다. 흔들림. 익숙한 흔들림이지만, 이번엔 너무 익숙해서 무섭다.",
+            "전에도 이랬다. 분명히. 좌석에 앉아 있고, 손에 같은 가방을 쥐고 있다.",
+            "손에 닿는 가방의 무게. 손바닥에 닿는 표면의 결. 모든 것을 미리 알고 있는 듯한 감각이다.",
+            "긴 머리가 이마에 흘러내린다. 쓸어 넘긴다. 손가락이 머리카락을 거두는 순간까지, 전부 기억나는 동작이다.",
+            "코트의 옷깃은 같은 자리에 같은 모양으로 구겨져 있다. 우연이라고 하기엔 너무 똑같이.",
+            "차창에 비친 내 얼굴은 전과 같은 표정을 하고 있다. 의아함도, 망설임도, 모두 전과 똑같다."
           ],
           "en": [
-            "",
-            "...I've seen this before."
+            "I open my eyes. A tremor. The familiar tremor — only this time, it's familiar enough to frighten me.",
+            "This has happened before. Certainly. I'm in a seat, the same bag is in my hand.",
+            "The weight of the bag in my hand. The grain of its surface against my palm. A sensation of knowing everything in advance.",
+            "Long hair falls across my forehead. I sweep it back. Down to the very moment the fingers gather the strand — every gesture I remember.",
+            "The lapel of my coat is creased in the same spot, in the same way. Too exactly to call it a coincidence.",
+            "The face reflected in the window wears the same expression as before. The bewilderment, the hesitation — all of it, the same as before."
           ]
         }
       },
       "run3": {
-        "append": {
+        "replace": {
           "ko": [
-            "",
-            "...또 여기다."
+            "또 눈을 뜬다. 흔들림. 이 흔들림을 나는 안다, 충분할 만큼.",
+            "같은 좌석. 같은 가방. 손에 든 무게마저 정확히 같은 무게다.",
+            "긴 머리가 같은 자리에 같은 모양으로 흘러내린다. 쓸어 넘긴다, 같은 동작으로. 같은 머리카락을 떼어낸다.",
+            "코트의 옷깃은 같은 주름을 그대로 가지고 있다. 그 어떤 것도 새롭지 않다.",
+            "같은 칸. 같은 어둠. 같은 23:54.",
+            "알 것 같다, 이게 무엇인지. 알 것 같지만, 입 밖으로 내고 싶지 않다. 아직은."
           ],
           "en": [
-            "",
-            "...Here again."
+            "I open my eyes again. A tremor. This tremor I know, more than enough.",
+            "The same seat. The same bag. Even the weight in my hand, precisely the same weight.",
+            "Long hair falls in the same place, in the same shape. I sweep it back — the same motion. I peel away the same strand.",
+            "The lapel of my coat keeps its same creases. Nothing here is new.",
+            "The same car. The same darkness. The same 23:54.",
+            "I think I know what this is. I think I know, but I don't want to say it aloud. Not yet."
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "...다시. 다시 시작된 흔들림. 이번엔 눈을 뜬 적이 있는지조차 모르겠다. 깨어났다고 부를 수 있을지조차.",
+            "좌석. 가방. 내 손에 들려 있다. 언제부터인지, 얼마나 되었는지, 답을 찾으려 해도 끝이 없다는 것을 이제는 안다.",
+            "긴 머리가 이마에 흘러내린다. 쓸어 넘긴다. 손가락 끝의 머리카락을, 이번엔 떼어내지 않는다. 떼어내 봤자 다시 같은 자리에 같은 모양으로 돌아온다는 것을 알기에.",
+            "코트의 구겨진 옷깃. 같은 자리, 같은 주름. 더 이상 변하지 않을 것임을 나는 안다.",
+            "차창에 비친 얼굴이 내 얼굴인지조차, 이제는 확신할 수 없다.",
+            "나는 여전히 여기에 있다. 그게 무슨 뜻인지, 이제는 안다. 그러나 나는 아직, 그것을 받아들이지 않았다."
+          ],
+          "en": [
+            "...Again. The shaking begins again. This time, I'm not even sure I've opened my eyes. Whether anything I'm doing can be called waking up.",
+            "A seat. A bag. They are in my hands. Since when, for how long — I know by now that searching for the answer is endless.",
+            "Long hair falls across my forehead. I sweep it back. The strand on my fingertip — this time, I don't peel it away. I know now: even peeled away, it would return to the same place in the same shape.",
+            "The creased lapel of the coat. Same place, same fold. I know it will not change.",
+            "The face reflected in the window — I can no longer be sure it is mine.",
+            "I am still here. What that means, I now know. And yet, I have still not accepted it."
           ]
         }
       }

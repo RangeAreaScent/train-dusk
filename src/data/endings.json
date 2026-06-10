@@ -280,6 +280,27 @@
             "I'll smile with them."
           ]
         },
+        "next": "endA_afterimage"
+      },
+      {
+        "id": "endA_afterimage",
+        "visual": "black_screen",
+        "text": {
+          "ko": [
+            "(화면이 천천히 어두워진다)",
+            "웃음 소리가 멀어진다. 승객들의 웃는 얼굴이 어둠 속에서 점점 흐려지고, 조용해진다. 너무 조용해진다.",
+            "그런데. 어둠 속에서 소리가 들린다. 희미하게. 누군가 내 이름을 부르고 있다.",
+            "가까이서 부르는데도 멀게 들리는 듯한, 그런 목소리. 익숙한 목소리다. 어디선가 들은 적이 있는 듯한.",
+            "기억이 나지 않는다. 기억이 나지 않지만, 나는 안다. 답해야 한다는 것을. 답하지 않으면 이 어둠이 끝나지 않을 것임을."
+          ],
+          "en": [
+            "(the screen slowly darkens)",
+            "The laughter fades. The smiling faces of the passengers blur in the dark, and it grows quiet. Too quiet.",
+            "Then. In the dark, a sound. Faintly. Someone is calling my name.",
+            "Close, and yet sounding as if from far away — that kind of voice. A familiar voice. One I've heard somewhere before.",
+            "I can't remember. I can't remember, but I know — I must answer. If I don't, this darkness will never end."
+          ]
+        },
         "next": "endA_card"
       },
       {
@@ -611,6 +632,29 @@
             "I'm not alone."
           ]
         },
+        "next": "endB_afterimage"
+      },
+      {
+        "id": "endB_afterimage",
+        "visual": "friend_close",
+        "text": {
+          "ko": [
+            "그녀의 손이 내 손을 잡고 있다. 처음엔 그게 위로였다. 혼자가 아니라는 것. 누군가 옆에 있다는 것.",
+            "다행이라고 생각했다. 그런데, 차갑다. 처음부터 차가웠지만, 점점 더 차가워진다.",
+            "내 손바닥의 온기가 그쪽으로 흘러간다. 흘러가서, 돌아오지 않는다.",
+            "그녀의 미소는 여전히 옅고, 여전히 다정하다. 그런데 왜, 내 손은 점점 비어 가는 듯한 감각인가.",
+            "이게 정말 괜찮은 게 맞을까. 누군가 옆에 있다고 해서, 모든 것이 괜찮다고 할 수 있을까.",
+            "(화면이 어두워진다)"
+          ],
+          "en": [
+            "Her hand is holding mine. At first, that was a comfort. The fact that I was not alone. The fact that someone was beside me.",
+            "I thought I was fortunate. And yet — it is cold. It was cold from the start, but it grows colder.",
+            "The warmth of my palm flows into hers. Flows into her, and does not return.",
+            "Her smile is still faint, still kind. And yet — why is my hand growing gradually emptier?",
+            "Is this truly all right? Just because someone is beside me — can I really call all of this all right?",
+            "(the screen darkens)"
+          ]
+        },
         "next": "endB_card"
       },
       {
@@ -894,6 +938,25 @@
             "",
             "Until someone else",
             "comes to this place."
+          ]
+        },
+        "next": "endC_afterimage"
+      },
+      {
+        "id": "endC_afterimage",
+        "visual": "conductor_back_view",
+        "text": {
+          "ko": [
+            "차장의 자리에서 나는 더 이상 움직이지 않는다. 다음 사람을 기다린다. 얼마나 기다렸는지조차 모르게.",
+            "발소리가 들린다. 먼 곳에서. 천천히 가까워진다. 다음 칸의 문이 열리는 소리. 발소리가 더 또렷해진다.",
+            "이 칸에 들어온다. 익숙한 걸음이다. 발끝에 무게가 실리는 방식, 머뭇거리는 한 박자까지.",
+            "내가 아는 걸음이다, 너무나도. 천천히 고개를 들지 않는다. 이미 안다, 누가 오고 있는지를. 그리고 그가 무엇을 말할 것인지도."
+          ],
+          "en": [
+            "From the conductor's seat, I no longer move. I wait for the next person. I have lost track of how long.",
+            "Footsteps. From far away. Slowly closing in. The sound of the door of the next car opening. The footsteps become clearer.",
+            "They enter this car. A familiar gait. The way weight lands on the toe of the foot, the half-beat of hesitation.",
+            "A gait I know — too well. I do not slowly raise my head. I already know who is coming. And what he is about to say."
           ]
         },
         "next": "endC_card"
@@ -1323,43 +1386,45 @@
         "visual": "cutscene_zoom_out",
         "isCutscene": true,
         "cutsceneNote": {
-          "ko": "카메라가 천천히 뒤로 빠짐. 병실의 벽이 좌석으로 변함. 사람들이 좌석에 앉은 모습. 본인은 가운데. 창밖은 어둠.",
-          "en": "Camera slowly pulls back. Hospital walls become seats. People sit in seats. Protagonist in the center. Darkness outside."
+          "ko": "카메라가 통로를 뒤로 빠지며, 멀리 한 칸 안에 병실 장면이 좌석 위에 펼쳐져 있는 모습. 양옆엔 끝없이 늘어선 다른 칸들. 통로 끝에 주인공 의식의 실루엣.",
+          "en": "Camera pulls back through the corridor. Far ahead, the hospital scene unfolds on the seats of one car. On either side, an endless line of other cars. At the end of the corridor, the silhouette of the protagonist's consciousness."
         },
         "text": {
           "ko": [
-            "...",
-            "",
-            "심박 모니터 소리가",
-            "멀어진다.",
-            "",
-            "대신",
-            "열차의 소리가 들린다.",
-            "",
-            "—",
-            "",
-            "\"이번 역은...\"",
-            "",
-            "안내방송이 시작된다.",
-            "",
-            "화면이 어두워진다."
+            "흰 천장. 가족들이 내 옆에 가까이 있다. 엄마. 형. 형수. 흰 가운의 의사.",
+            "심박 모니터의 규칙적인 소리가 들린다. 천천히, 그 소리가 멀어진다. 대신, 다른 소리가 차오른다.",
+            "익숙하다. 너무 익숙하다. 열차의 진동음. 레일이 부딪히는 소리. 차창 너머 어둠을 가르는 바람.",
+            "내 가슴 위에 놓인 어머니의 손이, 점점 멀어지는 느낌이다. 닿아 있지만 닿아 있지 않은 듯한.",
+            "병실의 벽이 천천히 사라진다. 대신 좌석의 손잡이가 어머니의 손 위로 겹쳐진다. 좌석의 등받이가 침대의 헤드를 덮는다.",
+            "흰 가운의 의사가 좌석에 앉는다. 형이 그 옆에, 형수가 그 옆에. 어머니는 침대 옆 의자에 그대로 앉아 있다.",
+            "모두가 한 칸의 좌석에 앉아 있다. 그리고 나는, 그 칸 안에 누워 있다.",
+            "화면이 뒤로 빠진다. 천천히. 문이 한 번 닫혔다 열린다. 그 칸이 작아진다.",
+            "옆 칸이 보인다. 다음 칸. 또 다음 칸. 길게 늘어선 끝없는 통로.",
+            "\"이번 역은...\" 안내방송이 시작된다. 지직거리는 잡음 속에서.",
+            "나는 통로 끝에 서 있다. 내 가족이 있는 칸을, 저 멀리에서 본다.",
+            "손을 뻗어 본다. 닿지 않는다. 그저 본다.",
+            "열차는 계속 달린다. 그 안에 그들을 실은 채로. 내가 누워 있는 침대를 실은 채로.",
+            "나는 여기에 있다. 그들 옆이 아니라, 이 어두운 통로에. 받아들이지 못한 채로.",
+            "어두워진다.",
+            "(화면 어둠 속에서 잠시 머무른다. 열차 소리가 멀어진다. 그리고 침묵.)"
           ],
           "en": [
-            "...",
-            "",
-            "The heart monitor's sound",
-            "fades.",
-            "",
-            "In its place,",
-            "the sound of the train.",
-            "",
-            "—",
-            "",
-            "\"The next station is...\"",
-            "",
-            "The announcement begins.",
-            "",
-            "The screen fades to black."
+            "A white ceiling. The family is close beside me. Mother. Older brother. His wife. The doctor in his white coat.",
+            "The steady sound of a heart monitor. Slowly, that sound moves further away. In its place, another sound rises.",
+            "Familiar. Too familiar. The vibration of the train. The sound of rails striking. Wind cutting through the darkness past the window.",
+            "My mother's hand, resting on my chest — the feeling of it growing distant. Touching me but not touching me.",
+            "The wall of the hospital room slowly disappears. In its place, the handrail of a train seat overlaps onto my mother's hand. The back of the seat covers the head of the bed.",
+            "The doctor in the white coat takes a seat. My brother beside him, his wife beside him. My mother stays in the chair by the bedside.",
+            "All of them, seated in one car. And I am lying within that car.",
+            "The view pulls back. Slowly. A door opens and closes once. That car grows smaller.",
+            "The next car comes into view. The next. The next after that. A long, endless corridor.",
+            "\"The next station is...\" The announcement begins. From within crackling static.",
+            "I stand at the end of the corridor. From far away, I look at the car my family is in.",
+            "I reach out. My hand does not reach. I only look.",
+            "The train keeps moving. With them inside it. With the bed I am lying on inside it.",
+            "I am here. Not beside them, but in this dark corridor. Without accepting any of it.",
+            "It darkens.",
+            "(The screen remains in darkness for a moment. The sound of the train recedes. Then silence.)"
           ]
         },
         "next": "endD_card"
