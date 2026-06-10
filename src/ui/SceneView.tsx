@@ -424,6 +424,32 @@ export function SceneView({ state, setState }: Props) {
   const fadeDuration = scene.isCutscene ? 0.9 : 0.35;
   const visualKeyForAnim = scene.visual ?? `__no_visual_${scene.id}`;
 
+  // ─── Settings branch ─────────────────────────────────────────────────
+  if (scene.id === "settings_menu") {
+    const goBack = () => handleSelect({ label: { ko: "", en: "" }, next: "back_to_title" });
+    return (
+      <GameFrame
+        visual={
+          <div
+            className="h-full w-full cursor-pointer bg-neutral-900"
+            onClick={goBack}
+          />
+        }
+        shellTheme={state.shellTheme}
+        paperTheme={state.paperTheme}
+        body={
+          <SettingsPanel
+            state={state}
+            onAction={(action) =>
+              handleSelect({ label: { ko: "", en: "" }, next: action })
+            }
+            onBack={goBack}
+          />
+        }
+      />
+    );
+  }
+
   // Ending card visual fallback chain — reuse existing car_5 variants
   // when a dedicated ending_X.png isn't drawn yet.
   const ENDING_FALLBACK: Record<string, string[]> = {
@@ -636,6 +662,102 @@ function ChoicesPopup({
       >
         {children}
       </motion.div>
+    </div>
+  );
+}
+
+// ─── Settings Panel ───────────────────────────────────────────────────────────
+function SettingsPanel({
+  state,
+  onAction,
+  onBack,
+}: {
+  state: GameState;
+  onAction: (action: string) => void;
+  onBack: () => void;
+}) {
+  const ko = state.language === "ko";
+
+  const rows: { label: string; options: { label: string; action: string; active: boolean }[] }[] = [
+    {
+      label: ko ? "언어" : "Language",
+      options: [
+        { label: "English", action: "language_toggle", active: state.language === "en" },
+        { label: "한국어", action: "language_toggle", active: state.language === "ko" },
+      ],
+    },
+    {
+      label: ko ? "속도" : "Speed",
+      options: [
+        { label: ko ? "느림" : "Slow",   action: "text_speed_slow",   active: state.textSpeed === "slow" },
+        { label: ko ? "보통" : "Normal", action: "text_speed_normal", active: state.textSpeed === "normal" },
+        { label: ko ? "빠름" : "Fast",   action: "text_speed_fast",   active: state.textSpeed === "fast" },
+      ],
+    },
+    {
+      label: ko ? "셸" : "Shell",
+      options: [
+        { label: ko ? "검정" : "Black", action: "shell_black", active: state.shellTheme === "black" },
+        { label: ko ? "그레이" : "Gray", action: "shell_gray", active: state.shellTheme === "gray" },
+      ],
+    },
+    {
+      label: ko ? "대화창" : "Paper",
+      options: [
+        { label: ko ? "흰색" : "White", action: "paper_white", active: state.paperTheme === "white" },
+        { label: ko ? "베이지" : "Beige", action: "paper_cream", active: state.paperTheme === "cream" },
+      ],
+    },
+    {
+      label: ko ? "효과음" : "Sound",
+      options: [
+        { label: ko ? "켬" : "On",  action: "sound_on",  active: state.sound === "on" },
+        { label: ko ? "끔" : "Off", action: "sound_off", active: state.sound === "off" },
+      ],
+    },
+    {
+      label: ko ? "음악" : "Music",
+      options: [
+        { label: ko ? "켬" : "On",  action: "music_on",  active: state.music === "on" },
+        { label: ko ? "끔" : "Off", action: "music_off", active: state.music === "off" },
+      ],
+    },
+  ];
+
+  return (
+    <div className="h-full flex flex-col justify-between py-1">
+      <div className="flex flex-col gap-5 pt-1">
+        {rows.map((row) => (
+          <div key={row.label} className="flex items-baseline gap-0">
+            <span className="text-[11px] font-mono text-neutral-500 w-16 shrink-0">
+              {row.label}
+            </span>
+            <span className="text-[11px] text-neutral-400 mr-3">:</span>
+            <div className="flex gap-4 flex-wrap">
+              {row.options.map((opt) => (
+                <button
+                  key={opt.label}
+                  onClick={opt.active ? undefined : () => onAction(opt.action)}
+                  className={[
+                    "text-sm font-mono transition-colors",
+                    opt.active
+                      ? "font-bold border-b border-current cursor-default"
+                      : "text-neutral-400 hover:text-neutral-700 cursor-pointer",
+                  ].join(" ")}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+      <button
+        onClick={onBack}
+        className="text-[11px] font-mono text-neutral-400 hover:text-neutral-600 self-start mt-2"
+      >
+        {ko ? "← 돌아가기" : "← Back"}
+      </button>
     </div>
   );
 }
