@@ -248,8 +248,13 @@ export function resolveBranches(targetId: string, state: GameState): string {
   let id = targetId;
   for (let depth = 0; depth < 10; depth++) {
     const resolved = aliases[id] ?? id;
-    const sc = scenes[resolved];
-    if (!sc || !sc.isBranchCheck) return id;
+    const sc = scenes[resolved] as Scene & { isRouter?: boolean };
+    if (!sc) return id;
+    // Both isBranchCheck (car_3_branch_check) and isRouter (car_4_routing,
+    // car_4_final_branch) use the same branches[] structure — treat them
+    // the same way.
+    const isRouterLike = sc.isBranchCheck || sc.isRouter;
+    if (!isRouterLike) return id;
     const branches = sc.branches;
     if (!branches || branches.length === 0) return id;
     let next: string | null = null;

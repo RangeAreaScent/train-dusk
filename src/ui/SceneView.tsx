@@ -358,6 +358,16 @@ export function SceneView({ state, setState }: Props) {
     if (resolvedReturn && ENDING_INTROS.has(resolvedReturn)) {
       resolvedReturn = endingForRun(state.runCount);
     }
+
+    // Cross-ending protection: once inside an ending sequence (endX_*),
+    // a choice that would jump to a different ending's scene (endY_*)
+    // gets clamped to the current ending's card. Catches the legacy
+    // endD_realization "...아직은 못 한다" → endA_resignation fallback.
+    const curEnd = /^end([A-D])_/.exec(state.currentScene)?.[1];
+    const nextEnd = resolvedNext ? /^end([A-D])_/.exec(resolvedNext)?.[1] : undefined;
+    if (curEnd && nextEnd && curEnd !== nextEnd) {
+      resolvedNext = `end${curEnd}_card`;
+    }
     setState(
       applyChoice(
         state,
