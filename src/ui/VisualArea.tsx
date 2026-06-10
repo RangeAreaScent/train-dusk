@@ -1,42 +1,77 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
 interface Props {
-  /** Scene ID for the main visual — looked up under /assets/visuals/<id>.png */
+  /** Primary scene-visual id. Looked up under /assets/visuals/<id>.png */
   visualKey?: string;
-  /** Popup icon ID — looked up under /assets/popups/<id>.png */
+  /** Optional fallback id(s) to try in order if the primary is missing.
+   *  Lets endings reuse car_5 variants and passages share one image. */
+  fallback?: string | string[];
+  /** Popup icon id — /assets/popups/<id>.png */
   popup?: string;
-  /** If true, look under /assets/cutscenes/ instead of /assets/visuals/ */
+  /** If true, look under /assets/cutscenes/ instead. */
   cutscene?: boolean;
 }
 
 type ImgState = "loading" | "ok" | "missing";
 
-function useImageProbe(src: string | null): ImgState {
+/** Probe a chain of candidate sources, returning the first one that loads.
+ *  Returns null when none are reachable, so the caller can render a
+ *  placeholder. */
+function useFirstAvailable(srcs: string[]): { src: string | null; state: ImgState } {
+  const [resolved, setResolved] = useState<string | null>(null);
   const [state, setState] = useState<ImgState>("loading");
+  const key = srcs.join("|");
   useEffect(() => {
-    if (!src) {
+    if (srcs.length === 0) {
+      setResolved(null);
       setState("missing");
       return;
     }
     setState("loading");
-    const img = new Image();
-    img.onload = () => setState("ok");
-    img.onerror = () => setState("missing");
-    img.src = src;
-    return () => {
-      img.onload = null;
-      img.onerror = null;
+    setResolved(null);
+    let cancelled = false;
+    const tryNext = (idx: number) => {
+      if (cancelled) return;
+      if (idx >= srcs.length) {
+        setState("missing");
+        return;
+      }
+      const img = new Image();
+      img.onload = () => {
+        if (cancelled) return;
+        setResolved(srcs[idx]);
+        setState("ok");
+      };
+      img.onerror = () => {
+        if (cancelled) return;
+        tryNext(idx + 1);
+      };
+      img.src = srcs[idx];
     };
-  }, [src]);
-  return state;
+    tryNext(0);
+    return () => {
+      cancelled = true;
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [key]);
+  return { src: resolved, state };
 }
 
-export function VisualArea({ visualKey, popup, cutscene }: Props) {
+export function VisualArea({ visualKey, popup, cutscene, fallback }: Props) {
   const folder = cutscene ? "cutscenes" : "visuals";
-  const visualSrc = visualKey ? `/assets/${folder}/${visualKey}.png` : null;
+  const chain = useMemo(() => {
+    const ids: string[] = [];
+    if (visualKey) ids.push(visualKey);
+    if (Array.isArray(fallback)) ids.push(...fallback);
+    else if (fallback) ids.push(fallback);
+    return ids.map((id) => `/assets/${folder}/${id}.png`);
+  }, [visualKey, fallback, folder]);
+
+  const { src: visualSrc, state: visualState } = useFirstAvailable(chain);
   const popupSrc = popup ? `/assets/popups/${popup}.png` : null;
-  const visualState = useImageProbe(visualSrc);
-  const popupState = useImageProbe(popupSrc);
+  const { src: popupResolved, state: popupState } = useFirstAvailable(
+    popupSrc ? [popupSrc] : [],
+  );
 
   return (
     <div className="relative h-full w-full bg-neutral-900 overflow-hidden">
@@ -53,9 +88,9 @@ export function VisualArea({ visualKey, popup, cutscene }: Props) {
 
       {popup && (
         <div className="absolute top-3 right-3">
-          {popupSrc && popupState === "ok" ? (
+          {popupResolved && popupState === "ok" ? (
             <img
-              src={popupSrc}
+              src={popupResolved}
               alt={popup}
               className="w-12 h-12 object-contain"
               style={{ imageRendering: "pixelated" }}
@@ -71,11 +106,6 @@ export function VisualArea({ visualKey, popup, cutscene }: Props) {
   );
 }
 
-/**
- * Fallback visual when no asset is present yet. A subtle dithered field +
- * the asset ID, so during development you can see at a glance which file
- * still needs to be drawn.
- */
 function Placeholder({ label }: { label: string }) {
   return (
     <div

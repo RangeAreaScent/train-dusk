@@ -773,7 +773,7 @@
   },
   "car_2_entry": {
     "id": "car_2_entry",
-    "visual": "car_2_passage",
+    "visual": "passage",
     "car": 2,
     "isPassage": true,
     "text": {
@@ -1365,7 +1365,7 @@
   },
   "car_3_entry": {
     "id": "car_3_entry",
-    "visual": "car_2_passage",
+    "visual": "passage",
     "car": 3,
     "isPassage": true,
     "text": {
@@ -2059,7 +2059,7 @@
   },
   "car_4_entry": {
     "id": "car_4_entry",
-    "visual": "car_4_passage",
+    "visual": "passage2",
     "car": 4,
     "isPassage": true,
     "text": {
@@ -2104,7 +2104,7 @@
   },
   "car_4_entry_conductor": {
     "id": "car_4_entry_conductor",
-    "visual": "car_4_passage",
+    "visual": "passage2",
     "car": 4,
     "isPassage": true,
     "trigger": "from car_3_reasoning with choseConductorPath",

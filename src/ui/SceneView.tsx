@@ -423,6 +423,15 @@ export function SceneView({ state, setState }: Props) {
   const fadeDuration = scene.isCutscene ? 0.9 : 0.35;
   const visualKeyForAnim = scene.visual ?? `__no_visual_${scene.id}`;
 
+  // Ending card visual fallback chain — reuse existing car_5 variants
+  // when a dedicated ending_X.png isn't drawn yet.
+  const ENDING_FALLBACK: Record<string, string[]> = {
+    A: ["car_5_with_people", "car_5_default"],
+    B: ["car_5_with_friend", "car_5_default"],
+    C: ["car_5_default"],
+    D: ["car_5_quiet", "car_5_default"],
+  };
+
   // ─── Ending card branch ──────────────────────────────────────────────
   if (scene.isEndingCard && scene.endingId) {
     return (
@@ -437,7 +446,10 @@ export function SceneView({ state, setState }: Props) {
               transition={{ duration: 0.6 }}
               className="h-full w-full"
             >
-              <VisualArea visualKey={`ending_${scene.endingId}`} />
+              <VisualArea
+                visualKey={`ending_${scene.endingId}`}
+                fallback={ENDING_FALLBACK[scene.endingId]}
+              />
             </motion.div>
           </AnimatePresence>
         }
