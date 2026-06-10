@@ -93,11 +93,12 @@ export function SceneView({ state, setState }: Props) {
     setMusicEnabled(state.music !== "off");
   }, [state.music]);
 
-  // Swap between main and ending tracks when crossing into / out of an
-  // ending card. The ending track is non-looping and fades out on its own.
+  // Switch to ending track as soon as any ending scene begins (id starts
+  // with "end"), not just at the card — gives music time to breathe.
   useEffect(() => {
-    setMusicTrack(scene.isEndingCard ? "ending" : "main");
-  }, [scene.isEndingCard]);
+    const inEnding = scene.isEndingCard || scene.id.startsWith("end");
+    setMusicTrack(inEnding ? "ending" : "main");
+  }, [scene.id, scene.isEndingCard]);
 
   // Auto-save on every state change, except on meta scenes (title, settings)
   // and ending cards. We want a clean save slot that points only at real
