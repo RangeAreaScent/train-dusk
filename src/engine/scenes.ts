@@ -175,6 +175,33 @@ export function getEndingDef(endingId: string): EndingDef | null {
   return e ?? null;
 }
 
+// ─── Linear multi-run routing ─────────────────────────────────────────────
+
+/** Every scene id that lands the player at the start of an ending
+ *  sequence — either the routing-level entry alias or the first scene of
+ *  the sequence itself. Used to intercept any in-story exit into the
+ *  ending track and replace it with the run-determined one. */
+export const ENDING_INTROS: ReadonlySet<string> = new Set([
+  "ending_A_intro",
+  "ending_B_intro",
+  "ending_C_intro",
+  "ending_D_intro",
+  "endA_intro",
+  "endB_intro",
+  "endC_intro",
+  "endD_realization",
+]);
+
+/** Linear multi-run mapping. Run 1 → A (denial), Run 2 → C (mirror —
+ *  alone, sees self), Run 3 → B (companion — comfort in a lie), Run 4+
+ *  → D (knowing, choosing to stay). */
+export function endingForRun(runCount: number): string {
+  if (runCount <= 1) return "ending_A_intro";
+  if (runCount === 2) return "ending_C_intro";
+  if (runCount === 3) return "ending_B_intro";
+  return "ending_D_intro";
+}
+
 // ─── Branch-check resolution ──────────────────────────────────────────────
 
 function hasMiddleInsight(state: GameState): boolean {

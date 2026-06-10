@@ -2,7 +2,13 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { Choice, ConnectResult, GameState, PaperTheme } from "../engine/types";
-import { getScene, getSceneText, resolveBranches } from "../engine/scenes";
+import {
+  ENDING_INTROS,
+  endingForRun,
+  getScene,
+  getSceneText,
+  resolveBranches,
+} from "../engine/scenes";
 import {
   applyChoice,
   applyClueChecks,
@@ -339,11 +345,19 @@ export function SceneView({ state, setState }: Props) {
     }
 
     // Resolve through any chain of branch-check scenes so the player
-    // never lands on a blank router.
-    const resolvedNext =
+    // never lands on a blank router…
+    let resolvedNext =
       choice.next ? resolveBranches(choice.next, state) : choice.next;
-    const resolvedReturn =
+    let resolvedReturn =
       choice.returnTo ? resolveBranches(choice.returnTo, state) : choice.returnTo;
+    // …then override any ending entry with the run-determined one so
+    // the game stays linear regardless of accumulated flags/insights.
+    if (resolvedNext && ENDING_INTROS.has(resolvedNext)) {
+      resolvedNext = endingForRun(state.runCount);
+    }
+    if (resolvedReturn && ENDING_INTROS.has(resolvedReturn)) {
+      resolvedReturn = endingForRun(state.runCount);
+    }
     setState(
       applyChoice(
         state,

@@ -22,6 +22,25 @@ const PAPER_BG: Record<PaperTheme, string> = {
   cream: "#f5ecd6",
 };
 
+/** In-fiction restart label that shifts tone with the just-finished run.
+ *  Run 1 → A: still believes it's possible. Run 2 → C: tries again,
+ *  knowing more. Run 3 → B: pulled back. Run 4 → D: not shown. */
+function restartLabel(endingId: EndingId, lang: Lang): string {
+  const ko: Record<EndingId, string> = {
+    A: "다시 탑승한다",
+    C: "...또 한 번",
+    B: "...아직",
+    D: "다시 탑승한다",
+  };
+  const en: Record<EndingId, string> = {
+    A: "Board again",
+    C: "...One more time",
+    B: "...Not yet",
+    D: "Board again",
+  };
+  return lang === "ko" ? ko[endingId] : en[endingId];
+}
+
 export function EndingCard({
   endingId,
   meta,
@@ -115,19 +134,21 @@ export function EndingCard({
       </div>
 
       <div className="w-full mt-3 pb-2 flex flex-col items-center gap-1 text-lg">
-        <button
-          type="button"
-          className="font-serif text-black cursor-pointer hover:opacity-70"
-          onClick={onRestart}
-        >
-          ▸ {T("다시 시작", "Start Again")}
-        </button>
+        {endingId !== "D" && (
+          <button
+            type="button"
+            className="font-serif text-black cursor-pointer hover:opacity-70"
+            onClick={onRestart}
+          >
+            ▸ {restartLabel(endingId, lang)}
+          </button>
+        )}
         <button
           type="button"
           className="font-serif text-black cursor-pointer hover:opacity-70"
           onClick={onMainMenu}
         >
-          ▸ {T("메인 화면", "Main Menu")}
+          ▸ {endingId === "D" ? T("처음으로", "To the Beginning") : T("메인 화면", "Main Menu")}
         </button>
         <button
           type="button"
