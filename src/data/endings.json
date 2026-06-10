@@ -44,7 +44,7 @@
       },
       {
         "id": "endA_people_appear",
-        "visual": "car_5_with_people",
+        "visual": "endA_people_appear",
         "text": {
           "ko": [
             "언제부터 나는 눈을 감고 있었을까. 한 번도 감지 않은 것 같기도 하고, 줄곧 감고 있었던 것 같기도 하다.",
@@ -72,8 +72,7 @@
       },
       {
         "id": "endA_phones",
-        "visual": "cutscene_phones",
-        "isCutscene": true,
+        "visual": "endA_people_appear",
         "text": {
           "ko": [
             "옆 사람의 핸드폰. 화면이 어쩌다 내 시야에 잡힌다. 지하철에 앉아 있는 한 남자의 사진.",
