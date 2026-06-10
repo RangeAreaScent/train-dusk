@@ -152,7 +152,9 @@
     "sequence": [
       {
         "id": "endB_intro",
-        "visual": "car_5_with_friend",
+        "visual": "car_5_default",
+        "overlayLeft": "protagonist_standing",
+        "overlayRight": "friend_standing",
         "text": {
           "ko": [
             "손을 맞잡은 채로, 다섯 번째 칸으로 넘어왔다. 그녀는 내 옆에 있다.",
@@ -170,10 +172,10 @@
       },
       {
         "id": "endB_seated",
-        "visual": "car_5_with_friend",
+        "visual": "friend_in_train",
         "text": {
           "ko": [
-            "좌석에 함께 앉는다. 그녀의 손은 여전히 차갑다. 그런데 그 차가움이, 어딘가 다정하게 느껴진다.",
+            "마주보고 앉는다. 그녀의 손은 여전히 차갑다. 그런데 그 차가움이, 어딘가 다정하게 느껴진다.",
             "\"...오래 걸렸어요.\" 그녀가 말한다. 작게, 그러나 분명하게.",
             "\"...뭐가요?\" 내가 묻는다. 그녀가 옅게 웃는다, 답을 알지만 말하지 않겠다는 듯이.",
             "\"여기까지 오는 거요.\" 시선이 어둠 너머의 차창에 잠시 머문다. \"이 자리에. 둘이서.\"",
@@ -181,7 +183,7 @@
             "나는 그녀의 옆얼굴을 본다. 너무 가까이 있다는 것을, 그제서야 깨닫는다. 그러나 멀어지고 싶지는 않다."
           ],
           "en": [
-            "We sit together in the seat. Her hand is still cold. And yet, that cold feels, somehow, kind.",
+            "We sit facing each other. Her hand is still cold. And yet, that cold feels, somehow, kind.",
             "\"...It took a while.\" she says. Quietly, but clearly.",
             "\"...What did?\" I ask. She smiles faintly — as if she knows the answer but will not say it.",
             "\"Getting here.\" Her gaze rests for a moment on the window beyond which there is only darkness. \"To this seat. The two of us.\"",

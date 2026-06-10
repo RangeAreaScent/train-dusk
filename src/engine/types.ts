@@ -56,6 +56,8 @@ export interface Scene {
   id: string;
   visual?: string;
   overlay?: string;
+  overlayLeft?: string;
+  overlayRight?: string;
   popup?: string;
   popupPosition?: string;
   music?: string;

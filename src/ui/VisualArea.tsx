@@ -12,6 +12,9 @@ interface Props {
   cutscene?: boolean;
   /** Character sprite id — /assets/characters/<id>.png, rendered over background. */
   overlay?: string;
+  /** Two-character layout: left and right sprites. */
+  overlayLeft?: string;
+  overlayRight?: string;
 }
 
 type ImgState = "loading" | "ok" | "missing";
@@ -59,7 +62,7 @@ function useFirstAvailable(srcs: string[]): { src: string | null; state: ImgStat
   return { src: resolved, state };
 }
 
-export function VisualArea({ visualKey, popup, cutscene, fallback, overlay }: Props) {
+export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight }: Props) {
   const folder = cutscene ? "cutscenes" : "visuals";
   const chain = useMemo(() => {
     const ids: string[] = [];
@@ -76,6 +79,10 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay }: Pr
   );
   const overlaySrc = overlay ? `/assets/characters/${overlay}.png` : null;
   const { src: overlayResolved } = useFirstAvailable(overlaySrc ? [overlaySrc] : []);
+  const overlayLeftSrc = overlayLeft ? `/assets/characters/${overlayLeft}.png` : null;
+  const { src: overlayLeftResolved } = useFirstAvailable(overlayLeftSrc ? [overlayLeftSrc] : []);
+  const overlayRightSrc = overlayRight ? `/assets/characters/${overlayRight}.png` : null;
+  const { src: overlayRightResolved } = useFirstAvailable(overlayRightSrc ? [overlayRightSrc] : []);
 
   return (
     <div className="relative h-full w-full bg-neutral-900 overflow-hidden">
@@ -95,6 +102,23 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay }: Pr
           src={overlayResolved}
           alt=""
           className="absolute bottom-0 left-1/2 -translate-x-1/2 h-[85%] w-auto object-contain pointer-events-none"
+          style={{ imageRendering: "pixelated" }}
+        />
+      )}
+
+      {overlayLeftResolved && (
+        <img
+          src={overlayLeftResolved}
+          alt=""
+          className="absolute bottom-0 left-0 h-[85%] w-auto object-contain pointer-events-none"
+          style={{ imageRendering: "pixelated" }}
+        />
+      )}
+      {overlayRightResolved && (
+        <img
+          src={overlayRightResolved}
+          alt=""
+          className="absolute bottom-0 right-0 h-[85%] w-auto object-contain pointer-events-none"
           style={{ imageRendering: "pixelated" }}
         />
       )}
