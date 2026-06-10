@@ -99,4 +99,11 @@ export function armMusicOnFirstGesture(): void {
   window.addEventListener("pointerdown", gesture, { passive: true });
   window.addEventListener("keydown", gesture);
   window.addEventListener("touchstart", gesture, { passive: true });
+
+  // Resume after phone call / app switch / screen lock.
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden && enabled && armed) {
+      tryPlay(currentTrack);
+    }
+  });
 }
