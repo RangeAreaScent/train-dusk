@@ -590,38 +590,16 @@
     "isPassage": true,
     "text": {
       "ko": [
-        "다음 칸으로 넘어왔다.",
-        "",
-        "문이 닫히는 소리.",
-        "",
-        "뒤를 돌아본다.",
-        "",
-        "...",
-        "",
-        "방금 지나온 통로는",
-        "어둠 속으로 사라졌다.",
-        "",
-        "돌아갈 수 없다.",
-        "",
-        "이상하게도,",
-        "그 사실이 놀랍지 않다."
+        "다음 칸으로 넘어왔다. 문이 닫히는 소리가 등 뒤에서 한 번 짧게 끊긴다.",
+        "뒤를 돌아본다. 방금 지나온 통로는 — 어둠 속으로 사라졌다. 빨려 들어간 것이 아니라, *처음부터 없었던 것처럼* 사라졌다.",
+        "돌아갈 수 없다. 이상하게도, 그 사실이 놀랍지 않다.",
+        "돌아가지 않기로 한 일들을 — 나는 너무 많이 안다. 그래서 통로가 사라지는 것이, 어딘가 — 익숙하다."
       ],
       "en": [
-        "I've crossed into the next car.",
-        "",
-        "The sound of the door closing.",
-        "",
-        "I look back.",
-        "",
-        "...",
-        "",
-        "The passage I just came through",
-        "has vanished into the dark.",
-        "",
-        "There's no going back.",
-        "",
-        "Strangely,",
-        "that doesn't surprise me."
+        "I have crossed into the next car. Behind me, the sound of the door closing cuts off in a single short note.",
+        "I look back. The passage I just came through — has vanished into the dark. Not drawn in, but vanished as though it had never been there to begin with.",
+        "There is no going back. Strangely — that does not surprise me.",
+        "The things I decided not to go back to — I know too many of them. So a vanished corridor is, somehow — familiar."
       ]
     },
     "clueChecks": [
@@ -639,20 +617,14 @@
     "car": 2,
     "text": {
       "ko": [
-        "이 칸도 비어 있다.",
-        "",
-        "아니.",
-        "",
-        "좌석 하나에",
-        "무언가 놓여 있다."
+        "이 칸도 비어 있다. 좌석 하나가 — 한 박자 비어 있지 않다. 그 자리에 무언가 놓여 있다.",
+        "그 한 자리만이, 누군가 막 일어선 자리처럼 — 어떤 모양을 머금고 있다.",
+        "다가가서 볼지 망설인다. 다가가지 않아도, 그것이 무엇과 닮아 있는지 — 잠시 짚어 본다. 그리고 짚지 않기로 한다."
       ],
       "en": [
-        "This car is empty too.",
-        "",
-        "No.",
-        "",
-        "On one of the seats,",
-        "something has been left behind."
+        "This car, too, is empty. One seat — for half a beat, is not. Something has been left on that seat.",
+        "That one place alone holds a shape, as if someone had just risen from it.",
+        "I hesitate over going closer. Even without going closer, I half-name what it resembles. And then — I decide not to."
       ]
     },
     "choices": [
@@ -722,122 +694,60 @@
     "car": 2,
     "text": {
       "ko": [
-        "좌석에 다가간다.",
-        "",
-        "누군가 앉아 있던 흔적.",
-        "방석이 살짝 눌려 있다.",
-        "",
-        "손을 대본다.",
-        "온기는 없다.",
-        "",
-        "...방금까지 누가 있었나?",
-        "",
-        "빈 칸인데."
+        "좌석에 다가간다. 방석이 살짝 눌려 있다 — 누군가 앉아 있던 흔적.",
+        "손을 대 본다. 온기는 없다. 그러나 손바닥이, 거기 누군가가 있었다는 것을 알아챈다. 알아채는 것이, 따뜻함이 아니라 그 따뜻함이 *방금 사라진 자리의 모양*일 수도 있다.",
+        "...방금까지 누가 있었던 걸까. 빈 칸인데."
       ],
       "en": [
-        "I approach the seat.",
-        "",
-        "A trace of someone who sat here.",
-        "The cushion is slightly pressed.",
-        "",
-        "I touch it.",
-        "No warmth.",
-        "",
-        "...Was someone here just now?",
-        "",
-        "The car is empty."
+        "I approach the seat. The cushion is slightly pressed — a trace of someone who had been sitting there.",
+        "I touch it. No warmth. And yet my palm recognizes that someone had been there. What is recognized is not warmth, perhaps, but the shape of warmth that has just gone.",
+        "...Was someone here, only a moment ago? The car is empty."
       ]
     },
     "variants": {
       "run2": {
         "replace": {
           "ko": [
-            "좌석에 다가간다.",
-            "",
-            "오늘은 꽃다발이 놓여 있다.",
-            "",
-            "낯익은 꽃들.",
-            "하얀 국화.",
-            "",
-            "...장례식에서 본 것 같은.",
-            "",
-            "아니, 그냥 비슷한 꽃이겠지."
+            "좌석에 다가간다. 오늘은 꽃다발이 놓여 있다.",
+            "낯익은 꽃들. 하얀 국화. 그 향이 — 한 박자, 너무 익숙하다. 어디서였는지를 짚으면, 같이 떠오를 다른 것들이 두렵다.",
+            "...장례식에서 본 것 같은. 아니, 병문안에서 본 것 같기도 한.",
+            "그냥 비슷한 꽃이겠지. 그렇게 정리한다, 매번 그래 왔던 방식대로."
           ],
           "en": [
-            "I approach the seat.",
-            "",
-            "Today, a bouquet has been left here.",
-            "",
-            "Familiar flowers.",
-            "White chrysanthemums.",
-            "",
-            "...The kind I've seen at funerals.",
-            "",
-            "No, just similar flowers, probably."
+            "I approach the seat. Today, a bouquet has been left there.",
+            "Familiar flowers. White chrysanthemums. For one beat, their scent is too familiar. To place where would mean placing other things along with it. I am afraid of that.",
+            "...The kind seen at a funeral. Or, perhaps, the kind seen at a bedside visit.",
+            "Just similar flowers, probably. I tidy the thought away, the way I always have."
           ]
         }
       },
       "run3": {
         "replace": {
           "ko": [
-            "좌석에 다가간다.",
-            "",
-            "꽃다발.",
-            "",
-            "카드가 끼워져 있다.",
-            "",
-            "흐릿한 글씨.",
-            "간신히 읽는다.",
-            "",
-            "\"빨리 일어나.\"",
-            "",
-            "...도대체 누가",
-            "꽃과 함께 이런 걸 남긴단 말인가."
+            "좌석에 다가간다. 꽃다발. 카드가 끼워져 있다.",
+            "흐릿한 글씨. 간신히 읽는다. \"빨리 일어나.\"",
+            "그 한 줄을 보는 순간, 내 안의 어딘가가 차게 식는다. 이 글씨는 — 누군가의 글씨와 닮아 있다. 한 번도 잊은 적 없는 글씨와.",
+            "...도대체 누가 꽃과 함께 이런 걸 남긴단 말인가. 묻는 동시에, 답이 떠오른다. 떠오른 답을, 다시 도로 묻어 둔다."
           ],
           "en": [
-            "I approach the seat.",
-            "",
-            "The bouquet.",
-            "",
-            "A card tucked inside.",
-            "",
-            "Faded writing.",
-            "I barely make it out.",
-            "",
-            "\"Wake up soon.\"",
-            "",
-            "...Who on earth would leave",
-            "something like this with flowers."
+            "I approach the seat. The bouquet. A card tucked inside.",
+            "Faded writing. I barely make it out. \"Wake up soon.\"",
+            "The moment I read the line, something inside me cools. The handwriting — resembles someone else's. Handwriting I have never forgotten.",
+            "...Who on earth would leave such a thing with flowers. I ask the question, and at the same moment, an answer surfaces. The answer that has surfaced — I push back down, again."
           ]
         }
       },
       "run4": {
         "replace": {
           "ko": [
-            "좌석에 다가간다.",
-            "",
-            "꽃다발이.",
-            "",
-            "...한두 개가 아니다.",
-            "",
-            "칸 곳곳의 좌석에",
-            "하얀 꽃들이 놓여 있다.",
-            "",
-            "마치 누군가를",
-            "계속 기다린 것처럼."
+            "좌석에 다가간다. 꽃다발이 — 한두 개가 아니다.",
+            "칸 곳곳의 좌석에 하얀 꽃들이 놓여 있다. 누군가가 한 번에 가져온 것이 아니다. 시간이 다른, 마음이 다른 사람들이, 각자 다른 날에 한 자리씩 두고 간 것이다.",
+            "마치 누군가를 계속 기다린 것처럼. 그 누군가가 — 깨어나지 않을 것이라는 것을 *받아들이지 못한 채로* 기다린 것처럼."
           ],
           "en": [
-            "I approach the seat.",
-            "",
-            "Bouquets.",
-            "",
-            "...More than one or two.",
-            "",
-            "Throughout the car,",
-            "white flowers on the seats.",
-            "",
-            "As though",
-            "someone has been waiting."
+            "I approach the seat. The bouquets — are more than one or two.",
+            "Throughout the car, white flowers on the seats. They were not brought all at once. People with different timing, different hearts, each on a different day, set one down and went.",
+            "As though someone had been waited for. As though that someone — was waited for by those who could not, yet, accept that he would not wake."
           ]
         }
       }
@@ -862,64 +772,42 @@
     "car": 2,
     "text": {
       "ko": [
-        "시계를 본다.",
-        "",
-        "23:54."
+        "시계를 본다. 23:54.",
+        "별 의미 없는 시간이라고, 한 번 말해 둔다. 별 의미 없다고 말해 두지 않으면, 이 시간이 — 어딘가 익숙한 시간으로 자리를 잡아 버릴 것 같아서."
       ],
       "en": [
-        "I check the time.",
-        "",
-        "23:54."
+        "I check the time. 23:54.",
+        "A time with no particular meaning, I say to myself, once. If I do not say so, this time will — settle into something familiar before I can stop it."
       ]
     },
     "variants": {
       "run2": {
         "replace": {
           "ko": [
-            "시계를 본다.",
-            "",
-            "23:54.",
-            "",
-            "...아까와 같다.",
-            "",
-            "방금 한참 걸어왔는데."
+            "시계를 본다. 23:54.",
+            "...아까와 같다. 방금 한참 걸어왔는데.",
+            "한 박자, 발이 멈춘다. 다시 걸음을 옮긴다. 알아채지 않은 척하기로 한다."
           ],
           "en": [
-            "I check the time.",
-            "",
-            "23:54.",
-            "",
-            "...The same as before.",
-            "",
-            "Even though I've been walking."
+            "I check the time. 23:54.",
+            "...The same as before. Though I have been walking for some time.",
+            "For one beat, my feet stop. Then I move again. I decide to pretend I did not notice."
           ]
         }
       },
       "run3": {
         "replace": {
           "ko": [
-            "시계를 본다.",
-            "",
-            "23:54.",
-            "",
-            "...아까도 이 시간이었다.",
-            "그 전에도.",
-            "",
-            "시간이 멈춰버린 걸까?",
-            "",
-            "...그럴 리가."
+            "시계를 본다. 23:54.",
+            "아까도 이 시간이었다. 그 전에도. 모든 회차의 모든 칸에서, 이 시간이었다.",
+            "시간이 멈춰버린 걸까. 그럴 리가 — 그러나 그럴 리 없다는 그 말도, 매번 같은 박자로 떠올랐다.",
+            "한 번도 11:54 분이 *그저 평범한 시간*이었던 적은 없었다. 누군가에게는 — 무언가가 끝난 시간이었다."
           ],
           "en": [
-            "I check the time.",
-            "",
-            "23:54.",
-            "",
-            "...It was this time before.",
-            "And before that.",
-            "",
-            "Has time stopped?",
-            "",
-            "...That can't be."
+            "I check the time. 23:54.",
+            "It was this time before. And before that. In every car, of every run, this same time.",
+            "Has time stopped? It could not be — and yet the phrase 'it could not be' has surfaced, every time, in the same rhythm.",
+            "Not once was 11:54 PM simply an ordinary time. For someone — it was the time when something had ended."
           ]
         }
       }
