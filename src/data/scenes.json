@@ -8,9 +8,19 @@
     "visual": "title_logo",
     "text": {
       "ko": [
+        "어둠.",
+        "박자가 들린다. 작게.",
+        "또 하나의 박자가 그 위에 겹친다.",
+        "어느 쪽이 먼저였는지, 모르겠다.",
+        "",
         "TRAIN DUSK"
       ],
       "en": [
+        "Darkness.",
+        "A beat sounds. Faintly.",
+        "Another beat lays itself over the first.",
+        "Which one came first, I cannot tell.",
+        "",
         "TRAIN DUSK"
       ]
     },
@@ -20,7 +30,7 @@
           "ko": "시작",
           "en": "Start"
         },
-        "next": "name_input"
+        "next": "prologue"
       },
       {
         "label": {
@@ -82,6 +92,10 @@
     "music": "train_ambient",
     "text": {
       "ko": [
+        "어둠. 한참.",
+        "무언가가 내 등을 부드럽게, 일정하게 두드린다.",
+        "박자. 박자. 박자.",
+        "",
         "눈을 뜬다. 흔들림. 익숙한 흔들림이다.",
         "열차의 진동이 의자를 통해 등을 두드린다. 일정한 간격으로, 어딘가 익숙한 박자로.",
         "좌석에 앉아 있다. 손에 가방을 쥐고 있다. 언제부터 들고 있었는지, 기억이 잘 나지 않는다.",
@@ -90,6 +104,10 @@
         "차창에 내 얼굴이 비친다. 희미하게. 어두운 유리 너머로 어둠 외에는 아무것도 보이지 않는다."
       ],
       "en": [
+        "Darkness. For a long while.",
+        "Something taps softly, evenly, against my back.",
+        "A beat. A beat. A beat.",
+        "",
         "I open my eyes. A tremor. The familiar tremor.",
         "The train's vibration thumps through the seat into my back, in steady intervals, in a rhythm I somehow already know.",
         "I'm in a seat. A bag is in my hand. I can't quite remember when I started holding it.",
@@ -102,6 +120,10 @@
       "run2": {
         "replace": {
           "ko": [
+            "어둠. 또.",
+            "박자가 들린다. 어디선가 들어 본.",
+            "이 박자를, 나는 안다.",
+            "",
             "눈을 뜬다. 흔들림. 익숙한 흔들림이지만, 이번엔 너무 익숙해서 무섭다.",
             "전에도 이랬다. 분명히. 좌석에 앉아 있고, 손에 같은 가방을 쥐고 있다.",
             "손에 닿는 가방의 무게. 손바닥에 닿는 표면의 결. 모든 것을 미리 알고 있는 듯한 감각이다.",
@@ -110,6 +132,10 @@
             "차창에 비친 내 얼굴은 전과 같은 표정을 하고 있다. 의아함도, 망설임도, 모두 전과 똑같다."
           ],
           "en": [
+            "Darkness. Again.",
+            "A beat sounds. From somewhere I have heard before.",
+            "This beat, I know.",
+            "",
             "I open my eyes. A tremor. The familiar tremor — only this time, it's familiar enough to frighten me.",
             "This has happened before. Certainly. I'm in a seat, the same bag is in my hand.",
             "The weight of the bag in my hand. The grain of its surface against my palm. A sensation of knowing everything in advance.",
@@ -122,6 +148,10 @@
       "run3": {
         "replace": {
           "ko": [
+            "어둠. 익숙한 어둠.",
+            "박자는 처음부터 그대로였다.",
+            "한 번도 멈춘 적 없었을지도 모른다.",
+            "",
             "또 눈을 뜬다. 흔들림. 이 흔들림을 나는 안다, 충분할 만큼.",
             "같은 좌석. 같은 가방. 손에 든 무게마저 정확히 같은 무게다.",
             "긴 머리가 같은 자리에 같은 모양으로 흘러내린다. 쓸어 넘긴다, 같은 동작으로. 같은 머리카락을 떼어낸다.",
@@ -130,6 +160,10 @@
             "알 것 같다, 이게 무엇인지. 알 것 같지만, 입 밖으로 내고 싶지 않다. 아직은."
           ],
           "en": [
+            "Darkness. The familiar darkness.",
+            "The beat has been the same from the beginning.",
+            "Perhaps it has never once stopped.",
+            "",
             "I open my eyes again. A tremor. This tremor I know, more than enough.",
             "The same seat. The same bag. Even the weight in my hand, precisely the same weight.",
             "Long hair falls in the same place, in the same shape. I sweep it back — the same motion. I peel away the same strand.",
@@ -142,6 +176,10 @@
       "run4": {
         "replace": {
           "ko": [
+            "어둠.",
+            "박자가 있다. 박자만 있다.",
+            "나도 그 박자 중 하나일까.",
+            "",
             "...다시. 다시 시작된 흔들림. 이번엔 눈을 뜬 적이 있는지조차 모르겠다. 깨어났다고 부를 수 있을지조차.",
             "좌석. 가방. 내 손에 들려 있다. 언제부터인지, 얼마나 되었는지, 답을 찾으려 해도 끝이 없다는 것을 이제는 안다.",
             "긴 머리가 이마에 흘러내린다. 쓸어 넘긴다. 손가락 끝의 머리카락을, 이번엔 떼어내지 않는다. 떼어내 봤자 다시 같은 자리에 같은 모양으로 돌아온다는 것을 알기에.",
@@ -150,6 +188,10 @@
             "나는 여전히 여기에 있다. 그게 무슨 뜻인지, 이제는 안다. 그러나 나는 아직, 그것을 받아들이지 않았다."
           ],
           "en": [
+            "Darkness.",
+            "There is a beat. Only a beat.",
+            "Am I, too, one of those beats.",
+            "",
             "...Again. The shaking begins again. This time, I'm not even sure I've opened my eyes. Whether anything I'm doing can be called waking up.",
             "A seat. A bag. They are in my hands. Since when, for how long — I know by now that searching for the answer is endless.",
             "Long hair falls across my forehead. I sweep it back. The strand on my fingertip — this time, I don't peel it away. I know now: even peeled away, it would return to the same place in the same shape.",
