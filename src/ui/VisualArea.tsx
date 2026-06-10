@@ -79,7 +79,7 @@ export function VisualArea({ visualKey, popup, cutscene, fallback }: Props) {
         <img
           src={visualSrc}
           alt=""
-          className="h-full w-full object-cover"
+          className="h-full w-full object-contain"
           style={{ imageRendering: "pixelated" }}
         />
       ) : (
