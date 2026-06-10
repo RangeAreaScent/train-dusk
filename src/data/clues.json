@@ -12,16 +12,16 @@
         "en": "The announcements keep cutting out."
       },
       "run2": {
-        "ko": "안내방송에 내 이름이 섞여 있다.",
-        "en": "My name slips into the announcements."
+        "ko": "안내방송에 내 이름이 섞여 있다. 내가 한때 들었던 호칭으로.",
+        "en": "My name slips into the announcements. By a title I once answered to."
       },
       "run3": {
-        "ko": "방송이 내게 손을 움직여 보라고 한다.",
-        "en": "The voice asks me to move my hand."
+        "ko": "방송이 내게 손을 움직여 보라고 한다. 의료진이 쓰는 말투로.",
+        "en": "The voice asks me to move my hand. In the cadence of clinical staff."
       },
       "run4": {
-        "ko": "방송은 의료진의 목소리다.",
-        "en": "The announcements are the voices of medical staff."
+        "ko": "방송은 동료의 목소리다. \"선생님, 가족분들 들어오십니다.\" 그 말을 마지막으로 한 적이 있다. 3년 전, 회복실 문 앞에서.",
+        "en": "The announcement is a colleague's voice. \"Doctor, the family is coming in.\" I said those same words once. Three years ago, at the recovery-room door."
       }
     }
   },
@@ -35,16 +35,16 @@
     "trigger": "choice_phone",
     "noteEntry": {
       "run2": {
-        "ko": "검진 결과 안내 알림이 와 있다.",
-        "en": "A notification about examination results."
+        "ko": "음성 메시지 한 통, 들은 적 없는. 발신: 동료. \"오늘 회의 빠지면 어떡해.\" 들을 마음이 없었다.",
+        "en": "A voicemail, never listened to. From: a colleague. \"You can't miss the meeting today.\" I had no desire to hear it."
       },
       "run3": {
-        "ko": "중환자실 면회 시간 변경 안내가 와 있다.",
-        "en": "A notice about changes to ICU visiting hours."
+        "ko": "보관함 깊은 곳, 오래된 문자 한 통. \"고맙다. 네가 맡아 줘서 마음 놓는다.\" 보낸 날짜는 3월 14일. 보낸 사람은, 이미 이 세상에 없다.",
+        "en": "Deep in the archive, a years-old message. \"Thank you. Knowing it's you, I can rest easy.\" Sent on March 14. The sender is no longer in this world."
       },
       "run4": {
-        "ko": "환자 명단에 내 이름이 있다.",
-        "en": "My name is on the patient list."
+        "ko": "친구의 마지막 문자. 그가 떠나기 직전에 보낸. \"...그녀를 부탁한다.\" 나는 답하지 못한 채로 그를 보냈다. 그리고 그녀도 보냈다. 답할 말을, 아직도, 찾지 못했다.",
+        "en": "My friend's last text. Sent just before he left. \"...Look after her, will you.\" I let him go without answering. And then I let her go too. I still haven't found the words."
       }
     }
   },
@@ -137,9 +137,17 @@
         "ko": "가방 속 낯선 물건들. 흐릿한 사원증, 모르는 글씨의 노트, 라벨 벗겨진 약통, 흐려진 명함.",
         "en": "Unfamiliar things in the bag. A blurred ID badge, a notebook in handwriting not mine, a label-peeled pill bottle, a faded business card."
       },
+      "run2": {
+        "ko": "사원증 사진이 살짝 보인다. 흰 가운. 흐릿한 얼굴이지만 어딘가 안다. 노트는 의료 기록 같다. 약통의 처방자는 — 내 이름이다.",
+        "en": "The ID photo emerges a little. A white coat. A blurred face, but one I somehow know. The notebook looks like a medical chart. The pill bottle was prescribed by — me."
+      },
       "run3": {
-        "ko": "명함의 글씨가 조금 보인다. 병원 이름인 것 같다.",
-        "en": "Some of the card's writing returns. It seems to be a hospital name."
+        "ko": "노트의 한 페이지가 펼쳐진다. 수술 동의서. 일자: 3월 15일. 환자명 위에 보호자 서명. 그 보호자는 — 한 번도 본 적 없는 사람이다. 그녀에겐 남편이 없다고 알았으니까. 그런데 서명이 거기 있다.",
+        "en": "A page of the notebook falls open. A surgical consent form. Date: March 15. Above the patient's name, a guardian's signature. The guardian — someone I have never seen. She has no husband, as far as I knew. And yet the signature is there."
+      },
+      "run4": {
+        "ko": "노트 깊은 곳에 사진 한 장. 세 사람. 가운데에 그녀. 양쪽에 — 나와 친구. 셋이 웃고 있다. 친구가 떠난 지 오래. 그녀가 떠난 지는 3년. 내가 나에게서 떠난 지는 — 잘 모르겠다.",
+        "en": "Deep in the notebook, one photograph. Three people. Her in the middle. On either side — me, and a friend. The three of us, laughing. The friend has been gone a long time. She has been gone three years. As for how long I've been gone from myself — I don't quite know."
       }
     }
   },
@@ -162,20 +170,20 @@
       "requires": "puzzle_seat_numbers",
       "noteEntry": {
         "run1": {
-          "ko": "03.15에 무언가 있었다.",
-          "en": "Something happened on 03.15."
+          "ko": "3월 15일.",
+          "en": "March 15."
         },
         "run2": {
-          "ko": "03.15 — \"오늘은 그날이다.\"",
-          "en": "03.15 — \"Today is the day.\""
+          "ko": "3월 15일 — 수술 일자.",
+          "en": "March 15 — surgery date."
         },
         "run3": {
-          "ko": "03.15 — \"가야 한다.\"",
-          "en": "03.15 — \"I have to go.\""
+          "ko": "3월 15일 — 수술 종료 14시 30분. 환자 사망.",
+          "en": "March 15 — surgery ended 14:30. Patient: deceased."
         },
         "run4": {
-          "ko": "03.15 — \"왜 못 갔지.\"",
-          "en": "03.15 — \"Why couldn't I.\""
+          "ko": "3월 15일. 그날 나는 정확히 내가 해야 할 일을 하고 있었다. 친구에게 한 약속을 지키기 위해. 그녀를 살리기 위해. 두 가지가 분리될 수 없는 마음으로. 결과만이 — 분리되었다.",
+          "en": "March 15. That day, I was doing exactly what I had to do. To keep a promise made to my friend. To save her. With a heart in which the two were inseparable. Only the outcome — was separated."
         }
       }
     },
