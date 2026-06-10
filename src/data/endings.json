@@ -192,7 +192,7 @@
       },
       {
         "id": "endB_identity",
-        "visual": "friend_close",
+        "visual": "friend_in_train",
         "text": {
           "ko": [
             "\"...너 누구야.\" 내가 묻는다. 목소리가 떨리지 않으려 애쓴다.",
@@ -249,7 +249,7 @@
       },
       {
         "id": "endB_acceptance",
-        "visual": "friend_close",
+        "visual": "friend_in_train",
         "text": {
           "ko": [
             "나는 그녀를 본다. 깊이.",
@@ -304,7 +304,7 @@
       },
       {
         "id": "endB_afterimage",
-        "visual": "friend_close",
+        "visual": "friend_in_train",
         "text": {
           "ko": [
             "그녀의 손이 내 손을 잡고 있다. 처음엔 그게 위로였다. 혼자가 아니라는 것. 누군가 옆에 있다는 것.",
