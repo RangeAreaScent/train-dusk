@@ -44,7 +44,7 @@
   "textSpeed": {
     "slow": 110,
     "normal": 80,
-    "fast": 40,
+    "fast": 55,
     "default": "normal"
   },
 

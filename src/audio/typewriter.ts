@@ -80,9 +80,9 @@ export function playKeyClick(): void {
   source.playbackRate.value = 0.85 + Math.random() * 0.35;
 
   const filter = c.createBiquadFilter();
-  filter.type = "bandpass";
-  filter.frequency.value = 1700 + Math.random() * 900;
-  filter.Q.value = 1.2;
+  filter.type = "lowpass";
+  filter.frequency.value = 420 + Math.random() * 180;
+  filter.Q.value = 0.7;
 
   const gain = c.createGain();
   gain.gain.setValueAtTime(0, now);
