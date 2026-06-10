@@ -405,26 +405,27 @@
       },
       {
         "id": "endC_touch",
-        "visual": "cutscene_conductor_turns",
-        "isCutscene": true,
+        "visual": "conductor_back_close",
         "cutsceneNote": {
-          "ko": "차장이 돌아본 얼굴 — 본인의 얼굴. 광기 어린 무표정.",
-          "en": "Conductor's face revealed — the protagonist's own. Mad, expressionless."
+          "ko": "차장의 뒷모습 + 어깨 위로 올라간 한쪽 손. 얼굴은 끝까지 보이지 않는다. 두 손이 같은 어깨 위에 머무는 한 박자.",
+          "en": "Conductor's back + his own hand risen to his shoulder. The face is never shown. The single held beat of two hands resting on the same shoulder."
         },
         "text": {
           "ko": [
-            "차장의 어깨에 손이 닿는다. 차갑다. 천도 사람도 아닌 듯한 차가움. 어디서였는지 — *회복실 문 손잡이*의 그 차가움 같기도 하다.",
-            "차장이 천천히 돌아본다. 그 한 박자가 길다. 너무 길다.",
-            "\"...늦었네.\" 차장이 말한다. 익숙한 목소리.",
-            "내 목소리다. 내가 한 번도 입 밖으로 내본 적 없으면서도 — 줄곧 안에서 들어 온 그 목소리.",
+            "차장의 어깨에 손이 닿는다. 차갑다. 천도 사람도 아닌 듯한 차가움. 어디서였는지 — 회복실 문 손잡이의 그 차가움 같기도 하다.",
+            "그러자 — 그의 한쪽 손도, 천천히, 어깨 위로 올라온다. 내 손이 닿은 자리를 더듬듯이.",
+            "두 손이 같은 어깨 위에 머문다. 한 박자, 길게. 그 박자 동안 — 그는 끝내 돌아보지 않는다.",
+            "돌아보지 않은 채로, \"...늦었네.\" 그가 말한다.",
+            "익숙한 목소리. 내 목소리다. 내가 한 번도 입 밖으로 내본 적 없으면서도 — 줄곧 안에서 들어 온 그 목소리.",
             "인기척을 느낀다. 뒤에 누가 있다. 한 걸음. 멈춤. 한 걸음.",
             "내 뒤에 서 있는 사람도, 나처럼 떨고 있다."
           ],
           "en": [
             "My hand touches the conductor's shoulder. Cold. Not like fabric. Not like a body. A cold from somewhere — perhaps the cold of a recovery-room door handle.",
-            "The conductor turns, slowly. The single beat is long. Too long.",
-            "\"...You're late.\" the conductor says. A familiar voice.",
-            "It is my voice. The voice I have never quite spoken aloud — and have, all the same, listened to from inside.",
+            "And then — his own hand rises, slowly, to that same shoulder. As though feeling for the place mine has landed.",
+            "Two hands rest on the same shoulder. One held beat, drawn long. Through it — he does not, in the end, turn.",
+            "Without turning, he says, \"...You're late.\"",
+            "A familiar voice. My voice. The voice I have never quite spoken aloud — and have, all the same, listened to from inside.",
             "I sense a presence. Someone behind me. One step. A pause. One step.",
             "The one standing behind me — is trembling, just as I am."
           ]
