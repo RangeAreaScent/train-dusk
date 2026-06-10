@@ -578,7 +578,6 @@
       {
         "id": "endD_family",
         "visual": "cutscene_hospital_family",
-        "isCutscene": true,
         "cutsceneNote": {
           "ko": "사람들이 침대를 둘러싼 통합 컷. 어머니, 형, 형수, 의사가 한 화면에. 대사로 구분.",
           "en": "One combined scene of people surrounding the bed. Mother, brother, sister-in-law, doctor in one frame. Dialogue identifies each."
@@ -612,7 +611,6 @@
       {
         "id": "endD_friend",
         "visual": "cutscene_friend_behind",
-        "isCutscene": true,
         "cutsceneNote": {
           "ko": "병실 안. 가족이 가까이 있고, 그 뒤편 멀리 그녀의 옅은 미소. 그러나 가족의 얼굴이 한 박자씩 어긋난다 — 형의 눈빛이 한 순간 친구의 눈빛으로, 어머니의 입가가 한 순간 다른 누군가의 입가로. 분산된 부재의 동시 출현.",
           "en": "In the hospital room. Family close by, and behind them, far back, her faint smile. The family's faces slip by half a beat — the brother's gaze, for a moment, the friend's; the mother's mouth, for a moment, someone else's. A simultaneous return of every absence, scattered."
