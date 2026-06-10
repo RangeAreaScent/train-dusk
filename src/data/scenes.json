@@ -1070,34 +1070,14 @@
     "isPassage": true,
     "text": {
       "ko": [
-        "세 번째 칸.",
-        "",
-        "천장의 형광등이 깜빡인다.",
-        "",
-        "손잡이를 잡는다.",
-        "손이 차갑다.",
-        "",
-        "내 손이 이렇게 차가웠나.",
-        "",
-        "...",
-        "",
-        "이 칸은 다른 칸들과",
-        "어딘가 다르다."
+        "세 번째 칸. 천장의 형광등이 한 박자, 또 한 박자, 깜빡인다. 한 번도 정상으로 켜진 적 없는 빛의 결이다.",
+        "손잡이를 잡는다. 손이 차갑다. 내 손이 이렇게 차가웠나 — 그 질문이 떠오르고, 곧 떠오르지 않은 척한다.",
+        "이 칸은 다른 칸들과 어딘가 다르다. 다른 점을 짚지 못한 채로, 이미 다른 것을 안다. *나는 이런 종류의 다름을, 직업적으로 알아본다*."
       ],
       "en": [
-        "The third car.",
-        "",
-        "The fluorescent light flickers above.",
-        "",
-        "I grip the handrail.",
-        "My hand is cold.",
-        "",
-        "Was my hand always this cold.",
-        "",
-        "...",
-        "",
-        "This car feels",
-        "different from the others."
+        "The third car. The fluorescent light overhead flickers, one beat, then another. A grain of light that has never quite lit normally.",
+        "I grip the handrail. My hand is cold. Was my hand always this cold — the question surfaces, and at once I pretend it has not.",
+        "This car feels different from the others. Without being able to point at the difference, I already know it. I recognize this kind of wrongness — professionally."
       ]
     },
     "next": "car_3"
@@ -1108,24 +1088,16 @@
     "car": 3,
     "text": {
       "ko": [
-        "좌석에 앉으려다 멈춘다.",
-        "",
-        "좌석 등받이에",
-        "작은 표지판이 붙어 있다.",
-        "",
-        "번호가 적혀 있다.",
-        "",
-        "...번호가 이상하다."
+        "좌석에 앉으려다 멈춘다. 좌석 등받이에 작은 표지판이 붙어 있다.",
+        "번호가 적혀 있다. ...번호가 이상하다.",
+        "번호의 글꼴이 어딘가, 병동의 침대 머리맡에 붙어 있는 그 글꼴과 결이 같다.",
+        "한 박자, 그 사실을 알아채지 않은 척한다. 그러나 이미 알아챘다."
       ],
       "en": [
-        "I'm about to sit down. I stop.",
-        "",
-        "On the backrest of the seat,",
-        "a small plate.",
-        "",
-        "A number on it.",
-        "",
-        "...The number is strange."
+        "I am about to sit down. I stop. On the backrest of the seat, a small plate.",
+        "A number on it. ...The number is strange.",
+        "The typeface of the number has, somehow, the same grain as the typeface on the small plate above a hospital bed.",
+        "For one beat, I pretend not to have noticed. And yet I have already noticed."
       ]
     },
     "choices": [
@@ -1192,76 +1164,22 @@
     "car": 3,
     "text": {
       "ko": [
-        "좌석 등받이를 본다.",
-        "",
-        "03.12.",
-        "",
-        "...번호가 아니다.",
-        "",
-        "날짜다.",
-        "",
-        "",
-        "옆 좌석을 본다.",
-        "",
-        "03.13.",
-        "",
-        "그 옆.",
-        "",
-        "03.14.",
-        "",
-        "그 옆.",
-        "",
-        "...비어 있다.",
-        "",
-        "표지판이 비어 있다.",
-        "",
-        "다음 좌석으로 넘어간다.",
-        "",
-        "03.16.",
-        "",
-        "03.17.",
-        "",
-        "...",
-        "",
-        "빠진 날짜가 있다.",
-        "",
-        "03.15."
+        "좌석 등받이를 본다. 03.12.",
+        "...번호가 아니다. 날짜다.",
+        "옆 좌석. 03.13. 그 옆. 03.14. 그 옆 — 비어 있다. 표지판 자체가 비어 있다.",
+        "다음 좌석으로 넘어간다. 03.16. 03.17.",
+        "빠진 날짜가 있다. 03.15.",
+        "그 빠진 자리만이 — 한 박자, 다른 자리보다 차다. 한 번도 누군가 앉은 적 없는 자리. 또는, 누군가가 *영원히 앉아 있어야 했을* 자리.",
+        "내가 안 가도 되었을 것이 아닌, 안 가는 쪽을 *택한* 자리."
       ],
       "en": [
-        "I read the plate.",
-        "",
-        "03.12.",
-        "",
-        "...Not a number.",
-        "",
-        "A date.",
-        "",
-        "",
-        "The seat beside it.",
-        "",
-        "03.13.",
-        "",
-        "The next.",
-        "",
-        "03.14.",
-        "",
-        "The next.",
-        "",
-        "...Empty.",
-        "",
-        "The plate is blank.",
-        "",
-        "I move on.",
-        "",
-        "03.16.",
-        "",
-        "03.17.",
-        "",
-        "...",
-        "",
-        "One date is missing.",
-        "",
-        "03.15."
+        "I look at the backrest of the seat. 03.12.",
+        "...Not a number. A date.",
+        "The seat beside it. 03.13. The next. 03.14. The next — empty. The plate itself is blank.",
+        "I move on to the next. 03.16. 03.17.",
+        "One date is missing. 03.15.",
+        "That empty place, alone — for one beat, is colder than the others. A seat no one ever sat in. Or — a seat where someone was meant to sit, forever.",
+        "Not a place I was unable to go to, but the place I chose not to go."
       ]
     },
     "choices": [
@@ -1346,125 +1264,62 @@
     "car": 3,
     "text": {
       "ko": [
-        "손을 등받이 안쪽에 넣어본다.",
-        "",
-        "먼지.",
-        "그리고...",
-        "",
-        "종이 조각.",
-        "",
-        "펴 본다.",
-        "",
-        "작은 손글씨.",
-        "",
-        "\"3월 15일.\"",
-        "",
-        "...그 다음 줄은 찢겨 있다."
+        "손을 등받이 안쪽에 넣어 본다. 먼지. 그리고 — 종이 조각 하나가 손끝에 걸린다.",
+        "펴 본다. 작은 손글씨. 정갈한 글씨인데, 어딘가 — 본 적이 있는 결.",
+        "\"3월 15일.\" ...그 다음 줄은 찢겨 있다.",
+        "찢겨 있는 자리가 — 누군가가 일부러 찢어 둔 자국 같기도 하다. 또는, 내가 한때 찢어 두기로 한 자국."
       ],
       "en": [
-        "I reach inside the backrest.",
-        "",
-        "Dust.",
-        "And...",
-        "",
-        "A scrap of paper.",
-        "",
-        "I unfold it.",
-        "",
-        "Tiny handwriting.",
-        "",
-        "\"March 15.\"",
-        "",
-        "...The next line is torn off."
+        "I reach inside the backrest. Dust. And — a scrap of paper catches at my fingertip.",
+        "I unfold it. Tiny handwriting. The script is neat, and the grain of it — I have seen it somewhere before.",
+        "\"March 15.\" ...The next line is torn off.",
+        "Where it is torn looks like a tear someone made on purpose. Or — a tear that I once decided to make."
       ]
     },
     "variants": {
       "run2": {
         "replace": {
           "ko": [
-            "다시 등받이 안쪽으로 손을 넣는다.",
-            "",
-            "같은 종이.",
-            "",
-            "이번엔",
-            "찢긴 다음 줄이 조금 더 보인다.",
-            "",
-            "\"3월 15일.",
-            "오늘은 그날이다.\""
+            "다시 등받이 안쪽으로 손을 넣는다. 같은 종이.",
+            "이번엔 찢긴 다음 줄이 한 줄 더 보인다.",
+            "\"3월 15일. 오늘은 그날이다.\"",
+            "그 한 줄을 읽는 순간, 머리 속에서 무언가가 조용히 자리를 잡는다. 어떤 종류의 자리잡음인지는, 짚지 않기로 한다."
           ],
           "en": [
-            "I reach into the backrest again.",
-            "",
-            "The same paper.",
-            "",
-            "This time,",
-            "a bit more of the torn line.",
-            "",
-            "\"March 15.",
-            "Today is the day.\""
+            "I reach into the backrest again. The same paper.",
+            "This time, one more line of the torn portion is visible.",
+            "\"March 15. Today is the day.\"",
+            "The moment I read that line, something inside my head quietly settles into place. What kind of settling it is, I decide not to name."
           ]
         }
       },
       "run3": {
         "replace": {
           "ko": [
-            "같은 종이.",
-            "",
-            "이번엔",
-            "더 많이 보인다.",
-            "",
-            "\"3월 15일.",
-            "오늘은 그날이다.",
-            "",
-            "가야 한다.\"",
-            "",
-            "...",
-            "",
-            "종이가 손에서 부스러진다."
+            "같은 종이. 이번엔 더 많이 보인다.",
+            "\"3월 15일. 오늘은 그날이다. 가야 한다.\"",
+            "종이가 손에서 부스러진다. 마지막 줄을 다 읽기 직전에. 마치 — 그것을 읽으면 그것을 모르는 척할 수 없게 될 것임을, 종이가 먼저 알고 있는 것처럼."
           ],
           "en": [
-            "The same paper.",
-            "",
-            "More of it",
-            "shows itself now.",
-            "",
-            "\"March 15.",
-            "Today is the day.",
-            "",
-            "I have to go.\"",
-            "",
-            "...",
-            "",
-            "The paper crumbles in my hand."
+            "The same paper. More of it shows itself now.",
+            "\"March 15. Today is the day. I have to go.\"",
+            "The paper crumbles in my hand. Just before I finish the last line. As if — the paper knew, before I did, that to finish reading would be to lose the option of pretending not to have read."
           ]
         }
       },
       "run4": {
         "replace": {
           "ko": [
-            "같은 종이.",
-            "",
-            "이번엔",
-            "거의 다 보인다.",
-            "",
-            "\"3월 15일.",
-            "오늘은 그날이다.",
-            "",
-            "가야 한다.",
-            "",
-            "...왜 못 갔지.\""
+            "같은 종이. 이번엔 거의 다 보인다.",
+            "\"3월 15일. 오늘은 그날이다. 가야 한다. ...왜 못 갔지.\"",
+            "마지막 한 줄. 손글씨가 흔들려 있다. 그 흔들림은, 누군가 *나에게 묻기 위해* 쓴 흔들림이 아니다. 내가 *나에게 묻기 위해* 쓴 흔들림이다.",
+            "왜 못 갔는지를, 답할 수 있는 사람이 있다면 — 그 사람은 나 하나뿐이다. 그러나 나는, 그 답을 단 한 번도 입 밖으로 낸 적이 없다."
           ],
           "en": [
-            "The same paper.",
-            "",
-            "Almost all of it now.",
-            "",
-            "\"March 15.",
-            "Today is the day.",
-            "",
-            "I have to go.",
-            "",
-            "...Why couldn't I.\""
+            "The same paper. Almost all of it now.",
+            "\"March 15. Today is the day. I have to go. ...Why couldn't I.\"",
+            "The last line. The handwriting trembles. It is not the tremble of someone asking me. It is the tremble of me, asking myself.",
+            "If there is anyone who could answer why I could not go — there is only me. And I have never, not once, spoken that answer aloud."
           ]
         }
       }
@@ -1507,54 +1362,18 @@
     "car": 3,
     "text": {
       "ko": [
-        "벽에 인터폰이 있다.",
-        "",
-        "비상 통화용.",
-        "",
-        "...차장과 연결되어 있을 것이다.",
-        "",
-        "수화기를 든다.",
-        "",
-        "귀에 댄다.",
-        "",
-        "...",
-        "",
-        "잡음만 들린다.",
-        "",
-        "긴 잡음.",
-        "",
-        "말한다.",
-        "",
-        "\"...여보세요.\"",
-        "",
-        "대답이 없다.",
-        "",
-        "수화기를 다시 건다."
+        "벽에 인터폰이 있다. 비상 통화용. 차장과 연결되어 있을 것이다.",
+        "수화기를 든다. 귀에 댄다.",
+        "잡음만 들린다. 긴 잡음. 그 결이, 어딘가 — 의료기기가 답을 기다릴 때 내는 그 잡음과 닮아 있다.",
+        "\"...여보세요.\" 대답이 없다. 대답이 없는 시간을 — 나는 너무 잘 안다. 그 시간이 어떻게 지나가는지도.",
+        "수화기를 다시 건다. 안도와 실망이 한 자리에서 만난다."
       ],
       "en": [
-        "An intercom on the wall.",
-        "",
-        "For emergencies.",
-        "",
-        "...It must connect to the conductor.",
-        "",
-        "I lift the receiver.",
-        "",
-        "Press it to my ear.",
-        "",
-        "...",
-        "",
-        "Only static.",
-        "",
-        "A long hiss.",
-        "",
-        "I speak.",
-        "",
-        "\"...Hello.\"",
-        "",
-        "No reply.",
-        "",
-        "I hang it back up."
+        "An intercom on the wall. For emergencies. It must connect to the conductor.",
+        "I lift the receiver. Press it to my ear.",
+        "Only static. A long hiss. Its grain resembles, somehow, the static a medical instrument gives off while it waits for a reply.",
+        "\"...Hello.\" No reply. The time of no-reply — I know it too well. I know how it passes, too.",
+        "I hang the receiver up. Relief and disappointment meet in the same place."
       ]
     },
     "returnTo": "car_3"
@@ -1687,54 +1506,18 @@
     "car": 3,
     "text": {
       "ko": [
-        "...",
-        "",
-        "생각하자.",
-        "",
-        "생각해.",
-        "",
-        "...",
-        "",
-        "이 열차엔 무언가 있다.",
-        "",
-        "분명히.",
-        "",
-        "안내방송. 빈 좌석. 멈춘 시간.",
-        "",
-        "전부 연결되어 있다.",
-        "",
-        "...누군가 이 열차를 몰고 있다.",
-        "",
-        "차장.",
-        "",
-        "그래.",
-        "",
-        "차장은 알고 있을 거다."
+        "생각하자. 생각해.",
+        "이 열차엔 무언가 있다. 분명히. 안내방송. 빈 좌석. 멈춘 시간. 모르는 글씨로 적힌 내 노트. 03.15라는 비어 있는 자리.",
+        "전부 연결되어 있다. 그러나 그 연결의 모양을 — 이미 안 적이 있는 듯한 모양이다. 잠시, 그 연결을 짚지 않으려 했다.",
+        "이 열차를 몰고 있는 누군가가 있을 것이다. 차장. 그래 — 차장이라면. 차장은 *모든 결정의 끝자리에 서 있는 사람이라는 것을, 나는 안다*.",
+        "차장에게 가야 한다. 가서 — 무엇을 묻고 싶은지조차, 지금은 또렷하지 않다. 그러나 가야 한다는 것만은 또렷하다."
       ],
       "en": [
-        "...",
-        "",
-        "Think.",
-        "",
-        "Think.",
-        "",
-        "...",
-        "",
-        "There's something on this train.",
-        "",
-        "I'm certain.",
-        "",
-        "The announcements. The empty seats. The frozen clock.",
-        "",
-        "It's all connected.",
-        "",
-        "...Someone is driving this train.",
-        "",
-        "The conductor.",
-        "",
-        "Yes.",
-        "",
-        "The conductor will know."
+        "Think. Think.",
+        "There is something on this train. Certainly. The announcements. The empty seats. The stopped time. The notebook in handwriting I do not know that is mine. The empty place labeled 03.15.",
+        "All of it is connected. And yet, the shape of the connection — is a shape I seem to have known before. For a moment, I tried not to draw the lines.",
+        "Someone must be driving this train. The conductor. Yes — if it is the conductor, then. I know what it is to be the one standing at the far end of every decision. The conductor must know.",
+        "I have to go to the conductor. To go and — even now, what I want to ask is not quite clear. But that I have to go, is."
       ]
     },
     "choices": [
