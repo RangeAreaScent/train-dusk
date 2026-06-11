@@ -45,7 +45,7 @@
       {
         "id": "endA_people_appear",
         "visual": "car_5_with_people",
-        "overlay": "protagonist_in_train",
+        "overlay": "protagonist_raw",
         "text": {
           "ko": [
             "언제부터 나는 눈을 감고 있었을까. 한 번도 감지 않은 것 같기도 하고, 줄곧 감고 있었던 것 같기도 하다.",
