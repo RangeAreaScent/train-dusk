@@ -1727,18 +1727,15 @@
   },
   "car_4_friend_invite": {
     "id": "car_4_friend_invite",
-    "visual": "cutscene_friend_hand",
-    "isCutscene": true,
-    "cutsceneNote": {
-      "ko": "그녀가 손을 내미는 모습. 작은 손, 장갑.",
-      "en": "She extends her hand. Small hand, gloved."
-    },
+    "visual": "car_4_wide",
+    "overlay": "car_4_friend_invite",
+    "car": 4,
     "text": {
       "ko": [
         "\"글쎄요.\" — 그녀는 잠시 나를 바라본다. 한 박자, 두 박자. 답을 기다리는 것이 아니라, 답이 내 안에서 자라기를 기다리는 듯이.",
         "\"...그러면.\"",
         "\"같이 갈까요?\"",
-        "그녀의 손이 보인다. 작은 손. 검은 장갑을 끼고 있다. 그 안의 손가락이 길고 — 어딘가, 알아본 듯한 형태.",
+        "그녀의 손이 보인다. 작은 손. 손가락이 길고 — 어딘가, 알아본 듯한 형태.",
         "손이 내 쪽으로 향해 있다. 잡으라는 듯이. 다만 내가 잡지 않아도 거두지 않을 듯이.",
         "그녀의 눈은 내 손을 보지 않는다. 내 눈을 본다. 답이 내 손이 아니라 내 안에 있다는 것처럼."
       ],
@@ -1746,7 +1743,7 @@
         "\"I don't know.\" — She watches me for a moment. One beat, two. Not waiting for an answer, but waiting for an answer to grow inside me.",
         "\"...Then.\"",
         "\"Shall we go together?\"",
-        "Her hand appears. A small hand. A black glove. The fingers inside are long — somehow, of a shape I recognize.",
+        "Her hand appears. A small hand. The fingers are long — somehow, of a shape I recognize.",
         "The hand is turned toward me. As if to be taken. As if, even if I do not take it, it will not be withdrawn.",
         "Her eyes are not on my hand. They are on mine. As if the answer were not in my hand at all, but somewhere inside me."
       ]
@@ -1773,7 +1770,8 @@
   },
   "car_4_friend_accept": {
     "id": "car_4_friend_accept",
-    "visual": "car_4_wide_with_friend",
+    "visual": "car_4_wide",
+    "overlay": "friend_standing_smile",
     "car": 4,
     "text": {
       "ko": [
@@ -1801,8 +1799,9 @@
   },
   "car_4_friend_wait": {
     "id": "car_4_friend_wait",
-    "visual": "cutscene_friend_lowers_hand",
-    "isCutscene": true,
+    "visual": "car_4_wide",
+    "overlay": "car_4_friend_invite",
+    "car": 4,
     "text": {
       "ko": [
         "\"...아직은.\" — 내가 말한다. 손을 잡지 않는다. 잡고 싶지 않은 것이 아니다. 잡으면 더 이상 돌아갈 수 없을 것 같아서.",
