@@ -18,6 +18,12 @@ interface Props {
   /** Cutscene image floated as a polaroid panel over the background. */
   insetCutscene?: string;
   insetPosition?: "left" | "center" | "right";
+  /** Small prop/clue object placed on a corner. Transparent, no frame. */
+  prop?: string;
+  propPosition?:
+    | "top-left" | "top-center" | "top-right"
+    | "center-left" | "center" | "center-right"
+    | "bottom-left" | "bottom-center" | "bottom-right";
 }
 
 type ImgState = "loading" | "ok" | "missing";
@@ -69,7 +75,19 @@ const PROCEDURAL_VISUALS: Record<string, React.FC> = {
   faded_photo: FadedPhoto,
 };
 
-export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight, insetCutscene, insetPosition = "center" }: Props) {
+const PROP_POS: Record<NonNullable<Props["propPosition"]>, string> = {
+  "top-left":      "top-[6%] left-[6%]",
+  "top-center":    "top-[6%] left-1/2 -translate-x-1/2",
+  "top-right":     "top-[6%] right-[6%]",
+  "center-left":   "top-1/2 -translate-y-1/2 left-[6%]",
+  "center":        "top-1/2 -translate-y-1/2 left-1/2 -translate-x-1/2",
+  "center-right":  "top-1/2 -translate-y-1/2 right-[6%]",
+  "bottom-left":   "bottom-[6%] left-[6%]",
+  "bottom-center": "bottom-[6%] left-1/2 -translate-x-1/2",
+  "bottom-right":  "bottom-[6%] right-[6%]",
+};
+
+export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight, insetCutscene, insetPosition = "center", prop, propPosition = "bottom-right" }: Props) {
   const ProceduralComp = visualKey ? PROCEDURAL_VISUALS[visualKey] : undefined;
 
   const folder = cutscene ? "cutscenes" : "visuals";
@@ -94,6 +112,8 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
   const { src: overlayRightResolved } = useFirstAvailable(overlayRightSrc ? [overlayRightSrc] : []);
   const insetSrc = insetCutscene ? `/assets/cutscenes/${insetCutscene}.webp` : null;
   const { src: insetResolved, state: insetState } = useFirstAvailable(insetSrc ? [insetSrc] : []);
+  const propSrc = prop ? `/assets/overlays/${prop}.webp` : null;
+  const { src: propResolved, state: propState } = useFirstAvailable(propSrc ? [propSrc] : []);
 
   return (
     <div className="relative h-full w-full bg-neutral-900 overflow-hidden">
@@ -162,6 +182,23 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
               {insetCutscene}
             </div>
           )}
+        </div>
+      )}
+
+      {prop && propResolved && propState === "ok" && (
+        <div
+          className={`absolute pointer-events-none ${PROP_POS[propPosition]}`}
+          style={{ width: "32%", aspectRatio: "1/1" }}
+        >
+          <img
+            src={propResolved}
+            alt=""
+            className="h-full w-full object-contain"
+            style={{
+              imageRendering: "pixelated",
+              filter: "drop-shadow(3px 3px 0 rgba(0,0,0,0.4))",
+            }}
+          />
         </div>
       )}
 

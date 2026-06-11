@@ -1,7 +1,10 @@
 {
   "endingA": {
     "id": "A",
-    "name": { "ko": "확신", "en": "Certainty" },
+    "name": {
+      "ko": "확신",
+      "en": "Certainty"
+    },
     "trigger": "default_fallback_or_avoidCount",
     "sequence": [
       {
@@ -37,7 +40,10 @@
         },
         "choices": [
           {
-            "label": { "ko": "눈을 뜬다", "en": "Open my eyes" },
+            "label": {
+              "ko": "눈을 뜬다",
+              "en": "Open my eyes"
+            },
             "next": "endA_people_appear"
           }
         ]
@@ -66,7 +72,10 @@
         },
         "choices": [
           {
-            "label": { "ko": "핸드폰 화면을 슬쩍 본다", "en": "Glance at the phone screens" },
+            "label": {
+              "ko": "핸드폰 화면을 슬쩍 본다",
+              "en": "Glance at the phone screens"
+            },
             "next": "endA_phones"
           }
         ]
@@ -146,10 +155,12 @@
       }
     ]
   },
-
   "endingB": {
     "id": "B",
-    "name": { "ko": "동행", "en": "Companion" },
+    "name": {
+      "ko": "동행",
+      "en": "Companion"
+    },
     "trigger": "hiddenTriggered && friendAppeared && choseFriendHand",
     "sequence": [
       {
@@ -335,10 +346,12 @@
       }
     ]
   },
-
   "endingC": {
     "id": "C",
-    "name": { "ko": "거울", "en": "Mirror" },
+    "name": {
+      "ko": "거울",
+      "en": "Mirror"
+    },
     "trigger": "choseConductorPath",
     "sequence": [
       {
@@ -402,7 +415,10 @@
         },
         "choices": [
           {
-            "label": { "ko": "차장의 어깨에 손을 얹는다", "en": "Place a hand on the conductor's shoulder" },
+            "label": {
+              "ko": "차장의 어깨에 손을 얹는다",
+              "en": "Place a hand on the conductor's shoulder"
+            },
             "next": "endC_touch"
           }
         ]
@@ -437,7 +453,10 @@
         },
         "choices": [
           {
-            "label": { "ko": "뒤를 돌아본다", "en": "Turn around" },
+            "label": {
+              "ko": "뒤를 돌아본다",
+              "en": "Turn around"
+            },
             "next": "endC_shift"
           }
         ]
@@ -513,10 +532,12 @@
       }
     ]
   },
-
   "endingD": {
     "id": "D",
-    "name": { "ko": "각성", "en": "Awakening" },
+    "name": {
+      "ko": "각성",
+      "en": "Awakening"
+    },
     "trigger": "insights.mustWakeUp && endingsReached.length >= 2 && choseAwakening",
     "sequence": [
       {
@@ -546,12 +567,20 @@
         },
         "choices": [
           {
-            "label": { "ko": "눈을 감는다", "en": "Close my eyes" },
+            "label": {
+              "ko": "눈을 감는다",
+              "en": "Close my eyes"
+            },
             "next": "endD_awaken",
-            "effects": { "choseAwakening": true }
+            "effects": {
+              "choseAwakening": true
+            }
           },
           {
-            "label": { "ko": "...아직은 못 한다", "en": "...I can't, not yet" },
+            "label": {
+              "ko": "...아직은 못 한다",
+              "en": "...I can't, not yet"
+            },
             "next": "endA_resignation",
             "note": "엔딩 A로 전환"
           }
@@ -580,7 +609,9 @@
             "These are not my clothes. This is not my bed. And yet — that I am here, in this place, sits in my chest with the familiarity of something I have never, not once, doubted."
           ]
         },
-        "next": "endD_family"
+        "next": "endD_family",
+        "prop": "wristband",
+        "propPosition": "bottom-center"
       },
       {
         "id": "endD_family",
@@ -700,7 +731,9 @@
             "Neither side promises, wholly, to be real."
           ]
         },
-        "next": "endD_zoom"
+        "next": "endD_zoom",
+        "prop": "friend_silhouette",
+        "propPosition": "top-right"
       },
       {
         "id": "endD_zoom",
@@ -762,7 +795,6 @@
       }
     ]
   },
-
   "endingCardTemplate": {
     "structure": {
       "ko": [

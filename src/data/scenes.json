@@ -311,8 +311,8 @@
   "car_1_bag": {
     "id": "car_1_bag",
     "visual": "car_1_wide",
-    "popup": "bag_open",
-    "popupPosition": "top-right",
+    "prop": "bag_open",
+    "propPosition": "bottom-right",
     "car": 1,
     "text": {
       "ko": [
@@ -362,8 +362,6 @@
   "car_1_phone": {
     "id": "car_1_phone",
     "visual": "car_1_wide",
-    "popup": "phone_locked",
-    "popupPosition": "bottom-right",
     "car": 1,
     "text": {
       "ko": [
@@ -431,13 +429,13 @@
       "trigger": "clock_clue_discovered",
       "activatesAfter": "car_2",
       "note": "Once clock clue is discovered, an additional choice appears in car_1 or notes: '핸드폰 잠금을 다시 본다 / 2354를 입력해본다'"
-    }
+    },
+    "prop": "phone_locked",
+    "propPosition": "bottom-right"
   },
   "car_1_phone_unlock_attempt": {
     "id": "car_1_phone_unlock_attempt",
     "visual": "car_1_wide",
-    "popup": "phone_locked",
-    "popupPosition": "bottom-right",
     "car": 1,
     "trigger": "after clock clue + revisit",
     "text": {
@@ -470,13 +468,13 @@
         },
         "returnTo": "car_1"
       }
-    ]
+    ],
+    "prop": "phone_locked",
+    "propPosition": "bottom-right"
   },
   "car_1_phone_unlocked": {
     "id": "car_1_phone_unlocked",
     "visual": "car_1_wide",
-    "popup": "phone_unlocked",
-    "popupPosition": "center",
     "car": 1,
     "text": {
       "ko": [
@@ -501,7 +499,9 @@
         "minRun": 1
       }
     ],
-    "returnTo": "car_1"
+    "returnTo": "car_1",
+    "prop": "phone_unlocked",
+    "propPosition": "center"
   },
   "car_1_window": {
     "id": "car_1_window",
@@ -690,8 +690,6 @@
   "car_2_seat": {
     "id": "car_2_seat",
     "visual": "car_2_seat_close",
-    "popup": "seat_trace",
-    "popupPosition": "center",
     "car": 2,
     "text": {
       "ko": [
@@ -720,7 +718,9 @@
             "...The kind seen at a funeral. Or, perhaps, the kind seen at a bedside visit.",
             "Just similar flowers, probably. I tidy the thought away, the way I always have."
           ]
-        }
+        },
+        "prop": "bouquet",
+        "propPosition": "center"
       },
       "run3": {
         "replace": {
@@ -736,7 +736,9 @@
             "The moment I read the line, something inside me cools. The handwriting — resembles someone else's. Handwriting I have never forgotten.",
             "...Who on earth would leave such a thing with flowers. I ask the question, and at the same moment, an answer surfaces. The answer that has surfaced — I push back down, again."
           ]
-        }
+        },
+        "prop": "card_message",
+        "propPosition": "center"
       },
       "run4": {
         "replace": {
@@ -750,7 +752,9 @@
             "Throughout the car, white flowers on the seats. They were not brought all at once. People with different timing, different hearts, each on a different day, set one down and went.",
             "As though someone had been waited for. As though that someone — was waited for by those who could not, yet, accept that he would not wake."
           ]
-        }
+        },
+        "prop": "bouquet",
+        "propPosition": "center"
       }
     },
     "clueChecks": [
@@ -765,7 +769,9 @@
         "minRun": 2
       }
     ],
-    "returnTo": "car_2"
+    "returnTo": "car_2",
+    "prop": "seat_trace",
+    "propPosition": "center"
   },
   "car_2_clock": {
     "id": "car_2_clock",
@@ -820,13 +826,13 @@
         "minRun": 1
       }
     ],
-    "returnTo": "car_2"
+    "returnTo": "car_2",
+    "prop": "clock_2354",
+    "propPosition": "center"
   },
   "car_2_button": {
     "id": "car_2_button",
     "visual": "emergency_panel",
-    "popup": "emergency_button",
-    "popupPosition": "left",
     "car": 2,
     "text": {
       "ko": [
@@ -870,7 +876,6 @@
   "car_2_button_press": {
     "id": "car_2_button_press",
     "visual": "emergency_panel",
-    "popup": "emergency_button",
     "car": 2,
     "text": {
       "ko": [
@@ -1261,8 +1266,6 @@
   "car_3_seat_check": {
     "id": "car_3_seat_check",
     "visual": "car_3_seat_close",
-    "popup": "torn_paper",
-    "popupPosition": "right",
     "car": 3,
     "text": {
       "ko": [
@@ -1333,7 +1336,9 @@
         "minRun": 1
       }
     ],
-    "returnTo": "car_3"
+    "returnTo": "car_3",
+    "prop": "torn_paper",
+    "propPosition": "center-right"
   },
   "car_3_seat_leave": {
     "id": "car_3_seat_leave",
@@ -1359,8 +1364,6 @@
   "car_3_intercom": {
     "id": "car_3_intercom",
     "visual": "emergency_panel",
-    "popup": "intercom",
-    "popupPosition": "left",
     "car": 3,
     "text": {
       "ko": [
@@ -1899,8 +1902,6 @@
   "car_4_intercom": {
     "id": "car_4_intercom",
     "visual": "car_4_intercom_close",
-    "popup": "intercom",
-    "popupPosition": "left",
     "car": 4,
     "text": {
       "ko": [

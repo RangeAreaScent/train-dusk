@@ -127,6 +127,23 @@ export function getScene(id: string): Scene {
   return s;
 }
 
+/** Resolve which prop to show in this scene at the given run, walking
+ *  variants run2..runN and letting later runs override. */
+export function getSceneProp(
+  scene: Scene,
+  runCount: number,
+): { prop?: string; propPosition?: Scene["propPosition"] } {
+  let prop = scene.prop;
+  let propPosition = scene.propPosition;
+  for (let r = 2; r <= runCount; r++) {
+    const v = scene.variants?.[`run${r}`];
+    if (!v) continue;
+    if (v.prop !== undefined) prop = v.prop;
+    if (v.propPosition !== undefined) propPosition = v.propPosition;
+  }
+  return { prop, propPosition };
+}
+
 export function getSceneText(
   scene: Scene,
   lang: Lang,

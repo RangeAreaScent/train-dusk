@@ -6,6 +6,7 @@ import {
   ENDING_INTROS,
   endingForRun,
   getScene,
+  getSceneProp,
   getSceneText,
   resolveBranches,
 } from "../engine/scenes";
@@ -47,6 +48,10 @@ export function SceneView({ state, setState }: Props) {
   const lines = useMemo(
     () => getSceneText(scene, state.language, state.runCount),
     [scene, state.language, state.runCount],
+  );
+  const propResolved = useMemo(
+    () => getSceneProp(scene, state.runCount),
+    [scene, state.runCount],
   );
 
   const textAreaRef = useRef<HTMLDivElement>(null);
@@ -557,6 +562,8 @@ export function SceneView({ state, setState }: Props) {
               overlayRight={scene.overlayRight}
               insetCutscene={scene.insetCutscene}
               insetPosition={scene.insetPosition}
+              prop={propResolved.prop}
+              propPosition={propResolved.propPosition}
             />
           </motion.div>
         </AnimatePresence>

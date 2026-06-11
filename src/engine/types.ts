@@ -44,6 +44,8 @@ export interface ClueCheck {
 export interface SceneVariant {
   append?: LocalizedLines;
   replace?: LocalizedLines;
+  prop?: string;
+  propPosition?: Scene["propPosition"];
 }
 
 export interface InputField {
@@ -78,6 +80,14 @@ export interface Scene {
   insetCutscene?: string;
   /** Horizontal position of insetCutscene. Defaults to "center". */
   insetPosition?: "left" | "center" | "right";
+  /** Small prop / clue object overlaid on the background — no frame,
+   *  transparent PNG/WebP. Loaded from /assets/overlays/<id>.webp. */
+  prop?: string;
+  /** Position grid for prop. Defaults to "bottom-right". */
+  propPosition?:
+    | "top-left" | "top-center" | "top-right"
+    | "center-left" | "center" | "center-right"
+    | "bottom-left" | "bottom-center" | "bottom-right";
   isEndingCard?: boolean;
   endingId?: EndingId;
   cutsceneNote?: LocalizedText;
