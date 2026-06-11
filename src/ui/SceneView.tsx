@@ -270,6 +270,8 @@ export function SceneView({ state, setState }: Props) {
   const handleVisualClick = () => {
     if (!textDone) {
       setForceTextComplete(true);
+    } else if (!choicesReady) {
+      handleAdvance();
     }
   };
 
