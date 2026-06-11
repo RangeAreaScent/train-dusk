@@ -100,9 +100,12 @@ export function armMusicOnFirstGesture(): void {
   window.addEventListener("keydown", gesture);
   window.addEventListener("touchstart", gesture, { passive: true });
 
-  // Resume after phone call / app switch / screen lock.
+  // Pause when backgrounded, resume when foregrounded.
   document.addEventListener("visibilitychange", () => {
-    if (!document.hidden && enabled && armed) {
+    if (document.hidden) {
+      const el = elements[currentTrack];
+      if (el) el.pause();
+    } else if (enabled && armed) {
       tryPlay(currentTrack);
     }
   });

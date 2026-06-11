@@ -12,6 +12,8 @@ interface Props {
   showNextIndicator?: boolean;
   /** Render the text centered (used by the title screen). */
   centered?: boolean;
+  /** When set to true, immediately reveal all remaining characters. */
+  forceComplete?: boolean;
   onComplete?: () => void;
   onAdvance?: () => void;
 }
@@ -24,6 +26,7 @@ export function TypedText({
   resetKey,
   showNextIndicator,
   centered,
+  forceComplete,
   onComplete,
   onAdvance,
 }: Props) {
@@ -34,6 +37,10 @@ export function TypedText({
   useEffect(() => {
     setShown(0);
   }, [resetKey]);
+
+  useEffect(() => {
+    if (forceComplete && shown < fullText.length) setShown(fullText.length);
+  }, [forceComplete, shown, fullText.length]);
 
   useEffect(() => {
     if (shown >= fullText.length) {

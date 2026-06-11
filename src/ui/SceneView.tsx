@@ -55,6 +55,7 @@ export function SceneView({ state, setState }: Props) {
   const [pages, setPages] = useState<string[][]>([lines]);
   const [pageIndex, setPageIndex] = useState(0);
   const [textDone, setTextDone] = useState(false);
+  const [forceTextComplete, setForceTextComplete] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [notesOpen, setNotesOpen] = useState(false);
   const [choicesReady, setChoicesReady] = useState(false);
@@ -64,11 +65,13 @@ export function SceneView({ state, setState }: Props) {
 
   // Mark scene viewed + reset paging + collect clues on scene change.
   useEffect(() => {
+    const alreadySeen = state.viewedScenes.includes(scene.id);
     setPageIndex(0);
-    setTextDone(false);
+    setTextDone(alreadySeen);
+    setForceTextComplete(alreadySeen);
     setInputValue("");
     setNotesOpen(false);
-    setChoicesReady(false);
+    setChoicesReady(alreadySeen);
     setPopupHidden(false);
     setState(applyClueChecks(markSceneViewed(state, scene.id), scene));
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -258,8 +261,15 @@ export function SceneView({ state, setState }: Props) {
     if (hasMore) {
       setPageIndex((i) => i + 1);
       setTextDone(false);
+      setForceTextComplete(false);
     } else if (!choicesReady) {
       setChoicesReady(true);
+    }
+  };
+
+  const handleVisualClick = () => {
+    if (!textDone) {
+      setForceTextComplete(true);
     }
   };
 
@@ -543,6 +553,7 @@ export function SceneView({ state, setState }: Props) {
             exit={{ opacity: 0 }}
             transition={{ duration: fadeDuration }}
             className="h-full w-full"
+            onClick={handleVisualClick}
           >
             <VisualArea
               visualKey={scene.visual}
@@ -601,6 +612,7 @@ export function SceneView({ state, setState }: Props) {
               resetKey={`${scene.id}:${safeIndex}`}
               showNextIndicator={showAdvanceChevron}
               centered={scene.id === "title_screen"}
+              forceComplete={forceTextComplete}
               onComplete={() => setTextDone(true)}
               onAdvance={handleAdvance}
             />
@@ -726,7 +738,7 @@ function SettingsPanel({
 
   return (
     <div className="h-full flex flex-col py-1">
-      <div className="flex-1 min-h-0 overflow-y-auto flex flex-col gap-5 pt-1 pb-2">
+      <div className="flex-1 min-h-0 overflow-y-scroll flex flex-col gap-5 pt-1 pb-2">
         {rows.map((row) => (
           <div key={row.label} className="flex items-baseline gap-0">
             <span className="text-[11px] font-mono text-neutral-500 w-16 shrink-0">

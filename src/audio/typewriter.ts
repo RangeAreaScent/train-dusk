@@ -74,27 +74,44 @@ export function playKeyClick(): void {
 
   const now = c.currentTime;
 
-  const source = c.createBufferSource();
-  source.buffer = noiseBuffer;
-  // Slight pitch variation so it doesn't feel mechanical/looped.
-  source.playbackRate.value = 0.85 + Math.random() * 0.35;
+  // ── Body thud: triangle oscillator with fast pitch drop ───────────────
+  // Gives a warm, rounded "thock" — like a quiet mechanical switch.
+  const osc = c.createOscillator();
+  osc.type = "triangle";
+  osc.frequency.setValueAtTime(95 + Math.random() * 20, now);
+  osc.frequency.exponentialRampToValueAtTime(52, now + 0.022);
 
-  const filter = c.createBiquadFilter();
-  filter.type = "lowpass";
-  filter.frequency.value = 900 + Math.random() * 300;
-  filter.Q.value = 0.8;
+  const oscGain = c.createGain();
+  oscGain.gain.setValueAtTime(0, now);
+  oscGain.gain.linearRampToValueAtTime(0.26, now + 0.001);
+  oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.038);
 
-  const gain = c.createGain();
-  gain.gain.setValueAtTime(0, now);
-  gain.gain.linearRampToValueAtTime(0.22, now + 0.002);
-  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.04);
+  osc.connect(oscGain);
+  oscGain.connect(c.destination);
+  osc.start(now);
+  osc.stop(now + 0.045);
 
-  source.connect(filter);
-  filter.connect(gain);
-  gain.connect(c.destination);
+  // ── Soft transient: very brief mid-freq noise, barely audible ─────────
+  // Adds a tiny sense of "contact" without sharpness.
+  const click = c.createBufferSource();
+  click.buffer = noiseBuffer;
+  click.playbackRate.value = 1.0 + Math.random() * 0.15;
 
-  source.start(now);
-  source.stop(now + 0.05);
+  const clickFilter = c.createBiquadFilter();
+  clickFilter.type = "bandpass";
+  clickFilter.frequency.value = 1800 + Math.random() * 500;
+  clickFilter.Q.value = 2.5;
+
+  const clickGain = c.createGain();
+  clickGain.gain.setValueAtTime(0, now);
+  clickGain.gain.linearRampToValueAtTime(0.045, now + 0.0005);
+  clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.009);
+
+  click.connect(clickFilter);
+  clickFilter.connect(clickGain);
+  clickGain.connect(c.destination);
+  click.start(now);
+  click.stop(now + 0.012);
 }
 
 // Auto-resume on first user gesture (browser autoplay policy).

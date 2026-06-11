@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import type { ConnectResult, GameState, Lang } from "../engine/types";
 import {
   collectedClueIds,
@@ -26,24 +27,22 @@ const T = (lang: Lang, ko: string, en: string) => (lang === "ko" ? ko : en);
 
 export function NotesPanel({ state, lang, onConnect, onClose }: Props) {
   const [selected, setSelected] = useState<string | null>(null);
-  const [feedback, setFeedback] = useState<ConnectResult | null>(null);
+  const [popup, setPopup] = useState<{ text: string; kind: "valid" | "invalid" } | null>(null);
+
+  useEffect(() => {
+    if (!popup) return;
+    const id = setTimeout(() => setPopup(null), 2400);
+    return () => clearTimeout(id);
+  }, [popup]);
 
   const clues: Card[] = collectedClueIds(state).map((id) => {
     const def = getClueDef(id);
-    return {
-      id,
-      kind: "clue",
-      label: def ? def.name[lang] : id,
-    };
+    return { id, kind: "clue", label: def ? def.name[lang] : id };
   });
 
   const insights: Card[] = unlockedInsightIds(state).map((id) => {
     const def = getInsightDef(id);
-    return {
-      id,
-      kind: "insight",
-      label: def ? def.text[lang] : id,
-    };
+    return { id, kind: "insight", label: def ? def.text[lang] : id };
   });
 
   const handleCard = (id: string) => {
@@ -53,11 +52,14 @@ export function NotesPanel({ state, lang, onConnect, onClose }: Props) {
     }
     if (!selected) {
       setSelected(id);
-      setFeedback(null);
       return;
     }
     const result = onConnect(selected, id);
-    setFeedback(result);
+    if (result.kind === "valid" && result.insightText) {
+      setPopup({ text: `◇ ${result.insightText[lang]}`, kind: "valid" });
+    } else if (result.kind === "invalid" && result.message) {
+      setPopup({ text: result.message, kind: "invalid" });
+    }
     setSelected(null);
   };
 
@@ -68,7 +70,7 @@ export function NotesPanel({ state, lang, onConnect, onClose }: Props) {
         key={c.id}
         type="button"
         onClick={() => handleCard(c.id)}
-        className={`text-left font-serif text-sm leading-snug px-2 py-2 border border-black bg-white transition-all ${
+        className={`text-left font-serif text-sm leading-snug px-2.5 py-2.5 border border-black bg-white transition-all ${
           isSelected
             ? "border-[3px] -translate-y-0.5 shadow-[2px_2px_0_#000]"
             : "hover:-translate-y-0.5 hover:shadow-[2px_2px_0_#000]"
@@ -81,9 +83,9 @@ export function NotesPanel({ state, lang, onConnect, onClose }: Props) {
   };
 
   return (
-    <div className="absolute inset-0 bg-white text-black p-4 flex flex-col z-10">
-      <div className="flex items-center justify-between mb-3">
-        <div className="font-serif text-2xl">
+    <div className="absolute inset-0 bg-white text-black flex flex-col z-10">
+      <div className="flex items-center justify-between px-4 pt-3 pb-2 shrink-0">
+        <div className="font-serif text-xl">
           {T(lang, "노트", "Notes")}
         </div>
         <button
@@ -95,58 +97,61 @@ export function NotesPanel({ state, lang, onConnect, onClose }: Props) {
         </button>
       </div>
 
-      <div className="min-h-[44px] mb-3 text-sm leading-snug text-center">
-        {feedback?.kind === "valid" && feedback.insightText && (
-          <div className="font-serif text-black animate-pulse">
-            ◇ {feedback.insightText[lang]}
-          </div>
-        )}
-        {feedback?.kind === "invalid" && (
-          <div className="font-serif text-black/60">{feedback.message}</div>
-        )}
-        {!feedback && selected && (
-          <div className="font-serif text-black/50">
-            {T(lang, "다음 카드를 선택…", "Pick a second card…")}
-          </div>
-        )}
-        {!feedback && !selected && (
-          <div className="font-serif text-black/40">
-            {T(
-              lang,
-              "두 카드를 골라 이어보세요.",
-              "Tap two cards to connect them.",
-            )}
-          </div>
-        )}
-      </div>
-
-      <div className="flex-1 overflow-y-auto pr-1 space-y-4">
+      <div className="flex-1 min-h-0 overflow-y-scroll px-4 pb-4 space-y-4">
         <section>
-          <div className="text-xs tracking-widest text-black/60 mb-2">
+          <div className="text-xs tracking-widest text-black/50 mb-2">
             {T(lang, "본 것들", "Things I've Seen")}
           </div>
           {clues.length === 0 ? (
-            <div className="text-sm text-black/40">
-              {T(lang, "아직 없음.", "Nothing yet.")}
-            </div>
+            <div className="text-sm text-black/40">{T(lang, "아직 없음.", "Nothing yet.")}</div>
           ) : (
             <div className="grid grid-cols-2 gap-2">{clues.map(renderCard)}</div>
           )}
         </section>
 
         <section>
-          <div className="text-xs tracking-widest text-black/60 mb-2">
+          <div className="text-xs tracking-widest text-black/50 mb-2">
             {T(lang, "떠오르는 생각", "Thoughts That Surface")}
           </div>
           {insights.length === 0 ? (
-            <div className="text-sm text-black/40">
-              {T(lang, "아직 없음.", "Nothing yet.")}
-            </div>
+            <div className="text-sm text-black/40">{T(lang, "아직 없음.", "Nothing yet.")}</div>
           ) : (
             <div className="grid grid-cols-1 gap-2">{insights.map(renderCard)}</div>
           )}
         </section>
       </div>
+
+      {/* Connection hint — only while a card is selected */}
+      <AnimatePresence>
+        {selected && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="shrink-0 text-center text-xs font-serif text-black/40 pb-2"
+          >
+            {T(lang, "다음 카드를 선택…", "Pick a second card…")}
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Floating popup for connection result */}
+      <AnimatePresence>
+        {popup && (
+          <motion.div
+            key={popup.text}
+            initial={{ opacity: 0, y: 6 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 4 }}
+            transition={{ duration: 0.18 }}
+            className={`absolute bottom-8 left-1/2 -translate-x-1/2 px-4 py-2 text-sm font-serif text-center border shadow-lg max-w-[85%] z-20 bg-white ${
+              popup.kind === "valid" ? "border-black text-black" : "border-black/30 text-black/60"
+            }`}
+          >
+            {popup.text}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

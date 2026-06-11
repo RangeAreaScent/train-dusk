@@ -82,7 +82,7 @@ export function GameFrame({
           <div
             className="h-full w-full rounded-md overflow-hidden bg-black border-2 border-black"
             style={{
-              boxShadow: "inset 0 2px 6px rgba(0,0,0,0.8)",
+              boxShadow: "inset 0 2px 6px rgba(0,0,0,0.4)",
             }}
           >
             {visual}
@@ -91,55 +91,33 @@ export function GameFrame({
 
         {/* HINGE */}
         <div
-          className="relative px-4 py-2 flex items-center gap-3"
+          className="relative px-4 py-2 flex items-center"
           style={{
             background: hingeBg,
             boxShadow:
               "inset 0 1px 2px rgba(0,0,0,0.7), inset 0 -1px 0 rgba(255,255,255,0.04)",
           }}
         >
-          <div className="flex gap-[3px] mr-1">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-[3px] h-[3px] rounded-full"
-                style={{
-                  background: shellTheme === "gray" ? "#5a5950" : "#2e2e34",
-                }}
-              />
-            ))}
-          </div>
-
-          <ShellButton
-            label={notesLabel}
-            enabled={notesEnabled}
-            shellTheme={shellTheme}
-            onClick={onOpenNotes}
-          />
-          <ShellButton
-            label={settingsLabel}
-            enabled={!!onOpenSettings}
-            shellTheme={shellTheme}
-            onClick={onOpenSettings}
-          />
-
           <div
-            className="ml-auto text-[9px] font-mono tracking-[0.4em] select-none"
+            className="text-[9px] font-mono tracking-[0.4em] select-none"
             style={{ color: shellTheme === "gray" ? "#5a3a4a" : "#666670" }}
           >
             TRAIN · DUSK
           </div>
 
-          <div className="flex gap-[3px] ml-1">
-            {Array.from({ length: 5 }).map((_, i) => (
-              <div
-                key={i}
-                className="w-[3px] h-[3px] rounded-full"
-                style={{
-                  background: shellTheme === "gray" ? "#5a5950" : "#2e2e34",
-                }}
-              />
-            ))}
+          <div className="ml-auto flex gap-2">
+            <ShellButton
+              label={notesLabel}
+              enabled={notesEnabled}
+              shellTheme={shellTheme}
+              onClick={onOpenNotes}
+            />
+            <ShellButton
+              label={settingsLabel}
+              enabled={!!onOpenSettings}
+              shellTheme={shellTheme}
+              onClick={onOpenSettings}
+            />
           </div>
         </div>
 
@@ -180,7 +158,7 @@ function ShellButton({
         type="button"
         disabled={!enabled}
         onClick={onClick}
-        className={`px-2.5 py-0.5 text-[11px] font-mono rounded-full border transition-all ${
+        className={`w-14 py-0.5 text-[11px] font-mono rounded-full border transition-all text-center ${
           enabled
             ? "text-white cursor-pointer active:translate-y-[1px]"
             : "opacity-40 cursor-not-allowed text-white/70"
@@ -204,7 +182,7 @@ function ShellButton({
       type="button"
       disabled={!enabled}
       onClick={onClick}
-      className={`px-2 py-0.5 text-[11px] font-mono rounded border transition-colors ${
+      className={`w-14 py-0.5 text-[11px] font-mono rounded border transition-colors text-center ${
         enabled
           ? "border-neutral-600 bg-neutral-800 text-neutral-200 hover:bg-neutral-700 hover:text-white cursor-pointer active:translate-y-[1px]"
           : "border-neutral-700 bg-neutral-900 text-neutral-600 opacity-50 cursor-not-allowed"

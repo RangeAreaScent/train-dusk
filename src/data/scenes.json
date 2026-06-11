@@ -505,7 +505,7 @@
   },
   "car_1_window": {
     "id": "car_1_window",
-    "visual": "window_dark",
+    "visual": "window_reflection",
     "car": 1,
     "text": {
       "ko": [
