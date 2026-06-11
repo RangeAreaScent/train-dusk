@@ -71,7 +71,7 @@ export function SceneView({ state, setState }: Props) {
     setForceTextComplete(alreadySeen);
     setInputValue("");
     setNotesOpen(false);
-    setChoicesReady(alreadySeen);
+    setChoicesReady(false);
     setPopupHidden(false);
     setState(applyClueChecks(markSceneViewed(state, scene.id), scene));
     // eslint-disable-next-line react-hooks/exhaustive-deps
