@@ -824,7 +824,7 @@
   },
   "car_2_button": {
     "id": "car_2_button",
-    "visual": "car_2_button_close",
+    "visual": "emergency_panel",
     "popup": "emergency_button",
     "popupPosition": "left",
     "car": 2,
@@ -869,7 +869,7 @@
   },
   "car_2_button_press": {
     "id": "car_2_button_press",
-    "visual": "car_2_button_close",
+    "visual": "emergency_panel",
     "popup": "emergency_button",
     "car": 2,
     "text": {
@@ -1358,7 +1358,7 @@
   },
   "car_3_intercom": {
     "id": "car_3_intercom",
-    "visual": "car_3_intercom_close",
+    "visual": "emergency_panel",
     "popup": "intercom",
     "popupPosition": "left",
     "car": 3,
