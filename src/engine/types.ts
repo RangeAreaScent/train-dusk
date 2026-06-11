@@ -74,7 +74,7 @@ export interface Scene {
   isCutscene?: boolean;
   /** Cutscene image floated as a polaroid over the background instead of
    *  replacing it. Background + overlays remain visible. Loaded from
-   *  /assets/cutscenes/<id>.png. */
+   *  /assets/cutscenes/<id>.webp. */
   insetCutscene?: string;
   /** Horizontal position of insetCutscene. Defaults to "center". */
   insetPosition?: "left" | "center" | "right";

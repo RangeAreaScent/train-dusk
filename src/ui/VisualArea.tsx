@@ -1,16 +1,16 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 
 interface Props {
-  /** Primary scene-visual id. Looked up under /assets/visuals/<id>.png */
+  /** Primary scene-visual id. Looked up under /assets/visuals/<id>.webp */
   visualKey?: string;
   /** Optional fallback id(s) to try in order if the primary is missing.
    *  Lets endings reuse car_5 variants and passages share one image. */
   fallback?: string | string[];
-  /** Popup icon id — /assets/popups/<id>.png */
+  /** Popup icon id — /assets/popups/<id>.webp */
   popup?: string;
   /** If true, look under /assets/cutscenes/ instead. */
   cutscene?: boolean;
-  /** Character sprite id — /assets/characters/<id>.png, rendered over background. */
+  /** Character sprite id — /assets/characters/<id>.webp, rendered over background. */
   overlay?: string;
   /** Two-character layout: left and right sprites. */
   overlayLeft?: string;
@@ -78,21 +78,21 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
     if (visualKey) ids.push(visualKey);
     if (Array.isArray(fallback)) ids.push(...fallback);
     else if (fallback) ids.push(fallback);
-    return ids.map((id) => `/assets/${folder}/${id}.png`);
+    return ids.map((id) => `/assets/${folder}/${id}.webp`);
   }, [visualKey, fallback, folder]);
 
   const { src: visualSrc, state: visualState } = useFirstAvailable(chain);
-  const popupSrc = popup ? `/assets/popups/${popup}.png` : null;
+  const popupSrc = popup ? `/assets/popups/${popup}.webp` : null;
   const { src: popupResolved, state: popupState } = useFirstAvailable(
     popupSrc ? [popupSrc] : [],
   );
-  const overlaySrc = overlay ? `/assets/characters/${overlay}.png` : null;
+  const overlaySrc = overlay ? `/assets/characters/${overlay}.webp` : null;
   const { src: overlayResolved } = useFirstAvailable(overlaySrc ? [overlaySrc] : []);
-  const overlayLeftSrc = overlayLeft ? `/assets/characters/${overlayLeft}.png` : null;
+  const overlayLeftSrc = overlayLeft ? `/assets/characters/${overlayLeft}.webp` : null;
   const { src: overlayLeftResolved } = useFirstAvailable(overlayLeftSrc ? [overlayLeftSrc] : []);
-  const overlayRightSrc = overlayRight ? `/assets/characters/${overlayRight}.png` : null;
+  const overlayRightSrc = overlayRight ? `/assets/characters/${overlayRight}.webp` : null;
   const { src: overlayRightResolved } = useFirstAvailable(overlayRightSrc ? [overlayRightSrc] : []);
-  const insetSrc = insetCutscene ? `/assets/cutscenes/${insetCutscene}.png` : null;
+  const insetSrc = insetCutscene ? `/assets/cutscenes/${insetCutscene}.webp` : null;
   const { src: insetResolved, state: insetState } = useFirstAvailable(insetSrc ? [insetSrc] : []);
 
   return (
