@@ -32,7 +32,7 @@ import { VisualArea } from "./VisualArea";
 import { TypedText } from "./TypedText";
 import { Choices } from "./Choices";
 import { NameInputField } from "./NameInputField";
-import { EndingCard } from "./EndingCard";
+import { EndingCardActions, EndingCardPage } from "./EndingCard";
 import { NotesPanel } from "./NotesPanel";
 import { clearURLParams, pushEndingURL } from "../platform/share";
 
@@ -62,6 +62,8 @@ export function SceneView({ state, setState }: Props) {
   /** When true, the choices popup is temporarily hidden so the player
    *  can re-read the text behind it. Tapping the text area toggles it. */
   const [popupHidden, setPopupHidden] = useState(false);
+  /** Ref to the ending card page in the visual area, so PNG export can capture it. */
+  const endingCardRef = useRef<HTMLDivElement>(null);
 
   // Mark scene viewed + reset paging + collect clues on scene change.
   useEffect(() => {
@@ -462,17 +464,12 @@ export function SceneView({ state, setState }: Props) {
     );
   }
 
-  // Ending card visual fallback chain — reuse existing car_5 variants
-  // when a dedicated ending_X.png isn't drawn yet.
-  const ENDING_FALLBACK: Record<string, string[]> = {
-    A: ["car_5_with_people", "car_5_default"],
-    B: ["car_5_with_friend", "car_5_default"],
-    C: ["car_5_default"],
-    D: ["car_5_quiet", "car_5_default"],
-  };
-
   // ─── Ending card branch ──────────────────────────────────────────────
   if (scene.isEndingCard && scene.endingId) {
+    const meta = {
+      runCount: state.runCount,
+      endingsReached: state.endingsReached,
+    };
     return (
       <GameFrame
         visual={
@@ -485,9 +482,12 @@ export function SceneView({ state, setState }: Props) {
               transition={{ duration: 0.6 }}
               className="h-full w-full"
             >
-              <VisualArea
-                visualKey={`ending_${scene.endingId}`}
-                fallback={ENDING_FALLBACK[scene.endingId]}
+              <EndingCardPage
+                ref={endingCardRef}
+                endingId={scene.endingId}
+                meta={meta}
+                lang={state.language}
+                paperTheme={state.paperTheme}
               />
             </motion.div>
           </AnimatePresence>
@@ -497,29 +497,20 @@ export function SceneView({ state, setState }: Props) {
         shellTheme={state.shellTheme}
         paperTheme={state.paperTheme}
         body={
-          <AnimatePresence mode="wait" initial={false}>
-            <motion.div
-              key={`b:${scene.id}`}
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.6 }}
-              className="h-full w-full"
-            >
-              <EndingCard
+          <div className="relative h-full w-full">
+            <ChoicesPopup paperTheme={state.paperTheme}>
+              <EndingCardActions
                 endingId={scene.endingId}
-                meta={{
-                  runCount: state.runCount,
-                  endingsReached: state.endingsReached,
-                }}
+                meta={meta}
                 state={state}
                 lang={state.language}
                 paperTheme={state.paperTheme}
+                pageRef={endingCardRef}
                 onRestart={handleRestart}
                 onMainMenu={handleMainMenu}
               />
-            </motion.div>
-          </AnimatePresence>
+            </ChoicesPopup>
+          </div>
         }
       />
     );

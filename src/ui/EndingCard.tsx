@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { forwardRef, useState, type RefObject } from "react";
 import type { EndingId, GameState, Lang, MetaSave, PaperTheme } from "../engine/types";
 import { getEndingDef } from "../engine/scenes";
 import {
@@ -6,16 +6,6 @@ import {
   copyToClipboard,
   exportElementToPng,
 } from "../platform/share";
-
-interface Props {
-  endingId: EndingId;
-  meta: MetaSave;
-  state: GameState;
-  lang: Lang;
-  paperTheme?: PaperTheme;
-  onRestart: () => void;
-  onMainMenu: () => void;
-}
 
 const PAPER_BG: Record<PaperTheme, string> = {
   white: "#ffffff",
@@ -41,28 +31,94 @@ function restartLabel(endingId: EndingId, lang: Lang): string {
   return lang === "ko" ? ko[endingId] : en[endingId];
 }
 
-export function EndingCard({
+// ─── Page (rendered in the visual area, like a book page) ──────────────────
+
+interface PageProps {
+  endingId: EndingId;
+  meta: MetaSave;
+  lang: Lang;
+  paperTheme?: PaperTheme;
+}
+
+export const EndingCardPage = forwardRef<HTMLDivElement, PageProps>(
+  function EndingCardPage({ endingId, meta, lang, paperTheme = "white" }, ref) {
+    const paperBg = PAPER_BG[paperTheme];
+    const def = getEndingDef(endingId);
+    const name = def ? def.name[lang] : endingId;
+
+    const endingsLabel =
+      meta.endingsReached.length > 0 ? meta.endingsReached.join(" ") : endingId;
+
+    const isComplete = ["A", "B", "C", "D"].every((id) =>
+      meta.endingsReached.includes(id as EndingId),
+    );
+
+    const T = (ko: string, en: string) => (lang === "ko" ? ko : en);
+
+    return (
+      <div
+        ref={ref}
+        className="flex h-full w-full flex-col items-center justify-center text-center px-6"
+        style={{ backgroundColor: paperBg }}
+      >
+        <div className="text-black/70 tracking-widest text-sm">─────────</div>
+        <div className="mt-3 font-serif text-4xl text-black">{name}</div>
+        <div className="mt-3 text-black/70 tracking-widest text-sm">
+          ─────────
+        </div>
+        <div className="mt-6 text-black/80 text-xl tracking-widest">
+          ◇  ◇  ◇
+        </div>
+        <div className="mt-6 text-black/60 text-sm tracking-widest">
+          ─ Train Dusk ─
+        </div>
+
+        <div className="mt-8 text-black/60 text-sm space-y-1">
+          <div>
+            {T(`─ 회차: ${meta.runCount} ─`, `─ Run: ${meta.runCount} ─`)}
+          </div>
+          <div>
+            {T(
+              `─ 도달한 엔딩: ${endingsLabel} ─`,
+              `─ Endings: ${endingsLabel} ─`,
+            )}
+          </div>
+          {isComplete && (
+            <div className="mt-1 text-black/80">
+              {T("─ 모든 엔딩을 보았습니다. ─", "─ All endings reached. ─")}
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  },
+);
+
+// ─── Actions (rendered in the dialog/choices popup) ────────────────────────
+
+interface ActionsProps {
+  endingId: EndingId;
+  meta: MetaSave;
+  state: GameState;
+  lang: Lang;
+  paperTheme?: PaperTheme;
+  pageRef: RefObject<HTMLDivElement | null>;
+  onRestart: () => void;
+  onMainMenu: () => void;
+}
+
+export function EndingCardActions({
   endingId,
   meta,
   lang,
   paperTheme = "white",
+  pageRef,
   onRestart,
   onMainMenu,
-}: Props) {
+}: ActionsProps) {
   const paperBg = PAPER_BG[paperTheme];
-  const def = getEndingDef(endingId);
-  const name = def ? def.name[lang] : endingId;
-
-  const endingsLabel =
-    meta.endingsReached.length > 0 ? meta.endingsReached.join(" ") : endingId;
-
-  const isComplete = ["A", "B", "C", "D"].every((id) =>
-    meta.endingsReached.includes(id as EndingId),
-  );
-
   const T = (ko: string, en: string) => (lang === "ko" ? ko : en);
 
-  const cardRef = useRef<HTMLDivElement>(null);
   const [toast, setToast] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
 
@@ -72,11 +128,11 @@ export function EndingCard({
   };
 
   const handleSavePNG = async () => {
-    if (!cardRef.current || busy) return;
+    if (!pageRef.current || busy) return;
     setBusy(true);
     try {
       const filename = `train-dusk_${endingId}_run${meta.runCount}.png`;
-      await exportElementToPng(cardRef.current, filename, paperBg);
+      await exportElementToPng(pageRef.current, filename, paperBg);
       flash(T("저장됨", "Saved"));
     } catch (e) {
       console.error(e);
@@ -94,78 +150,41 @@ export function EndingCard({
   };
 
   return (
-    <div className="flex h-full flex-col items-center justify-between overflow-y-auto">
-      <div
-        ref={cardRef}
-        className="flex flex-col items-center text-center w-full pt-2"
-        style={{ backgroundColor: paperBg }}
+    <div className="space-y-1">
+      {endingId !== "D" && (
+        <button
+          type="button"
+          className="choice-press block text-left font-serif text-xl text-black cursor-pointer"
+          onClick={onRestart}
+        >
+          ▸ {restartLabel(endingId, lang)}
+        </button>
+      )}
+      <button
+        type="button"
+        className="choice-press block text-left font-serif text-xl text-black cursor-pointer"
+        onClick={onMainMenu}
       >
-        <div className="text-black/70 tracking-widest text-sm">─────────</div>
-        <div className="mt-3 font-serif text-3xl text-black">{name}</div>
-        <div className="mt-3 text-black/70 tracking-widest text-sm">
-          ─────────
-        </div>
-        <div className="mt-5 text-black/80 text-xl tracking-widest">
-          ◇  ◇  ◇
-        </div>
-        <div className="mt-5 text-black/60 text-sm tracking-widest">
-          ─ Train Dusk ─
-        </div>
-      </div>
-
-      <div className="w-full text-center text-black/60 text-sm mt-3 space-y-1">
-        <div>
-          {T(`─ 회차: ${meta.runCount} ─`, `─ Run: ${meta.runCount} ─`)}
-        </div>
-        <div>
-          {T(
-            `─ 도달한 엔딩: ${endingsLabel} ─`,
-            `─ Endings: ${endingsLabel} ─`,
-          )}
-        </div>
-        {isComplete && (
-          <div className="mt-1 text-black/80">
-            {T("─ 모든 엔딩을 보았습니다. ─", "─ All endings reached. ─")}
-          </div>
-        )}
-        {toast && (
-          <div className="mt-1 text-black animate-pulse">— {toast} —</div>
-        )}
-      </div>
-
-      <div className="w-full mt-3 pb-2 flex flex-col items-center gap-1 text-lg">
-        {endingId !== "D" && (
-          <button
-            type="button"
-            className="font-serif text-black cursor-pointer hover:opacity-70"
-            onClick={onRestart}
-          >
-            ▸ {restartLabel(endingId, lang)}
-          </button>
-        )}
-        <button
-          type="button"
-          className="font-serif text-black cursor-pointer hover:opacity-70"
-          onClick={onMainMenu}
-        >
-          ▸ {endingId === "D" ? T("처음으로", "To the Beginning") : T("메인 화면", "Main Menu")}
-        </button>
-        <button
-          type="button"
-          disabled={busy}
-          className="font-serif text-black/80 cursor-pointer hover:opacity-70 disabled:opacity-40"
-          onClick={handleSavePNG}
-        >
-          ▸ {T("PNG 저장", "Save as PNG")}
-        </button>
-        <button
-          type="button"
-          className="font-serif text-black/80 cursor-pointer hover:opacity-70"
-          onClick={handleCopyURL}
-        >
-          ▸ {T("URL 복사", "Copy URL")}
-        </button>
-      </div>
+        ▸ {endingId === "D" ? T("처음으로", "To the Beginning") : T("메인 화면", "Main Menu")}
+      </button>
+      <button
+        type="button"
+        disabled={busy}
+        className="choice-press block text-left font-serif text-xl text-black/70 cursor-pointer disabled:opacity-40"
+        onClick={handleSavePNG}
+      >
+        ▸ {T("PNG 저장", "Save as PNG")}
+      </button>
+      <button
+        type="button"
+        className="choice-press block text-left font-serif text-xl text-black/70 cursor-pointer"
+        onClick={handleCopyURL}
+      >
+        ▸ {T("URL 복사", "Copy URL")}
+      </button>
+      {toast && (
+        <div className="pt-1 text-sm text-black animate-pulse">— {toast} —</div>
+      )}
     </div>
   );
 }
