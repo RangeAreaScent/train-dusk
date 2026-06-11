@@ -72,6 +72,12 @@ export interface Scene {
   trigger?: string;
   puzzleHook?: unknown;
   isCutscene?: boolean;
+  /** Cutscene image floated as a polaroid over the background instead of
+   *  replacing it. Background + overlays remain visible. Loaded from
+   *  /assets/cutscenes/<id>.png. */
+  insetCutscene?: string;
+  /** Horizontal position of insetCutscene. Defaults to "center". */
+  insetPosition?: "left" | "center" | "right";
   isEndingCard?: boolean;
   endingId?: EndingId;
   cutsceneNote?: LocalizedText;

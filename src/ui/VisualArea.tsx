@@ -15,6 +15,9 @@ interface Props {
   /** Two-character layout: left and right sprites. */
   overlayLeft?: string;
   overlayRight?: string;
+  /** Cutscene image floated as a polaroid panel over the background. */
+  insetCutscene?: string;
+  insetPosition?: "left" | "center" | "right";
 }
 
 type ImgState = "loading" | "ok" | "missing";
@@ -66,7 +69,7 @@ const PROCEDURAL_VISUALS: Record<string, React.FC> = {
   cutscene_faded_photo: FadedPhoto,
 };
 
-export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight }: Props) {
+export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight, insetCutscene, insetPosition = "center" }: Props) {
   const ProceduralComp = visualKey ? PROCEDURAL_VISUALS[visualKey] : undefined;
 
   const folder = cutscene ? "cutscenes" : "visuals";
@@ -89,6 +92,8 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
   const { src: overlayLeftResolved } = useFirstAvailable(overlayLeftSrc ? [overlayLeftSrc] : []);
   const overlayRightSrc = overlayRight ? `/assets/characters/${overlayRight}.png` : null;
   const { src: overlayRightResolved } = useFirstAvailable(overlayRightSrc ? [overlayRightSrc] : []);
+  const insetSrc = insetCutscene ? `/assets/cutscenes/${insetCutscene}.png` : null;
+  const { src: insetResolved, state: insetState } = useFirstAvailable(insetSrc ? [insetSrc] : []);
 
   return (
     <div className="relative h-full w-full bg-neutral-900 overflow-hidden">
@@ -129,6 +134,35 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
           className="absolute bottom-0 right-0 h-[85%] w-auto object-contain pointer-events-none"
           style={{ imageRendering: "pixelated" }}
         />
+      )}
+
+      {insetCutscene && (
+        <div
+          className={`absolute top-1/2 -translate-y-1/2 ${
+            insetPosition === "left"
+              ? "left-[6%]"
+              : insetPosition === "right"
+                ? "right-[6%]"
+                : "left-1/2 -translate-x-1/2"
+          } pointer-events-none`}
+          style={{ width: "45%", aspectRatio: "4/3" }}
+        >
+          {insetResolved && insetState === "ok" ? (
+            <img
+              src={insetResolved}
+              alt=""
+              className="h-full w-full object-contain bg-white p-2"
+              style={{
+                imageRendering: "pixelated",
+                boxShadow: "6px 6px 0 rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.5)",
+              }}
+            />
+          ) : (
+            <div className="h-full w-full border-2 border-black bg-white/90 flex items-center justify-center text-xs font-mono text-black/60">
+              {insetCutscene}
+            </div>
+          )}
+        </div>
       )}
 
       {popup && (

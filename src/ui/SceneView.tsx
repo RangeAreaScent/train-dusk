@@ -555,6 +555,8 @@ export function SceneView({ state, setState }: Props) {
               overlay={scene.overlay}
               overlayLeft={scene.overlayLeft}
               overlayRight={scene.overlayRight}
+              insetCutscene={scene.insetCutscene}
+              insetPosition={scene.insetPosition}
             />
           </motion.div>
         </AnimatePresence>
