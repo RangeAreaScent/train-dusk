@@ -66,7 +66,7 @@ function useFirstAvailable(srcs: string[]): { src: string | null; state: ImgStat
 }
 
 const PROCEDURAL_VISUALS: Record<string, React.FC> = {
-  cutscene_faded_photo: FadedPhoto,
+  faded_photo: FadedPhoto,
 };
 
 export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight, insetCutscene, insetPosition = "center" }: Props) {

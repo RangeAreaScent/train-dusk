@@ -75,7 +75,7 @@
         "id": "endA_phones",
         "visual": "car_5_with_people",
         "overlay": "protagonist_standing",
-        "insetCutscene": "cutscene_phones",
+        "insetCutscene": "phones",
         "insetPosition": "center",
         "text": {
           "ko": [
@@ -226,8 +226,7 @@
       },
       {
         "id": "endB_photo",
-        "visual": "cutscene_faded_photo",
-        "isCutscene": true,
+        "visual": "faded_photo",
         "text": {
           "ko": [
             "그녀가 내 가방에 손을 넣는다. 망설임 없이. 마치 자기 가방인 것처럼.",
@@ -446,7 +445,7 @@
       {
         "id": "endC_shift",
         "visual": "car_conductor_back_view",
-        "overlay": "cutscene_viewpoint_shift",
+        "overlay": "viewpoint_shift",
         "cutsceneNote": {
           "ko": "시점 전환. 차장의 1인칭으로 옮겨감. 어깨 위에 다른 본인의 손. 또 다른 본인이 놀란 표정으로 서 있음.",
           "en": "Viewpoint shifts to the conductor's first-person. Another self stands with hand on shoulder, startled."
@@ -470,7 +469,7 @@
       {
         "id": "endC_final",
         "visual": "car_conductor_back_view",
-        "overlay": "cutscene_viewpoint_shift",
+        "overlay": "viewpoint_shift",
         "text": {
           "ko": [
             "나는 더 이상 움직이지 않는다.",
@@ -561,7 +560,6 @@
       {
         "id": "endD_awaken",
         "visual": "white_ceiling",
-        "isCutscene": true,
         "text": {
           "ko": [
             "\"...씨.\" — 먼 곳에서, 또 가까운 곳에서. 그 어조를 안다. 한 번, 어떤 보호자에게 같은 어조로 말한 적이 있다.",
@@ -586,7 +584,7 @@
       },
       {
         "id": "endD_family",
-        "visual": "cutscene_hospital_family",
+        "visual": "hospital_family",
         "cutsceneNote": {
           "ko": "사람들이 침대를 둘러싼 통합 컷. 어머니, 형, 형수, 의사가 한 화면에. 대사로 구분.",
           "en": "One combined scene of people surrounding the bed. Mother, brother, sister-in-law, doctor in one frame. Dialogue identifies each."
@@ -619,7 +617,7 @@
       },
       {
         "id": "endD_friend",
-        "visual": "cutscene_friend_behind",
+        "visual": "friend_behind",
         "cutsceneNote": {
           "ko": "병실 안. 가족이 가까이 있고, 그 뒤편 멀리 그녀의 옅은 미소. 그러나 가족의 얼굴이 한 박자씩 어긋난다 — 형의 눈빛이 한 순간 친구의 눈빛으로, 어머니의 입가가 한 순간 다른 누군가의 입가로. 분산된 부재의 동시 출현.",
           "en": "In the hospital room. Family close by, and behind them, far back, her faint smile. The family's faces slip by half a beat — the brother's gaze, for a moment, the friend's; the mother's mouth, for a moment, someone else's. A simultaneous return of every absence, scattered."
@@ -706,8 +704,7 @@
       },
       {
         "id": "endD_zoom",
-        "visual": "cutscene_zoom_out",
-        "isCutscene": true,
+        "visual": "zoom_out",
         "cutsceneNote": {
           "ko": "카메라가 통로를 뒤로 빠지며, 멀리 한 칸 안에 병실 장면이 좌석 위에 펼쳐져 있는 모습. 양옆엔 끝없이 늘어선 다른 칸들. 통로 끝에 주인공 의식의 실루엣.",
           "en": "Camera pulls back through the corridor. Far ahead, the hospital scene unfolds on the seats of one car. On either side, an endless line of other cars. At the end of the corridor, the silhouette of the protagonist's consciousness."
