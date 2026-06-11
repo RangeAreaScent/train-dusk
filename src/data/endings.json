@@ -445,7 +445,7 @@
       },
       {
         "id": "endC_shift",
-        "visual": "conductor_car",
+        "visual": "car_conductor_back_view",
         "overlay": "cutscene_viewpoint_shift",
         "cutsceneNote": {
           "ko": "시점 전환. 차장의 1인칭으로 옮겨감. 어깨 위에 다른 본인의 손. 또 다른 본인이 놀란 표정으로 서 있음.",
@@ -469,7 +469,7 @@
       },
       {
         "id": "endC_final",
-        "visual": "conductor_car",
+        "visual": "car_conductor_back_view",
         "overlay": "cutscene_viewpoint_shift",
         "text": {
           "ko": [
@@ -489,7 +489,7 @@
       },
       {
         "id": "endC_afterimage",
-        "visual": "conductor_car",
+        "visual": "car_conductor_back_view",
         "overlay": "conductor_back_view",
         "text": {
           "ko": [
