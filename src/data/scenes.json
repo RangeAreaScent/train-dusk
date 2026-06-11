@@ -1382,7 +1382,7 @@
   },
   "car_3_window": {
     "id": "car_3_window",
-    "visual": "window_dark",
+    "visual": "car_3_window",
     "car": 3,
     "text": {
       "ko": [
@@ -1954,7 +1954,7 @@
   },
   "car_4_window": {
     "id": "car_4_window",
-    "visual": "window_dark",
+    "visual": "car_4_window",
     "car": 4,
     "text": {
       "ko": [
