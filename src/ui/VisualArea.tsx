@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 
 interface Props {
   /** Primary scene-visual id. Looked up under /assets/visuals/<id>.png */
@@ -62,7 +62,13 @@ function useFirstAvailable(srcs: string[]): { src: string | null; state: ImgStat
   return { src: resolved, state };
 }
 
+const PROCEDURAL_VISUALS: Record<string, React.FC> = {
+  cutscene_faded_photo: FadedPhoto,
+};
+
 export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight }: Props) {
+  const ProceduralComp = visualKey ? PROCEDURAL_VISUALS[visualKey] : undefined;
+
   const folder = cutscene ? "cutscenes" : "visuals";
   const chain = useMemo(() => {
     const ids: string[] = [];
@@ -86,7 +92,9 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
 
   return (
     <div className="relative h-full w-full bg-neutral-900 overflow-hidden">
-      {visualSrc && visualState === "ok" ? (
+      {ProceduralComp ? (
+        <ProceduralComp />
+      ) : visualSrc && visualState === "ok" ? (
         <img
           src={visualSrc}
           alt=""
@@ -141,6 +149,116 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
       )}
     </div>
   );
+}
+
+// ── Procedural visuals ────────────────────────────────────────────────────
+
+function clamp(v: number) { return Math.min(255, Math.max(0, Math.round(v))); }
+
+function drawFadedPhoto(ctx: CanvasRenderingContext2D, W: number, H: number) {
+  // Aged paper background
+  ctx.fillStyle = "#d6caa8";
+  ctx.fillRect(0, 0, W, H);
+
+  // Subtle paper tone blobs
+  for (let i = 0; i < 30; i++) {
+    const x = Math.random() * W, y = Math.random() * H, r = 30 + Math.random() * 80;
+    const g = ctx.createRadialGradient(x, y, 0, x, y, r);
+    g.addColorStop(0, `rgba(170,145,90,${0.01 + Math.random() * 0.04})`);
+    g.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = g;
+    ctx.fillRect(Math.max(0, x - r), Math.max(0, y - r), r * 2, r * 2);
+  }
+
+  // Two human silhouettes — barely visible, ghost-like
+  const baseY = H * 0.78, figH = H * 0.54;
+  const lx = W * 0.38, rx = W * 0.58;
+
+  const drawFigure = (px: number, scale: number) => {
+    const fh = figH * scale, fw = fh * 0.28;
+    ctx.fillStyle = "rgba(80,65,40,0.26)";
+    // Head
+    ctx.beginPath();
+    ctx.ellipse(px, baseY - fh + fw * 0.55, fw * 0.26, fw * 0.32, 0, 0, Math.PI * 2);
+    ctx.fill();
+    // Torso
+    ctx.beginPath();
+    ctx.moveTo(px - fw * 0.26, baseY - fh + fw * 1.1);
+    ctx.lineTo(px + fw * 0.26, baseY - fh + fw * 1.1);
+    ctx.lineTo(px + fw * 0.2,  baseY - fh * 0.4);
+    ctx.lineTo(px - fw * 0.2,  baseY - fh * 0.4);
+    ctx.closePath();
+    ctx.fill();
+    // Legs
+    ctx.beginPath();
+    ctx.moveTo(px - fw * 0.2, baseY - fh * 0.4);
+    ctx.lineTo(px - fw * 0.1, baseY);
+    ctx.lineTo(px + fw * 0.1, baseY);
+    ctx.lineTo(px + fw * 0.2, baseY - fh * 0.4);
+    ctx.closePath();
+    ctx.fill();
+  };
+
+  drawFigure(lx, 0.88);
+  drawFigure(rx, 1.0);
+
+  // Right figure's arm around left figure's shoulder
+  ctx.strokeStyle = "rgba(80,65,40,0.22)";
+  ctx.lineWidth = figH * 0.055;
+  ctx.lineCap = "round";
+  ctx.beginPath();
+  ctx.moveTo(rx - figH * 0.25, baseY - figH * 0.76);
+  ctx.quadraticCurveTo((lx + rx) * 0.5, baseY - figH * 0.88, lx + figH * 0.1, baseY - figH * 0.75);
+  ctx.stroke();
+
+  // Sepia layer
+  ctx.fillStyle = "rgba(150,110,50,0.1)";
+  ctx.fillRect(0, 0, W, H);
+
+  // Film grain
+  const img = ctx.getImageData(0, 0, W, H);
+  const d = img.data;
+  for (let i = 0; i < d.length; i += 4) {
+    const n = (Math.random() - 0.5) * 32;
+    d[i]   = clamp(d[i]   + n);
+    d[i+1] = clamp(d[i+1] + n * 0.85);
+    d[i+2] = clamp(d[i+2] + n * 0.55);
+  }
+  ctx.putImageData(img, 0, 0);
+
+  // Vignette
+  const vg = ctx.createRadialGradient(W/2, H/2, H * 0.12, W/2, H/2, H * 0.74);
+  vg.addColorStop(0,   "rgba(0,0,0,0)");
+  vg.addColorStop(0.5, "rgba(0,0,0,0.04)");
+  vg.addColorStop(1,   "rgba(0,0,0,0.68)");
+  ctx.fillStyle = vg;
+  ctx.fillRect(0, 0, W, H);
+
+  // Worn corner brightening (old photo edge effect)
+  [[0,0],[W,0],[0,H],[W,H]].forEach(([cx2, cy2]) => {
+    const cg = ctx.createRadialGradient(cx2, cy2, 0, cx2, cy2, Math.min(W, H) * 0.42);
+    cg.addColorStop(0, "rgba(220,200,160,0.22)");
+    cg.addColorStop(1, "rgba(0,0,0,0)");
+    ctx.fillStyle = cg;
+    ctx.fillRect(0, 0, W, H);
+  });
+
+  // Photo border
+  ctx.strokeStyle = "rgba(255,250,235,0.6)";
+  ctx.lineWidth = 5;
+  ctx.strokeRect(3, 3, W - 6, H - 6);
+}
+
+function FadedPhoto() {
+  const ref = useRef<HTMLCanvasElement>(null);
+  useEffect(() => {
+    const canvas = ref.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    drawFadedPhoto(ctx, canvas.width, canvas.height);
+  }, []);
+  return <canvas ref={ref} width={480} height={360} className="w-full h-full object-contain" />;
 }
 
 function Placeholder({ label }: { label: string }) {
