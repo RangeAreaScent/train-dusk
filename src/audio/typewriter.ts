@@ -1,12 +1,20 @@
 /**
- * Procedural typewriter click — short filtered-noise burst per character,
- * synthesised on the fly with Web Audio. No assets, ~250 lines of nothing,
- * survives mobile autoplay policy by lazily resuming the AudioContext on
- * the first user gesture.
+ * Typewriter click — decodes a short MP3 of mechanical typing once and
+ * plays a random 60-90ms slice per character. Random offset + slight
+ * pitch jitter keeps consecutive keystrokes from sounding identical.
+ * Lazily resumes the AudioContext on the first user gesture (mobile
+ * autoplay policy).
  */
 
+const SAMPLE_URL = "/audio/typewriter.mp3";
+const SLICE_MIN_MS = 60;
+const SLICE_MAX_MS = 90;
+const TAIL_GUARD_MS = 120; // don't pick an offset within this of end-of-file
+const CLICK_GAIN = 0.45;
+
 let ctx: AudioContext | null = null;
-let noiseBuffer: AudioBuffer | null = null;
+let sampleBuffer: AudioBuffer | null = null;
+let loading = false;
 let resumed = false;
 let enabled = true;
 
@@ -29,12 +37,21 @@ function ensureCtx(): AudioContext | null {
     ctx = null;
     return null;
   }
-  // 25ms of white noise, reused for every click.
-  const len = Math.floor(ctx.sampleRate * 0.025);
-  noiseBuffer = ctx.createBuffer(1, len, ctx.sampleRate);
-  const data = noiseBuffer.getChannelData(0);
-  for (let i = 0; i < len; i++) data[i] = Math.random() * 2 - 1;
   return ctx;
+}
+
+async function loadSample(c: AudioContext): Promise<void> {
+  if (sampleBuffer || loading) return;
+  loading = true;
+  try {
+    const res = await fetch(SAMPLE_URL);
+    const arr = await res.arrayBuffer();
+    sampleBuffer = await c.decodeAudioData(arr);
+  } catch {
+    sampleBuffer = null;
+  } finally {
+    loading = false;
+  }
 }
 
 function tryResume(): void {
@@ -64,61 +81,48 @@ export function isTypewriterEnabled(): boolean {
 }
 
 /** Play one short tick. Safe to call as often as the renderer wants —
- *  bails fast if disabled, no AudioContext available, or buffer missing. */
+ *  bails fast if disabled, sample still loading, or context unavailable. */
 export function playKeyClick(): void {
   if (!enabled) return;
   const c = ensureCtx();
-  if (!c || !noiseBuffer) return;
+  if (!c) return;
   tryResume();
+  if (!sampleBuffer) {
+    void loadSample(c);
+    return;
+  }
   if (c.state !== "running") return;
 
   const now = c.currentTime;
+  const dur = sampleBuffer.duration;
+  const sliceLen = (SLICE_MIN_MS + Math.random() * (SLICE_MAX_MS - SLICE_MIN_MS)) / 1000;
+  const maxStart = Math.max(0, dur - sliceLen - TAIL_GUARD_MS / 1000);
+  const startOffset = Math.random() * maxStart;
 
-  // ── Body thud: triangle oscillator with fast pitch drop ───────────────
-  // Gives a warm, rounded "thock" — like a quiet mechanical switch.
-  const osc = c.createOscillator();
-  osc.type = "triangle";
-  osc.frequency.setValueAtTime(95 + Math.random() * 20, now);
-  osc.frequency.exponentialRampToValueAtTime(52, now + 0.022);
+  const src = c.createBufferSource();
+  src.buffer = sampleBuffer;
+  src.playbackRate.value = 0.95 + Math.random() * 0.15; // slight pitch jitter
 
-  const oscGain = c.createGain();
-  oscGain.gain.setValueAtTime(0, now);
-  oscGain.gain.linearRampToValueAtTime(0.26, now + 0.001);
-  oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.038);
+  // Short fade-in/out so the slice doesn't click at its edges.
+  const gain = c.createGain();
+  gain.gain.setValueAtTime(0, now);
+  gain.gain.linearRampToValueAtTime(CLICK_GAIN, now + 0.005);
+  gain.gain.setValueAtTime(CLICK_GAIN, now + sliceLen - 0.015);
+  gain.gain.linearRampToValueAtTime(0, now + sliceLen);
 
-  osc.connect(oscGain);
-  oscGain.connect(c.destination);
-  osc.start(now);
-  osc.stop(now + 0.045);
-
-  // ── Soft transient: very brief mid-freq noise, barely audible ─────────
-  // Adds a tiny sense of "contact" without sharpness.
-  const click = c.createBufferSource();
-  click.buffer = noiseBuffer;
-  click.playbackRate.value = 1.0 + Math.random() * 0.15;
-
-  const clickFilter = c.createBiquadFilter();
-  clickFilter.type = "bandpass";
-  clickFilter.frequency.value = 1800 + Math.random() * 500;
-  clickFilter.Q.value = 2.5;
-
-  const clickGain = c.createGain();
-  clickGain.gain.setValueAtTime(0, now);
-  clickGain.gain.linearRampToValueAtTime(0.045, now + 0.0005);
-  clickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.009);
-
-  click.connect(clickFilter);
-  clickFilter.connect(clickGain);
-  clickGain.connect(c.destination);
-  click.start(now);
-  click.stop(now + 0.012);
+  src.connect(gain);
+  gain.connect(c.destination);
+  src.start(now, startOffset, sliceLen);
 }
 
-// Auto-resume on first user gesture (browser autoplay policy).
+// Auto-resume + preload on first user gesture (browser autoplay policy).
 if (typeof window !== "undefined") {
   const handler = () => {
-    ensureCtx();
-    tryResume();
+    const c = ensureCtx();
+    if (c) {
+      tryResume();
+      void loadSample(c);
+    }
     window.removeEventListener("pointerdown", handler);
     window.removeEventListener("keydown", handler);
     window.removeEventListener("touchstart", handler);
