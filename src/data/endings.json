@@ -397,7 +397,8 @@
       {
         "id": "endC_speak",
         "visual": "conductor_car",
-        "overlay": "conductor_back_close",
+        "overlayLeft": "conductor_back_view",
+        "overlayRight": "conductor_back_close",
         "text": {
           "ko": [
             "\"...저기요.\" 내 목소리가 떨린다. 떨림의 결을 안다. 한 번, 어떤 보호자 앞에서, 똑같이 떨린 적이 있다.",
@@ -427,7 +428,8 @@
       {
         "id": "endC_touch",
         "visual": "conductor_car",
-        "overlay": "conductor_back_close",
+        "overlayLeft": "conductor_back_view",
+        "overlayRight": "conductor_back_close",
         "cutsceneNote": {
           "ko": "차장의 뒷모습 + 어깨 위로 올라간 한쪽 손. 얼굴은 끝까지 보이지 않는다. 두 손이 같은 어깨 위에 머무는 한 박자.",
           "en": "Conductor's back + his own hand risen to his shoulder. The face is never shown. The single held beat of two hands resting on the same shoulder."
