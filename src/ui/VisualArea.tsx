@@ -15,6 +15,8 @@ interface Props {
   /** Two-character layout: left and right sprites. */
   overlayLeft?: string;
   overlayRight?: string;
+  /** When true, right sprite shifts left to overlap the left sprite (one behind the other). */
+  overlayOverlap?: boolean;
   /** Cutscene image floated as a polaroid panel over the background. */
   insetCutscene?: string;
   insetPosition?: "left" | "center" | "right";
@@ -87,7 +89,7 @@ const PROP_POS: Record<NonNullable<Props["propPosition"]>, string> = {
   "bottom-right":  "bottom-[6%] right-[6%]",
 };
 
-export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight, insetCutscene, insetPosition = "center", prop, propPosition = "bottom-right" }: Props) {
+export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, overlayLeft, overlayRight, overlayOverlap, insetCutscene, insetPosition = "center", prop, propPosition = "bottom-right" }: Props) {
   const ProceduralComp = visualKey ? PROCEDURAL_VISUALS[visualKey] : undefined;
 
   const folder = cutscene ? "cutscenes" : "visuals";
@@ -144,15 +146,15 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
           src={overlayLeftResolved}
           alt=""
           className="absolute bottom-0 left-0 h-[85%] w-auto object-contain pointer-events-none"
-          style={{ imageRendering: "pixelated" }}
+          style={{ imageRendering: "pixelated", zIndex: overlayOverlap ? 10 : undefined }}
         />
       )}
       {overlayRightResolved && (
         <img
           src={overlayRightResolved}
           alt=""
-          className="absolute bottom-0 right-0 h-[85%] w-auto object-contain pointer-events-none"
-          style={{ imageRendering: "pixelated" }}
+          className={`absolute bottom-0 h-[85%] w-auto object-contain pointer-events-none ${overlayOverlap ? "right-[22%]" : "right-0"}`}
+          style={{ imageRendering: "pixelated", zIndex: overlayOverlap ? 20 : undefined }}
         />
       )}
 

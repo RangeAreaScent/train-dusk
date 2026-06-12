@@ -593,6 +593,7 @@ export function SceneView({ state, setState }: Props) {
               overlay={scene.overlay}
               overlayLeft={scene.overlayLeft}
               overlayRight={scene.overlayRight}
+              overlayOverlap={scene.overlayOverlap}
               insetCutscene={scene.insetCutscene}
               insetPosition={scene.insetPosition}
               prop={propResolved.prop}

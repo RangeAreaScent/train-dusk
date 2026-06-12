@@ -60,6 +60,7 @@ export interface Scene {
   overlay?: string;
   overlayLeft?: string;
   overlayRight?: string;
+  overlayOverlap?: boolean;
   popup?: string;
   popupPosition?: string;
   music?: string;
