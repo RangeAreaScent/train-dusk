@@ -160,13 +160,15 @@ export function EndingCardActions({
           ▸ {restartLabel(endingId, lang)}
         </button>
       )}
-      <button
-        type="button"
-        className="choice-press block text-left font-serif text-xl text-black cursor-pointer"
-        onClick={onMainMenu}
-      >
-        ▸ {endingId === "D" ? T("처음으로", "To the Beginning") : T("메인 화면", "Main Menu")}
-      </button>
+      {endingId === "D" && (
+        <button
+          type="button"
+          className="choice-press block text-left font-serif text-xl text-black cursor-pointer"
+          onClick={onMainMenu}
+        >
+          ▸ {T("처음으로", "To the Beginning")}
+        </button>
+      )}
       <button
         type="button"
         disabled={busy}

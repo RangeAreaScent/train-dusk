@@ -1,7 +1,7 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
 import type { ReactNode } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import type { Choice, ConnectResult, GameState, PaperTheme } from "../engine/types";
+import type { Choice, ConnectResult, EndingId, GameState, Lang, PaperTheme } from "../engine/types";
 import {
   ENDING_INTROS,
   endingForRun,
@@ -563,8 +563,15 @@ export function SceneView({ state, setState }: Props) {
         }
       : null;
 
-  const choicesToShow =
-    scene.choices ?? (implicitContinue ? [implicitContinue] : []);
+  const choicesToShow = (() => {
+    const base = scene.choices ?? (implicitContinue ? [implicitContinue] : []);
+    if (scene.id !== "title_screen" || state.runCount <= 1) return base;
+    return base.map((c) =>
+      c.label.ko === "시작"
+        ? { ...c, label: { ko: "다시 탑승", en: "Board Again" } }
+        : c,
+    );
+  })();
 
   const showInput = textDone && isLastPage && choicesReady && !!scene.inputField;
   const showChoices = textDone && isLastPage && choicesReady && choicesToShow.length > 0;
@@ -658,6 +665,14 @@ export function SceneView({ state, setState }: Props) {
               className="absolute inset-x-0 top-0 invisible pointer-events-none font-serif text-xl leading-snug"
             />
           </div>
+
+          {scene.id === "title_screen" && state.runCount > 1 && (
+            <TitleRunInfo
+              runCount={state.runCount}
+              endingsReached={state.endingsReached}
+              lang={state.language}
+            />
+          )}
 
           {(showInput || showChoices) && !popupHidden && (
             <ChoicesPopup paperTheme={state.paperTheme}>
@@ -806,6 +821,39 @@ function SettingsPanel({
       >
         {ko ? "← 돌아가기" : "← Back"}
       </button>
+    </div>
+  );
+}
+
+function TitleRunInfo({
+  runCount,
+  endingsReached,
+  lang,
+}: {
+  runCount: number;
+  endingsReached: EndingId[];
+  lang: Lang;
+}) {
+  const ko = lang === "ko";
+  const ALL: EndingId[] = ["A", "B", "C", "D"];
+  return (
+    <div className="pb-3 text-center select-none">
+      <div className="text-black/40 text-xs font-mono tracking-widest mb-2">
+        {ko ? `─ ${runCount}번째 탑승 ─` : `─ Run ${runCount} ─`}
+      </div>
+      <div className="flex justify-center gap-4">
+        {ALL.map((id) => {
+          const reached = endingsReached.includes(id);
+          return (
+            <div key={id} className="flex flex-col items-center gap-0.5">
+              <span className="text-[10px] font-mono text-black/40">{id}</span>
+              <span className={`text-base leading-none ${reached ? "text-black/70" : "text-black/20"}`}>
+                {reached ? "◆" : "◇"}
+              </span>
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
