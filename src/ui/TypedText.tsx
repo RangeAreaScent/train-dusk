@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import config from "../data/config.json";
 import type { TextSpeed } from "../engine/types";
-import { isAudibleChar, playKeyClick } from "../audio/typewriter";
+import { startTyping, stopTyping } from "../audio/typewriter";
 
 interface Props {
   lines: string[];
@@ -44,16 +44,18 @@ export function TypedText({
 
   useEffect(() => {
     if (shown >= fullText.length) {
+      stopTyping();
       onComplete?.();
       return;
     }
+    startTyping();
     const id = window.setTimeout(() => {
-      const ch = fullText[shown];
-      if (isAudibleChar(ch)) playKeyClick();
       setShown((s) => s + 1);
     }, msPerChar);
     return () => window.clearTimeout(id);
   }, [shown, fullText, msPerChar, onComplete]);
+
+  useEffect(() => () => stopTyping(), []);
 
   const done = shown >= fullText.length;
 

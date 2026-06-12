@@ -90,6 +90,39 @@ export function SceneView({ state, setState }: Props) {
     setPopupHidden(false);
   }, [pageIndex]);
 
+  // Preload assets for candidate next scenes so transitions don't flash
+  // placeholders. Quietly drops any miss.
+  useEffect(() => {
+    const candidates = new Set<string>();
+    if (scene.next) candidates.add(scene.next);
+    if (scene.returnTo) candidates.add(scene.returnTo);
+    scene.choices?.forEach((c) => {
+      if (c.next) candidates.add(c.next);
+      if (c.returnTo) candidates.add(c.returnTo);
+    });
+    candidates.forEach((id) => {
+      try {
+        const s = getScene(id);
+        const keys = [s.visual, s.overlay, s.overlayLeft, s.overlayRight, s.prop];
+        keys.forEach((k) => {
+          if (!k) return;
+          const folder =
+            k === s.prop ? "overlays"
+            : k === s.visual ? "visuals"
+            : "characters";
+          const img = new Image();
+          img.src = `/assets/${folder}/${k}.webp`;
+        });
+        if (s.insetCutscene) {
+          const img = new Image();
+          img.src = `/assets/cutscenes/${s.insetCutscene}.webp`;
+        }
+      } catch {
+        // unknown scene id — ignore
+      }
+    });
+  }, [scene.id]);
+
   // Keep the global typewriter audio module in sync with the user pref.
   useEffect(() => {
     setTypewriterEnabled(state.sound !== "off");

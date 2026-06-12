@@ -126,9 +126,9 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
           className="h-full w-full object-contain"
           style={{ imageRendering: "pixelated" }}
         />
-      ) : (
+      ) : visualState === "missing" ? (
         <Placeholder label={visualKey ?? "—"} />
-      )}
+      ) : null /* loading — stay blank, avoid flashing keys during transitions */}
 
       {overlayResolved && (
         <img
@@ -167,7 +167,7 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
           } pointer-events-none`}
           style={{ width: "45%", aspectRatio: "4/3" }}
         >
-          {insetResolved && insetState === "ok" ? (
+          {insetResolved && insetState === "ok" && (
             <img
               src={insetResolved}
               alt=""
@@ -177,10 +177,6 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
                 boxShadow: "6px 6px 0 rgba(0,0,0,0.6), 0 0 0 1px rgba(0,0,0,0.5)",
               }}
             />
-          ) : (
-            <div className="h-full w-full border-2 border-black bg-white/90 flex items-center justify-center text-xs font-mono text-black/60">
-              {insetCutscene}
-            </div>
           )}
         </div>
       )}
@@ -188,16 +184,20 @@ export function VisualArea({ visualKey, popup, cutscene, fallback, overlay, over
       {prop && propResolved && propState === "ok" && (
         <div
           className={`absolute pointer-events-none ${PROP_POS[propPosition]}`}
-          style={{ width: "32%", aspectRatio: "1/1" }}
+          style={{
+            width: "44%",
+            aspectRatio: "1/1",
+            border: "3px solid #000",
+            background: "rgba(255,255,255,0.92)",
+            boxShadow: "5px 5px 0 rgba(0,0,0,0.55)",
+            padding: "6px",
+          }}
         >
           <img
             src={propResolved}
             alt=""
             className="h-full w-full object-contain"
-            style={{
-              imageRendering: "pixelated",
-              filter: "drop-shadow(3px 3px 0 rgba(0,0,0,0.4))",
-            }}
+            style={{ imageRendering: "pixelated" }}
           />
         </div>
       )}
