@@ -9,7 +9,7 @@
     "sequence": [
       {
         "id": "endA_intro",
-        "visual": "car_5_default",
+        "visual": "car_5_empty",
         "text": {
           "ko": [
             "다섯 번째 칸. 마지막 칸이다. ...아니, 마지막이라는 것을 어떻게 아는지 나는 모르겠다. 그저 그렇게 느껴진다 — 한 박자 늦게 도착하는 어떤 확신처럼.",
@@ -25,7 +25,7 @@
       },
       {
         "id": "endA_resignation",
-        "visual": "car_5_default",
+        "visual": "car_5_empty",
         "text": {
           "ko": [
             "나는 자리에 앉는다. 이제는 그만 생각하고 싶다. 무엇을 그만 생각하고 싶은지조차, 정리되지 않은 채로.",
@@ -104,7 +104,7 @@
       },
       {
         "id": "endA_smile",
-        "visual": "endA_people_appear",
+        "visual": "car_5_crowded",
         "cutsceneNote": {
           "ko": "모든 승객이 일제히 주인공을 바라보며 웃음. 광기 어린 웃음.",
           "en": "All passengers turn to look at the protagonist, smiling. A mad smile."
@@ -165,7 +165,7 @@
     "sequence": [
       {
         "id": "endB_intro",
-        "visual": "car_5_default",
+        "visual": "car_5_empty",
         "overlayLeft": "protagonist_standing",
         "overlayRight": "friend_standing",
         "text": {
@@ -463,7 +463,7 @@
       },
       {
         "id": "endC_shift",
-        "visual": "car_conductor_back_view",
+        "visual": "conductor_pov",
         "overlay": "viewpoint_shift",
         "cutsceneNote": {
           "ko": "시점 전환. 차장의 1인칭으로 옮겨감. 어깨 위에 다른 본인의 손. 또 다른 본인이 놀란 표정으로 서 있음.",
@@ -487,7 +487,7 @@
       },
       {
         "id": "endC_final",
-        "visual": "car_conductor_back_view",
+        "visual": "conductor_pov",
         "overlay": "viewpoint_shift",
         "text": {
           "ko": [
@@ -507,7 +507,7 @@
       },
       {
         "id": "endC_afterimage",
-        "visual": "car_conductor_back_view",
+        "visual": "conductor_pov",
         "overlay": "conductor_back_view",
         "text": {
           "ko": [
@@ -737,7 +737,7 @@
       },
       {
         "id": "endD_zoom",
-        "visual": "zoom_out",
+        "visual": "train_exterior",
         "cutsceneNote": {
           "ko": "카메라가 통로를 뒤로 빠지며, 멀리 한 칸 안에 병실 장면이 좌석 위에 펼쳐져 있는 모습. 양옆엔 끝없이 늘어선 다른 칸들. 통로 끝에 주인공 의식의 실루엣.",
           "en": "Camera pulls back through the corridor. Far ahead, the hospital scene unfolds on the seats of one car. On either side, an endless line of other cars. At the end of the corridor, the silhouette of the protagonist's consciousness."

@@ -1547,7 +1547,7 @@
   },
   "car_4_entry": {
     "id": "car_4_entry",
-    "visual": "passage2",
+    "visual": "passage_deep",
     "overlay": "protagonist_standing",
     "car": 4,
     "isPassage": true,
@@ -1567,7 +1567,7 @@
   },
   "car_4_entry_conductor": {
     "id": "car_4_entry_conductor",
-    "visual": "passage2",
+    "visual": "passage_deep",
     "overlay": "protagonist_standing",
     "car": 4,
     "isPassage": true,
@@ -1731,7 +1731,7 @@
   "car_4_friend_invite": {
     "id": "car_4_friend_invite",
     "visual": "car_4_wide",
-    "overlay": "car_4_friend_invite",
+    "overlay": "friend_standing_casual",
     "car": 4,
     "text": {
       "ko": [
@@ -1803,7 +1803,7 @@
   "car_4_friend_wait": {
     "id": "car_4_friend_wait",
     "visual": "car_4_wide",
-    "overlay": "car_4_friend_invite",
+    "overlay": "friend_standing_casual",
     "car": 4,
     "text": {
       "ko": [
