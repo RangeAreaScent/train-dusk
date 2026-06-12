@@ -78,10 +78,11 @@ export function GameFrame({
         />
 
         {/* TOP SCREEN */}
-        <div className="basis-1/2 grow-0 shrink-0 px-3 pt-6 pb-2">
+        <div className="shrink-0 px-3 pt-6 pb-2">
           <div
-            className="h-full w-full rounded-md overflow-hidden bg-black border-2 border-black"
+            className="w-full rounded-md overflow-hidden bg-black border-2 border-black"
             style={{
+              aspectRatio: "4 / 3",
               boxShadow: "inset 0 2px 6px rgba(0,0,0,0.4)",
             }}
           >
