@@ -357,6 +357,7 @@
       {
         "id": "endC_intro",
         "visual": "conductor_car",
+        "overlay": "conductor_back_view",
         "text": {
           "ko": [
             "다섯 번째 칸. 차장 칸이다.",

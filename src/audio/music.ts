@@ -3,8 +3,7 @@
  * at a time. Mute = pause, unmute = play. No crossfade — the simplest
  * thing that still feels right.
  *
- * Ending track is intentionally non-looping with a baked-in 3 s fade-out
- * so the card lands in silence after one play.
+ * Ending track loops continuously until the player leaves the ending screen.
  */
 
 type Track = "main" | "ending";
@@ -23,7 +22,7 @@ const VOLUMES: Record<Track, number> = {
 
 const LOOPS: Record<Track, boolean> = {
   main: true,
-  ending: false,
+  ending: true,
 };
 
 const elements: Partial<Record<Track, HTMLAudioElement>> = {};
