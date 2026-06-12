@@ -1478,32 +1478,21 @@
         "",
         "생각하자.",
         "",
-        "생각해."
+        "생각해.",
+        "",
+        "노트를 다시 볼까."
       ],
       "en": [
         "...",
         "",
         "Think.",
         "",
-        "Think."
+        "Think.",
+        "",
+        "Maybe I should check my notes again."
       ]
     },
-    "choices": [
-      {
-        "label": {
-          "ko": "다음 칸으로 간다",
-          "en": "Move to the next car"
-        },
-        "next": "car_4_entry"
-      },
-      {
-        "label": {
-          "ko": "노트를 다시 본다",
-          "en": "Open the notes again"
-        },
-        "action": "open_notes"
-      }
-    ]
+    "next": "car_4_entry"
   },
   "car_3_reasoning": {
     "id": "car_3_reasoning",
