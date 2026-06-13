@@ -209,13 +209,14 @@ export const ENDING_INTROS: ReadonlySet<string> = new Set([
   "endD_realization",
 ]);
 
-/** Linear multi-run mapping. Run 1 → A (denial), Run 2 → C (mirror —
- *  alone, sees self), Run 3 → B (companion — comfort in a lie), Run 4+
- *  → D (knowing, choosing to stay). */
+/** Linear multi-run mapping. Run 1 → A (denial), Run 2 → B (companion —
+ *  comfort in a lie), Run 3 → C (mirror — sees self), Run 4+ → D
+ *  (knowing, choosing to stay). v2: B/C swapped so meeting "her" (B)
+ *  precedes meeting "self" (C). */
 export function endingForRun(runCount: number): string {
   if (runCount <= 1) return "ending_A_intro";
-  if (runCount === 2) return "ending_C_intro";
-  if (runCount === 3) return "ending_B_intro";
+  if (runCount === 2) return "ending_B_intro";
+  if (runCount === 3) return "ending_C_intro";
   return "ending_D_intro";
 }
 
