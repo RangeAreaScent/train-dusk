@@ -1351,17 +1351,133 @@
     "isPassage": true,
     "text": {
       "ko": [
-        "다음 칸으로 넘어왔다. 문이 닫히는 소리가 등 뒤에서 한 번 짧게 끊긴다.",
-        "뒤를 돌아본다. 방금 지나온 통로는 — 어둠 속으로 사라졌다. 빨려 들어간 것이 아니라, *처음부터 없었던 것처럼* 사라졌다.",
-        "돌아갈 수 없다. 이상하게도, 그 사실이 놀랍지 않다.",
-        "돌아가지 않기로 한 일들을 — 나는 너무 많이 안다. 그래서 통로가 사라지는 것이, 어딘가 — 익숙하다."
+        "자리에서 일어선다.",
+        "다음 칸으로 가는 문 앞에 선다.",
+        "",
+        "손잡이를 당긴다. 가볍게 열린다.",
+        "한 발을 내딛는다. 그리고 — 뒤를 돌아본다.",
+        "",
+        "방금 지나온 칸이 없다.",
+        "",
+        "통로 뒤편에 검은 공간만 있다.",
+        "칸이 없는 게 아니라, 칸이 *있었던 자리*가 없다.",
+        "",
+        "한 번 더 본다.",
+        "같다.",
+        "",
+        "돌아갈 수 있는지 확인해본다. 손이 손잡이로 가다가, 그만둔다.",
+        "",
+        "확인해보지 않기로 한다."
       ],
       "en": [
-        "I have crossed into the next car. Behind me, the sound of the door closing cuts off in a single short note.",
-        "I look back. The passage I just came through — has vanished into the dark. Not drawn in, but vanished as though it had never been there to begin with.",
-        "There is no going back. Strangely — that does not surprise me.",
-        "The things I decided not to go back to — I know too many of them. So a vanished corridor is, somehow — familiar."
+        "I rise from the seat.",
+        "I stand before the door to the next car.",
+        "",
+        "I pull the handle. It opens easily.",
+        "I step through. Then — I look back.",
+        "",
+        "The car I just came from is gone.",
+        "",
+        "Behind the passage, only black space.",
+        "Not that the car is missing — the *place where the car had been* is missing.",
+        "",
+        "I look again.",
+        "Same.",
+        "",
+        "I check whether returning is possible. My hand goes for the handle, and stops.",
+        "",
+        "I decide not to check."
       ]
+    },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "다음 칸으로 가는 문 앞에 선다.",
+            "손잡이를 잡는다.",
+            "",
+            "어제처럼 가볍게 열린다.",
+            "한 발을 내딛는다. 그리고 — 뒤를 돌아본다.",
+            "",
+            "칸이 없다.",
+            "",
+            "어제와 같다.",
+            "어제와 같다는 것이, 위안인지 아닌지는 — 잘 모르겠다.",
+            "",
+            "모르겠다고, 한 번 말한다."
+          ],
+          "en": [
+            "I stand before the door to the next car.",
+            "I take the handle.",
+            "",
+            "It opens easily, as yesterday.",
+            "I step through. Then — I look back.",
+            "",
+            "The car is gone.",
+            "",
+            "Same as yesterday.",
+            "Whether sameness is comfort — I cannot quite tell.",
+            "",
+            "I say *cannot tell*, once."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "다음 칸으로 가는 문 앞에 선다.",
+            "",
+            "손잡이를 잡는다.",
+            "어제는 가볍게 열렸다.",
+            "오늘은 — *내가 잡기 전에 누군가가 잡았던 자리의 결*이 손에 묻는다.",
+            "",
+            "그 누군가가 — 어제의 나일 수도 있다.",
+            "어제의 누군가일 수도 있다.",
+            "",
+            "어제의 누군가가 *나였다는 것*과, *어제의 누군가*는, 같은 말이 아니다.",
+            "둘 사이에 한 박자가 있다.",
+            "그 박자가 — 짚히지 않는다."
+          ],
+          "en": [
+            "I stand before the door to the next car.",
+            "",
+            "I take the handle.",
+            "Yesterday it opened easily.",
+            "Today — *the grain of a place someone else had taken before me* presses into my palm.",
+            "",
+            "That someone — could be yesterday's me.",
+            "Or someone, yesterday.",
+            "",
+            "*That yesterday's someone was me*, and *yesterday's someone*, are not the same phrase.",
+            "Between them is one beat.",
+            "That beat — does not come to hand."
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "손잡이를 잡는다.",
+            "같은 손잡이.",
+            "",
+            "같은 손이 잡았다는 것을 안다.",
+            "어제도, 그제도, 그 전에도.",
+            "",
+            "같은 손이 같은 손잡이를 잡는 일을, 여러 번 한 사람을 — 한 단어로 부를 수 있다.",
+            "그 단어를 입에 올리지 않는다."
+          ],
+          "en": [
+            "I take the handle.",
+            "The same handle.",
+            "",
+            "That the same hand has taken it — I know.",
+            "Yesterday, the day before, before that.",
+            "",
+            "The same hand taking the same handle, many times — there is a word for such a person.",
+            "I do not put the word to my mouth."
+          ]
+        }
+      }
     },
     "clueChecks": [
       {
@@ -1378,16 +1494,129 @@
     "car": 2,
     "text": {
       "ko": [
-        "이 칸도 비어 있다. 좌석 하나가 — 한 박자 비어 있지 않다. 그 자리에 무언가 놓여 있다.",
-        "그 한 자리만이, 누군가 막 일어선 자리처럼 — 어떤 모양을 머금고 있다.",
-        "다가가서 볼지 망설인다. 다가가지 않아도, 그것이 무엇과 닮아 있는지 — 잠시 짚어 본다. 그리고 짚지 않기로 한다."
+        "두 번째 칸.",
+        "",
+        "좌석 배치는 같다. 조명도 같다.",
+        "번호판: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+        "",
+        "잠깐 발이 멈춘다.",
+        "다시 본다.",
+        "",
+        "1, 2, 3, 4, 5, 7, 8, 9, 10.",
+        "",
+        "인쇄 오류일 것이다. 오래된 차량이다.",
+        "라고 생각한다. 생각한 다음 — 그 자리에 더 머물지 않는다."
       ],
       "en": [
-        "This car, too, is empty. One seat — for half a beat, is not. Something has been left on that seat.",
-        "That one place alone holds a shape, as if someone had just risen from it.",
-        "I hesitate over going closer. Even without going closer, I half-name what it resembles. And then — I decide not to."
+        "The second car.",
+        "",
+        "Seating, the same. Lighting, the same.",
+        "Numbers: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+        "",
+        "My feet stop, briefly.",
+        "I look again.",
+        "",
+        "1, 2, 3, 4, 5, 7, 8, 9, 10.",
+        "",
+        "A printing error, probably. An old car.",
+        "I think so. After thinking — I do not stay there."
       ]
     },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "두 번째 칸.",
+            "",
+            "좌석 번호: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+            "",
+            "어제도 그랬다.",
+            "어제도 그랬다는 것을, 어떻게 아는지는 — 잘 모르겠다.",
+            "",
+            "6번이 없다.",
+            "없는 자리가 있다는 표현이, 가능한지.",
+            "",
+            "가능하다는 쪽으로 생각해본다.",
+            "그쪽이 편하다."
+          ],
+          "en": [
+            "The second car.",
+            "",
+            "Numbers: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+            "",
+            "Yesterday too.",
+            "How I know it was so yesterday — I cannot quite say.",
+            "",
+            "Six is missing.",
+            "Whether *a missing place exists* is even a phrase.",
+            "",
+            "I lean toward thinking it is.",
+            "That way is easier."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "두 번째 칸.",
+            "",
+            "좌석 번호: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+            "",
+            "6번이 비어 있다는 것을, 어제 알았다.",
+            "알았다는 것이, 오늘은 *알고 있어 본 적이 있다*는 형태로 자리한다.",
+            "",
+            "그 비어 있음에 — *누가 있었어야 한다*는 감각이, 다시 자란다.",
+            "",
+            "어제는 이 자리에 — 누군가가 있었다고 했다.",
+            "누가 했는지는, 모른다.",
+            "했다는 사람과, 있었다는 사람이, 같은 사람이 아닐 수도 있다."
+          ],
+          "en": [
+            "The second car.",
+            "",
+            "Numbers: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+            "",
+            "That six is empty — I learned yesterday.",
+            "*Having learned* settles, today, as *having known before*.",
+            "",
+            "On that emptiness — a sense grows again: *someone should have been there*.",
+            "",
+            "Yesterday it was said — someone had been here.",
+            "Who said it, I do not know.",
+            "The one who said, and the one who had been — may not be the same one."
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "좌석 번호: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+            "",
+            "6번이 *3월 15일*이다.",
+            "없는 자리가 한 날짜라는 것을, 안다.",
+            "그 날짜를 비워둔 사람이 — 누구였는지도, 안다.",
+            "",
+            "비워둔 일이, 어떤 종류의 일이었는지도."
+          ],
+          "en": [
+            "Numbers: 1, 2, 3, 4, 5, 7, 8, 9, 10.",
+            "",
+            "Six is *March 15*.",
+            "That a missing place is a date — I know.",
+            "Who left that date empty — I know.",
+            "",
+            "And what kind of leaving it was — too."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "missingSeat",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
     "choices": [
       {
         "label": {
@@ -1453,30 +1682,68 @@
     "car": 2,
     "text": {
       "ko": [
-        "좌석에 다가간다. 방석이 살짝 눌려 있다 — 누군가 앉아 있던 흔적.",
-        "손을 대 본다. 온기는 없다. 그러나 손바닥이, 거기 누군가가 있었다는 것을 알아챈다. 알아채는 것이, 따뜻함이 아니라 그 따뜻함이 *방금 사라진 자리의 모양*일 수도 있다.",
-        "...방금까지 누가 있었던 걸까. 빈 칸인데."
+        "한 좌석에 다가간다.",
+        "방석이 살짝 눌려 있다. 누군가 막 일어선 자리처럼.",
+        "",
+        "손을 대 본다. 온기는 없다.",
+        "빈 자리는 빈 자리다.",
+        "",
+        "한 발 물러선다.",
+        "그 자리에 무엇이 있었는지, 묻지 않는다.",
+        "",
+        "한 번도 묻지 않은 자리들이 — 살면서 꽤 있었다.",
+        "그 자리들이 어떻게 됐는지도, 잘 모른다."
       ],
       "en": [
-        "I approach the seat. The cushion is slightly pressed — a trace of someone who had been sitting there.",
-        "I touch it. No warmth. And yet my palm recognizes that someone had been there. What is recognized is not warmth, perhaps, but the shape of warmth that has just gone.",
-        "...Was someone here, only a moment ago? The car is empty."
+        "I approach one of the seats.",
+        "The cushion is slightly pressed. As if someone had just risen.",
+        "",
+        "I touch it. No warmth.",
+        "An empty seat is an empty seat.",
+        "",
+        "I step back.",
+        "What had been there, I do not ask.",
+        "",
+        "There have been many places — in my life — I have not asked about.",
+        "How those places turned out, I also do not quite know."
       ]
     },
     "variants": {
       "run2": {
         "replace": {
           "ko": [
-            "좌석에 다가간다. 오늘은 꽃다발이 놓여 있다.",
-            "낯익은 꽃들. 하얀 국화. 그 향이 — 한 박자, 너무 익숙하다. 어디서였는지를 짚으면, 같이 떠오를 다른 것들이 두렵다.",
-            "...장례식에서 본 것 같은. 아니, 병문안에서 본 것 같기도 한.",
-            "그냥 비슷한 꽃이겠지. 그렇게 정리한다, 매번 그래 왔던 방식대로."
+            "좌석에 다가간다.",
+            "오늘은 꽃이 한 송이 놓여 있다.",
+            "",
+            "흰 국화.",
+            "",
+            "흰 국화는 — 어디서 본 적이 있다.",
+            "본 적이 있다는 것까지는 안다.",
+            "어디서였는지는, 짚지 않는다.",
+            "",
+            "한 번 손을 뻗는다.",
+            "손이 꽃에 닿기 전에 — 향이 먼저 닿는다.",
+            "",
+            "향이 너무 익숙하다.",
+            "",
+            "손을 거둔다."
           ],
           "en": [
-            "I approach the seat. Today, a bouquet has been left there.",
-            "Familiar flowers. White chrysanthemums. For one beat, their scent is too familiar. To place where would mean placing other things along with it. I am afraid of that.",
-            "...The kind seen at a funeral. Or, perhaps, the kind seen at a bedside visit.",
-            "Just similar flowers, probably. I tidy the thought away, the way I always have."
+            "I approach the seat.",
+            "Today, one flower is set there.",
+            "",
+            "A white chrysanthemum.",
+            "",
+            "White chrysanthemums — I have seen them somewhere.",
+            "That much, I know.",
+            "Where, I do not place.",
+            "",
+            "I reach a hand out, once.",
+            "Before the hand reaches the flower — the scent reaches first.",
+            "",
+            "The scent is too familiar.",
+            "",
+            "I draw my hand back."
           ]
         },
         "prop": "bouquet",
@@ -1485,16 +1752,66 @@
       "run3": {
         "replace": {
           "ko": [
-            "좌석에 다가간다. 꽃다발. 카드가 끼워져 있다.",
-            "흐릿한 글씨. 간신히 읽는다. \"빨리 일어나.\"",
-            "그 한 줄을 보는 순간, 내 안의 어딘가가 차게 식는다. 이 글씨는 — 누군가의 글씨와 닮아 있다. 한 번도 잊은 적 없는 글씨와.",
-            "...도대체 누가 꽃과 함께 이런 걸 남긴단 말인가. 묻는 동시에, 답이 떠오른다. 떠오른 답을, 다시 도로 묻어 둔다."
+            "어제는 꽃이 있었다.",
+            "오늘도 있다. 같은 꽃.",
+            "",
+            "그런데 — 꽃 옆에 카드가 한 장 끼워져 있다.",
+            "어제는 없었던 것이다.",
+            "",
+            "카드를 든다.",
+            "손이 한 박자, 멈춘다.",
+            "",
+            "글씨가 흐릿하다. 간신히 읽는다.",
+            "",
+            "*빨리 일어나.*",
+            "",
+            "그 글씨를 — 안다.",
+            "어디서 본 적이 있는 글씨다.",
+            "",
+            "두 군데가 떠오를 것 같다.",
+            "한 군데는 — *내가 쓴 글씨*다. 차트의 한 귀퉁이에. 환자의 이름 옆에.",
+            "다른 한 군데는 — 떠오르지 않는다.",
+            "",
+            "다른 한 군데가 떠오르지 않는데, *그것이 그녀의 글씨가 아니었다*는 감각이 먼저 자란다.",
+            "",
+            "그녀의 글씨가 아니었다면 — 누구의 글씨인가.",
+            "카드는 그녀에게 *주어진* 카드인가, 그녀에게서 *온* 카드인가.",
+            "둘 다일 수 없다.",
+            "",
+            "둘 다일 수 없는데, 둘 다인 것 같다.",
+            "",
+            "카드를 다시 꽃 옆에 놓는다."
           ],
           "en": [
-            "I approach the seat. The bouquet. A card tucked inside.",
-            "Faded writing. I barely make it out. \"Wake up soon.\"",
-            "The moment I read the line, something inside me cools. The handwriting — resembles someone else's. Handwriting I have never forgotten.",
-            "...Who on earth would leave such a thing with flowers. I ask the question, and at the same moment, an answer surfaces. The answer that has surfaced — I push back down, again."
+            "Yesterday there was a flower.",
+            "Today too. The same flower.",
+            "",
+            "But — beside the flower, one card is tucked.",
+            "It was not there yesterday.",
+            "",
+            "I pick up the card.",
+            "My hand stops, one beat.",
+            "",
+            "The writing is faded. I barely make it out.",
+            "",
+            "*Wake up soon.*",
+            "",
+            "That writing — I know.",
+            "Writing I have seen somewhere.",
+            "",
+            "Two places seem to come.",
+            "One — *handwriting of mine*. In the corner of a chart. Beside a patient's name.",
+            "The other — does not come.",
+            "",
+            "The other does not come, and yet a sense arrives first: *it was not her writing*.",
+            "",
+            "If not her writing — whose.",
+            "Is the card one *given to* her, or one *come from* her.",
+            "It cannot be both.",
+            "",
+            "It cannot be both, and yet it seems to be both.",
+            "",
+            "I set the card beside the flower again."
           ]
         },
         "prop": "card_message",
@@ -1503,14 +1820,32 @@
       "run4": {
         "replace": {
           "ko": [
-            "좌석에 다가간다. 꽃다발이 — 한두 개가 아니다.",
-            "칸 곳곳의 좌석에 하얀 꽃들이 놓여 있다. 누군가가 한 번에 가져온 것이 아니다. 시간이 다른, 마음이 다른 사람들이, 각자 다른 날에 한 자리씩 두고 간 것이다.",
-            "마치 누군가를 계속 기다린 것처럼. 그 누군가가 — 깨어나지 않을 것이라는 것을 *받아들이지 못한 채로* 기다린 것처럼."
+            "좌석에 다가간다.",
+            "",
+            "칸 곳곳의 좌석에 하얀 꽃들이 놓여 있다.",
+            "누군가가 한 번에 가져온 것이 아니다.",
+            "시간이 다른, 마음이 다른 사람들이, 각자 다른 날에 한 자리씩 두고 간 것이다.",
+            "",
+            "각자가 — 같은 한 사람을 기다린 자리.",
+            "그 한 사람이 — 깨어나지 않을 것이라는 것을 *받아들이지 못한 채로* 두고 간 자리.",
+            "",
+            "그 자리에 두고 간 사람들 중 한 명이, 나였다.",
+            "나였다는 것을 안다.",
+            "이제는, 안다."
           ],
           "en": [
-            "I approach the seat. The bouquets — are more than one or two.",
-            "Throughout the car, white flowers on the seats. They were not brought all at once. People with different timing, different hearts, each on a different day, set one down and went.",
-            "As though someone had been waited for. As though that someone — was waited for by those who could not, yet, accept that he would not wake."
+            "I approach the seat.",
+            "",
+            "White flowers on seats throughout the car.",
+            "Not brought all at once.",
+            "People with different timing, different hearts, each on a different day, set one down and went.",
+            "",
+            "Each — a place where the same one person was waited for.",
+            "That one person — for whom they waited, *without yet accepting* he would not wake.",
+            "",
+            "Of those who left one — I was one.",
+            "That I was, I know.",
+            "Now, I know."
           ]
         },
         "prop": "bouquet",
@@ -1527,6 +1862,16 @@
         "id": "flowers",
         "trigger": "auto",
         "minRun": 2
+      },
+      {
+        "id": "cardMessage",
+        "trigger": "auto",
+        "minRun": 3
+      },
+      {
+        "id": "seatSix",
+        "trigger": "auto",
+        "minRun": 4
       }
     ],
     "returnTo": "car_2",
@@ -1539,42 +1884,100 @@
     "car": 2,
     "text": {
       "ko": [
-        "시계를 본다. 23:54.",
-        "별 의미 없는 시간이라고, 한 번 말해 둔다. 별 의미 없다고 말해 두지 않으면, 이 시간이 — 어딘가 익숙한 시간으로 자리를 잡아 버릴 것 같아서."
+        "벽에 시계가 있다.",
+        "23:54.",
+        "",
+        "핸드폰 시계와 같다.",
+        "핸드폰 시계는 늘 정확하다.",
+        "",
+        "벽 시계가 핸드폰 시계와 같다는 건, 정상이라는 뜻이다.",
+        "",
+        "라고 생각한다. 그 생각이 이상하게 길다.",
+        "다른 칸으로 가기로 한다."
       ],
       "en": [
-        "I check the time. 23:54.",
-        "A time with no particular meaning, I say to myself, once. If I do not say so, this time will — settle into something familiar before I can stop it."
+        "On the wall, a clock.",
+        "23:54.",
+        "",
+        "The same as my phone.",
+        "The phone is always accurate.",
+        "",
+        "That the wall and the phone agree — means things are in order.",
+        "",
+        "I think so. That thought is strangely long.",
+        "I decide to move to another car."
       ]
     },
     "variants": {
       "run2": {
         "replace": {
           "ko": [
-            "시계를 본다. 23:54.",
-            "...아까와 같다. 방금 한참 걸어왔는데.",
-            "한 박자, 발이 멈춘다. 다시 걸음을 옮긴다. 알아채지 않은 척하기로 한다."
+            "벽시계. 23:54.",
+            "",
+            "어제도 23:54였다.",
+            "어제도 그랬고, 어제의 어제도 그랬을 수 있다.",
+            "",
+            "어제의 어제, 라는 표현을 — 한 번 떠올려본다.",
+            "그 표현이 *어디까지 거슬러 올라가는지*, 가늠하지 않는다."
           ],
           "en": [
-            "I check the time. 23:54.",
-            "...The same as before. Though I have been walking for some time.",
-            "For one beat, my feet stop. Then I move again. I decide to pretend I did not notice."
+            "Wall clock. 23:54.",
+            "",
+            "Yesterday it was 23:54, too.",
+            "Yesterday, and the day before yesterday, perhaps as well.",
+            "",
+            "*The day before yesterday* — I turn the phrase over, once.",
+            "How far back the phrase reaches — I do not measure."
           ]
         }
       },
       "run3": {
         "replace": {
           "ko": [
-            "시계를 본다. 23:54.",
-            "아까도 이 시간이었다. 그 전에도. 모든 회차의 모든 칸에서, 이 시간이었다.",
-            "시간이 멈춰버린 걸까. 그럴 리가 — 그러나 그럴 리 없다는 그 말도, 매번 같은 박자로 떠올랐다.",
-            "한 번도 11:54 분이 *그저 평범한 시간*이었던 적은 없었다. 누군가에게는 — 무언가가 끝난 시간이었다."
+            "시계. 23:54.",
+            "",
+            "같은 시간이다. 매번.",
+            "한 번도 11:54분이 *그저 평범한 시간*이었던 적은 없었다.",
+            "누군가에게는 — 무언가가 *끝난* 시간이었다.",
+            "",
+            "그 누군가가 누구인지를, 짚으려 하면 — 노트의 한 줄이 함께 떠오른다.",
+            "",
+            "*23:54 — 종료. 환자 미회복.*",
+            "",
+            "종료된 것이, 무엇이었는지는, 노트가 적지 않았다.",
+            "적지 않은 일이 — 적을 수 없었던 일이라는 것을, 아는 사람이 한 명 있다.",
+            "그 한 명이 누구인지를, 짚지 않는다."
           ],
           "en": [
-            "I check the time. 23:54.",
-            "It was this time before. And before that. In every car, of every run, this same time.",
-            "Has time stopped? It could not be — and yet the phrase 'it could not be' has surfaced, every time, in the same rhythm.",
-            "Not once was 11:54 PM simply an ordinary time. For someone — it was the time when something had ended."
+            "Clock. 23:54.",
+            "",
+            "The same time. Every time.",
+            "11:54 PM was never, once, *simply an ordinary time*.",
+            "For someone — it was the time something *ended* at.",
+            "",
+            "Who that someone is, when I try to place — a line from the notebook rises along with it.",
+            "",
+            "*23:54 — ended. Patient: did not recover.*",
+            "",
+            "What ended, the notebook did not write.",
+            "That what was not written — was what could not be written — is known to one person.",
+            "Who that one person is — I do not place."
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "23:54.",
+            "",
+            "시간이 멈춰 있는 것이 아니다.",
+            "내가 그 시간에 멈춰 있는 것이다."
+          ],
+          "en": [
+            "23:54.",
+            "",
+            "Time is not stopped.",
+            "I am the one stopped at that time."
           ]
         }
       }
@@ -1597,24 +2000,88 @@
     "text": {
       "ko": [
         "벽에 빨간 버튼이 있다.",
-        "",
         "비상 정지.",
         "",
-        "...이걸 누르면",
-        "열차가 멈출까?",
+        "누르면 멈춘다.",
+        "누구나 그건 안다.",
         "",
-        "가까이 다가간다."
+        "손을 가까이 가져가 본다. 손가락이 버튼에 닿기 직전에서 멈춘다.",
+        "누를 이유는 없다.",
+        "누르지 않을 이유도 없다.",
+        "",
+        "손을 거둔다.",
+        "",
+        "누를 이유가 없는 게, 누르지 않은 이유라고 — 그렇게 정리한다."
       ],
       "en": [
         "A red button on the wall.",
-        "",
         "Emergency stop.",
         "",
-        "...If I press this,",
-        "will the train stop?",
+        "Press it, and the train stops.",
+        "Anyone knows that.",
         "",
-        "I come closer."
+        "I bring my hand close. My finger stops just before the button.",
+        "There is no reason to press.",
+        "There is no reason not to press, either.",
+        "",
+        "I draw the hand back.",
+        "",
+        "*No reason to press* — I file as the reason for not pressing."
       ]
+    },
+    "variants": {
+      "run3": {
+        "replace": {
+          "ko": [
+            "벽에 빨간 버튼이 있다.",
+            "비상 정지.",
+            "",
+            "어제는 누르지 않을 이유가 없다는 것이, 누르지 않은 이유였다.",
+            "오늘은 — 누르지 *않은* 이유가, 짚히지 않는다.",
+            "",
+            "손을 가져간다.",
+            "손가락 끝이 버튼에 닿기 직전에서, 멈춘다.",
+            "",
+            "멈춘 손이, 어제도 멈췄던 자리를 — 안다.",
+            "",
+            "그러면 — *어제 멈춘 손이, 어떻게 같은 자리에 다시 와 있는가.*",
+            "",
+            "같은 손이라면, 어제는 다른 칸에 있었다.",
+            "어제의 손이 지금 여기 있다면, 어제의 어디는 — 비어 있다.",
+            "비어 있는 어제의 자리에, 무엇이 있었는가.",
+            "",
+            "누군가가 거기 있었다는 감각이 있다.",
+            "누군가가 — 그녀가 아니었다는 감각이 있다.",
+            "",
+            "손을 거둔다.",
+            "거둔 손이 떨린다."
+          ],
+          "en": [
+            "A red button on the wall.",
+            "Emergency stop.",
+            "",
+            "Yesterday, *no reason not to* was the reason for not pressing.",
+            "Today — the reason for *not* pressing does not come to hand.",
+            "",
+            "I bring my hand.",
+            "My fingertip stops just before the button.",
+            "",
+            "The stopped hand — knows the place where it stopped yesterday.",
+            "",
+            "Then — *how is yesterday's stopped hand here again, in the same place.*",
+            "",
+            "If the same hand, then yesterday it was in another car.",
+            "If yesterday's hand is here now — then somewhere, yesterday — is empty.",
+            "What was in yesterday's empty place.",
+            "",
+            "A sense that someone had been there.",
+            "A sense that the someone — was not her.",
+            "",
+            "I draw the hand back.",
+            "The drawn-back hand is trembling."
+          ]
+        }
+      }
     },
     "choices": [
       {
@@ -1837,14 +2304,28 @@
     "isPassage": true,
     "text": {
       "ko": [
-        "세 번째 칸. 천장의 형광등이 한 박자, 또 한 박자, 깜빡인다. 한 번도 정상으로 켜진 적 없는 빛의 결이다.",
-        "손잡이를 잡는다. 손이 차갑다. 내 손이 이렇게 차가웠나 — 그 질문이 떠오르고, 곧 떠오르지 않은 척한다.",
-        "이 칸은 다른 칸들과 어딘가 다르다. 다른 점을 짚지 못한 채로, 이미 다른 것을 안다. *나는 이런 종류의 다름을, 직업적으로 알아본다*."
+        "다음 칸의 손잡이를 잡는다.",
+        "평소보다 약간 무겁다.",
+        "",
+        "한 번에 안 열린다. 다시 당긴다. 열린다.",
+        "",
+        "한 발을 내딛는다.",
+        "공기가 다르다. 무엇이 다른지는 짚을 수 없다.",
+        "",
+        "짚을 수 없는 것을 *오래 짚는 것*은 — 좋지 않은 습관이라고, 한 번 누군가에게 들은 적이 있다.",
+        "누구였는지는, 기억나지 않는다."
       ],
       "en": [
-        "The third car. The fluorescent light overhead flickers, one beat, then another. A grain of light that has never quite lit normally.",
-        "I grip the handrail. My hand is cold. Was my hand always this cold — the question surfaces, and at once I pretend it has not.",
-        "This car feels different from the others. Without being able to point at the difference, I already know it. I recognize this kind of wrongness — professionally."
+        "I take the handle of the next car.",
+        "A little heavier than usual.",
+        "",
+        "It does not open on the first pull. I pull again. It opens.",
+        "",
+        "I step through.",
+        "The air is different. What is different — I cannot place.",
+        "",
+        "*Placing a thing one cannot place for too long* — is a bad habit, someone once told me.",
+        "Who that was, I cannot recall."
       ]
     },
     "next": "car_3"
@@ -1855,17 +2336,83 @@
     "car": 3,
     "text": {
       "ko": [
-        "좌석에 앉으려다 멈춘다. 좌석 등받이에 작은 표지판이 붙어 있다.",
-        "번호가 적혀 있다. ...번호가 이상하다.",
-        "번호의 글꼴이 어딘가, 병동의 침대 머리맡에 붙어 있는 그 글꼴과 결이 같다.",
-        "한 박자, 그 사실을 알아채지 않은 척한다. 그러나 이미 알아챘다."
+        "세 번째 칸이다.",
+        "",
+        "좌석 배치는 같다. 조명도 같다.",
+        "그런데 *공기의 두께*가 다르다.",
+        "",
+        "어떻게 다른지는, 모른다.",
+        "한 번도 *공기의 두께* 같은 걸 의식해본 적이 없다.",
+        "그런 표현이 가능한지조차, 잘 모른다.",
+        "",
+        "걸음을 옮긴다.",
+        "발소리가 — 약간, 늦게 들린다."
       ],
       "en": [
-        "I am about to sit down. I stop. On the backrest of the seat, a small plate.",
-        "A number on it. ...The number is strange.",
-        "The typeface of the number has, somehow, the same grain as the typeface on the small plate above a hospital bed.",
-        "For one beat, I pretend not to have noticed. And yet I have already noticed."
+        "The third car.",
+        "",
+        "Seating, the same. Lighting, the same.",
+        "But the *thickness of the air* is different.",
+        "",
+        "How different, I do not know.",
+        "I have never, once, been aware of *the thickness of air*.",
+        "Whether such a phrase is even possible, I cannot quite say.",
+        "",
+        "I move my feet.",
+        "My footsteps — arrive, slightly, late."
       ]
+    },
+    "variants": {
+      "run3": {
+        "replace": {
+          "ko": [
+            "세 번째 칸.",
+            "",
+            "공기가 다르다. 어제도, 그제도.",
+            "*같은 결*로 다르다.",
+            "",
+            "그런데 오늘은 — 공기 안에 향이 한 박자 섞여 있다.",
+            "어제는 없었던 향.",
+            "",
+            "흰 꽃의 향이다.",
+            "앞 칸에 있던 그 꽃의 향이, 칸을 넘어서 여기까지 와 있다.",
+            "",
+            "향이 칸을 넘어오는 일은, 없다.",
+            "없는데, 와 있다.",
+            "",
+            "와 있다는 것이 — *내가 그 향을 데려왔다*는 뜻일 수도 있다.",
+            "옷에 묻어서. 손에 묻어서.",
+            "",
+            "그러나 손에 묻은 것이 없다.",
+            "옷에 묻은 것도, 없다.",
+            "",
+            "향만 따로, 거기 있다."
+          ],
+          "en": [
+            "The third car.",
+            "",
+            "The air is different. Yesterday, the day before, also.",
+            "Different *in the same grain*.",
+            "",
+            "But today — a scent is mixed, one beat, in the air.",
+            "A scent not there yesterday.",
+            "",
+            "The scent of white flowers.",
+            "The scent from the previous car, come across the cars, here.",
+            "",
+            "A scent does not cross cars.",
+            "It does not, and yet — it has.",
+            "",
+            "That it has — could mean *I carried it here*.",
+            "On the coat. On the hand.",
+            "",
+            "But there is nothing on the hand.",
+            "Nothing on the coat, either.",
+            "",
+            "Only the scent, alone, is there."
+          ]
+        }
+      }
     },
     "choices": [
       {
@@ -1901,6 +2448,17 @@
       },
       {
         "label": {
+          "ko": "6번 자리를 찾아본다",
+          "en": "Look for seat number six"
+        },
+        "next": "car_3_seat_six",
+        "type": "hidden",
+        "requiresClue": "missingSeat",
+        "minRun": 3,
+        "viewOnce": true
+      },
+      {
+        "label": {
           "ko": "\"...뭔가 이상하다.\"",
           "en": "\"...Something is off.\""
         },
@@ -1931,47 +2489,130 @@
     "car": 3,
     "text": {
       "ko": [
-        "좌석 등받이를 본다. 03.12.",
-        "...번호가 아니다. 날짜다.",
-        "옆 좌석. 03.13. 그 옆. 03.14. 그 옆 — 비어 있다. 표지판 자체가 비어 있다.",
-        "다음 좌석으로 넘어간다. 03.16. 03.17.",
-        "빠진 날짜가 있다. 03.15.",
-        "그 빠진 자리만이 — 한 박자, 다른 자리보다 차다. 한 번도 누군가 앉은 적 없는 자리. 또는, 누군가가 *영원히 앉아 있어야 했을* 자리.",
-        "내가 안 가도 되었을 것이 아닌, 안 가는 쪽을 *택한* 자리."
+        "좌석 사이를 걷는다.",
+        "",
+        "한 좌석의 등받이 위에, 머리카락 한 올이 있다.",
+        "긴 머리. 검은색.",
+        "",
+        "손에 쥐어 본다. 가볍다.",
+        "",
+        "내 머리는 길고 검다.",
+        "내 것일 것이다.",
+        "",
+        "다음 좌석에도 한 올. 그 다음 좌석에도.",
+        "모든 좌석에 한 올씩.",
+        "",
+        "모두 내 것일 것이다.",
+        "모두 내 것이라면 — 내가 모든 좌석에 한 번씩 앉았다는 뜻이다.",
+        "",
+        "그런 적은, 없다.",
+        "",
+        "*없을 것이다.*"
       ],
       "en": [
-        "I look at the backrest of the seat. 03.12.",
-        "...Not a number. A date.",
-        "The seat beside it. 03.13. The next. 03.14. The next — empty. The plate itself is blank.",
-        "I move on to the next. 03.16. 03.17.",
-        "One date is missing. 03.15.",
-        "That empty place, alone — for one beat, is colder than the others. A seat no one ever sat in. Or — a seat where someone was meant to sit, forever.",
-        "Not a place I was unable to go to, but the place I chose not to go."
+        "I walk between the seats.",
+        "",
+        "On one backrest, a single hair.",
+        "Long. Black.",
+        "",
+        "I take it in my hand. Light.",
+        "",
+        "My hair is long, and black.",
+        "It must be mine.",
+        "",
+        "On the next seat, one. On the one after, one.",
+        "On every seat, one.",
+        "",
+        "All must be mine.",
+        "If all are mine — it means I have sat, once, in every seat.",
+        "",
+        "I have not.",
+        "",
+        "*I would not have.*"
       ]
     },
-    "choices": [
-      {
-        "label": {
-          "ko": "빈 자리에 앉는다",
-          "en": "Sit in the empty seat"
-        },
-        "next": "car_3_seat_sit"
+    "variants": {
+      "run3": {
+        "replace": {
+          "ko": [
+            "좌석 사이를 걷는다.",
+            "",
+            "등받이 위의 머리카락. 한 좌석에 한 올씩.",
+            "어제는 — *모두 내 것일 것*이라고 정리하다 만 자리.",
+            "",
+            "오늘은, 한 올을 더 자세히 본다.",
+            "",
+            "두 종류의 머리카락이 섞여 있다.",
+            "한 종류는 — 내 것일 수 있다.",
+            "다른 한 종류는 — 길이가 조금 더 길다. 결이 조금 더 곱다.",
+            "",
+            "다른 종류의 머리카락이 — *누구의 것*인지를 짚으려 한다.",
+            "",
+            "짚으려 한 그 자리에서, *그것이 그녀의 것이 아니다*는 감각이 먼저 자란다.",
+            "",
+            "그녀의 것이 아니라면 — 누구의 것인가.",
+            "다른 사람이 이 칸을 거쳐간 적이 있는가.",
+            "",
+            "거쳐간 적이 있다면 — 그 사람의 머리카락이 *그녀의 것을 닮은 결*인 것은, 우연인가.",
+            "",
+            "우연이라고 정리하기엔 — 너무 닮았다."
+          ],
+          "en": [
+            "I walk between the seats.",
+            "",
+            "Hair on the backrests. One on each seat.",
+            "Yesterday — a place I half-filed as *all must be mine*.",
+            "",
+            "Today, I look closer at one.",
+            "",
+            "Two kinds of hair are mixed.",
+            "One kind — could be mine.",
+            "The other — slightly longer. The grain, slightly finer.",
+            "",
+            "I try to place *whose* the other kind is.",
+            "",
+            "Where I try to place it, a sense arrives first: *it is not hers*.",
+            "",
+            "If not hers — whose.",
+            "Has someone else passed through this car.",
+            "",
+            "If someone has — that the hair *resembles hers in grain* — is that a coincidence.",
+            "",
+            "To file it as a coincidence — they are too alike."
+          ]
+        }
       },
-      {
-        "label": {
-          "ko": "등받이 안쪽을 살펴본다",
-          "en": "Check inside the backrest"
-        },
-        "next": "car_3_seat_check"
-      },
-      {
-        "label": {
-          "ko": "그냥 둔다",
-          "en": "Leave it alone"
-        },
-        "next": "car_3_seat_leave"
+      "run4": {
+        "replace": {
+          "ko": [
+            "좌석 사이를 걷는다.",
+            "",
+            "두 종류의 머리카락이, 같은 결이다.",
+            "같은 사람의 머리에서 — 시간을 두고 떨어진 결이다.",
+            "",
+            "한 사람의 머리에서 두 종류가 나올 수 있다.",
+            "건강한 시기와, 그렇지 않은 시기."
+          ],
+          "en": [
+            "I walk between the seats.",
+            "",
+            "Two kinds of hair, the same grain.",
+            "Fallen from the same head — across time.",
+            "",
+            "Two kinds can come from one head.",
+            "A healthy time, and a time that was not."
+          ]
+        }
       }
-    ]
+    },
+    "clueChecks": [
+      {
+        "id": "hairTrace",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
+    "returnTo": "car_3"
   },
   "car_3_seat_sit": {
     "id": "car_3_seat_sit",
@@ -2127,21 +2768,262 @@
     "car": 3,
     "text": {
       "ko": [
-        "벽에 인터폰이 있다. 비상 통화용. 차장과 연결되어 있을 것이다.",
-        "수화기를 든다. 귀에 댄다.",
-        "잡음만 들린다. 긴 잡음. 그 결이, 어딘가 — 의료기기가 답을 기다릴 때 내는 그 잡음과 닮아 있다.",
-        "\"...여보세요.\" 대답이 없다. 대답이 없는 시간을 — 나는 너무 잘 안다. 그 시간이 어떻게 지나가는지도.",
-        "수화기를 다시 건다. 안도와 실망이 한 자리에서 만난다."
+        "벽에 인터폰이 있다.",
+        "잡음이 켜져 있다. 누군가 통화 중인 듯한 잡음.",
+        "",
+        "수화기를 든다. 자연스러운 동작이다.",
+        "의사가 인터폰을 드는 자세를, 몸이 알고 있다.",
+        "",
+        "아무 소리도 안 난다.",
+        "",
+        "그런데 — 끊기 직전에, 누군가가 짧게 숨을 들이쉰다.",
+        "듣고 있다는 듯이.",
+        "",
+        "수화기를 내려놓는다.",
+        "잡음이 그대로 켜져 있다."
       ],
       "en": [
-        "An intercom on the wall. For emergencies. It must connect to the conductor.",
-        "I lift the receiver. Press it to my ear.",
-        "Only static. A long hiss. Its grain resembles, somehow, the static a medical instrument gives off while it waits for a reply.",
-        "\"...Hello.\" No reply. The time of no-reply — I know it too well. I know how it passes, too.",
-        "I hang the receiver up. Relief and disappointment meet in the same place."
+        "An intercom on the wall.",
+        "Static, on. The static of a call already in progress.",
+        "",
+        "I lift the receiver. The motion is easy.",
+        "The body knows the posture of a doctor lifting an intercom.",
+        "",
+        "No sound.",
+        "",
+        "But — just before hanging up, someone takes a short breath.",
+        "As though listening.",
+        "",
+        "I set the receiver down.",
+        "The static stays on."
       ]
     },
+    "variants": {
+      "run2": {
+        "replace": {
+          "ko": [
+            "인터폰을 든다.",
+            "",
+            "어제는 끊기 직전에 누군가의 숨소리가 들렸다.",
+            "오늘은 — 들리지 않는다.",
+            "처음부터 끝까지 잡음만 있다.",
+            "",
+            "다행이라고 생각한다.",
+            "",
+            "생각한 다음, *왜 다행인지* 잠시 가늠해본다.",
+            "누군가 듣고 있다면 다행이 아니어야 한다.",
+            "듣고 있지 않다면 다행이어야 한다.",
+            "",
+            "그런데 — 어느 쪽이 다행인지 생각이 잘 안 정리된다.",
+            "정리하지 않는다."
+          ],
+          "en": [
+            "I lift the intercom.",
+            "",
+            "Yesterday, just before hanging up, I heard someone's breath.",
+            "Today — nothing.",
+            "Only static, beginning to end.",
+            "",
+            "I think: a relief.",
+            "",
+            "After thinking, I weigh — *why a relief*.",
+            "If someone is listening, it should not be a relief.",
+            "If no one is, it should be.",
+            "",
+            "But — which side is the relief, the thought does not settle.",
+            "I do not settle it."
+          ]
+        }
+      },
+      "run3": {
+        "replace": {
+          "ko": [
+            "인터폰을 든다.",
+            "",
+            "잡음.",
+            "",
+            "어제는 잡음만 있었다.",
+            "오늘은 — 잡음 사이로, 누군가가 *숨을 들이쉰다*.",
+            "",
+            "그 숨이, 어디서 들은 적이 있는 숨이다.",
+            "",
+            "한 번 — 누군가의 마지막 숨을 들은 적이 있다.",
+            "그 숨과 결이 같다.",
+            "결이 같은데, 마지막 숨은 아니다.",
+            "*마지막에 가까운 숨* 같다.",
+            "",
+            "수화기를 내려놓는다.",
+            "내려놓은 다음에도, 손이 수화기를 잡고 있다."
+          ],
+          "en": [
+            "I lift the intercom.",
+            "",
+            "Static.",
+            "",
+            "Yesterday, only static.",
+            "Today — through the static, someone *takes a breath*.",
+            "",
+            "A breath I have heard somewhere.",
+            "",
+            "Once — I heard someone's last breath.",
+            "The grain is the same.",
+            "The grain is the same, and yet — it is not a last breath.",
+            "It seems like *a breath near the last*.",
+            "",
+            "I set the receiver down.",
+            "After setting it down, my hand still holds the receiver."
+          ]
+        }
+      },
+      "run4": {
+        "replace": {
+          "ko": [
+            "인터폰을 든다.",
+            "",
+            "내 숨이 들린다.",
+            "줄곧 내 숨이었다.",
+            "",
+            "내려놓는다."
+          ],
+          "en": [
+            "I lift the intercom.",
+            "",
+            "I hear my own breath.",
+            "It always was mine.",
+            "",
+            "I set it down."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "intercomBreath",
+        "trigger": "auto",
+        "minRun": 1
+      }
+    ],
     "returnTo": "car_3"
+  },
+  "car_3_seat_six": {
+    "id": "car_3_seat_six",
+    "visual": "car_3_wide",
+    "car": 3,
+    "trigger": "run3+ after missingSeat",
+    "text": {
+      "ko": [
+        "좌석 사이를, 끝까지 걸어간다.",
+        "",
+        "좌석 번호가 매겨져 있지 않은 자리가 있다.",
+        "번호판이 비어 있는 자리.",
+        "",
+        "그 자리에 — 흰 꽃 한 송이가 놓여 있다.",
+        "꽃 아래에 종이.",
+        "",
+        "*3월 15일.*",
+        "",
+        "그 한 줄 외에는 아무것도 적혀 있지 않다.",
+        "",
+        "그 날짜를 — 안다.",
+        "줄곧 알아 왔다.",
+        "어제는, 모른 척했다.",
+        "",
+        "오늘은 — 한 박자 더 머문다.",
+        "머무는 그 박자가 — 묻지 않은 채로 답에 가까이 가는 박자다.",
+        "",
+        "답을 묻지 않는 것이, 답을 모르는 것과 같은 일이라고 — 줄곧 정리해 왔다.",
+        "오늘은 그 정리가 작동하지 않는다."
+      ],
+      "en": [
+        "I walk between the seats, to the end.",
+        "",
+        "There is a seat without a number.",
+        "A seat where the plate is blank.",
+        "",
+        "On that seat — one white flower.",
+        "Beneath the flower, a slip of paper.",
+        "",
+        "*March 15.*",
+        "",
+        "Nothing else is written.",
+        "",
+        "That date — I know.",
+        "I have always known.",
+        "Yesterday, I pretended not to.",
+        "",
+        "Today — I stay, one beat more.",
+        "That beat of staying — is the beat of coming close to an answer without asking.",
+        "",
+        "*Not asking is the same as not knowing* — I had always filed.",
+        "Today, the filing does not work."
+      ]
+    },
+    "variants": {
+      "run4": {
+        "replace": {
+          "ko": [
+            "6번 자리.",
+            "",
+            "번호판이 비어 있는 자리.",
+            "오늘은 — 그 자리에 누군가 앉아 있다.",
+            "",
+            "흰 옷. 뒷모습.",
+            "다가가 본다.",
+            "",
+            "가까이 가니 — 좌석이 비어 있다.",
+            "그 자리에 코트 한 벌이 남아 있다.",
+            "",
+            "내 코트와 같은 코트.",
+            "",
+            "내가 두고 간 코트인지.",
+            "내가 *그 자리에 있었던 일이 있다*는 흔적인지.",
+            "한 번도 그 자리에 *있었던 적이 없는데*, 흔적이 있는 것인지.",
+            "",
+            "답이 짚히지 않는다.",
+            "",
+            "코트를 들지 않는다.",
+            "들지 않은 채로 — 한 박자 머문다.",
+            "",
+            "머무는 것이 — 그 자리에 *있었던 적이 있다*는 가장 가까운 답이다."
+          ],
+          "en": [
+            "Seat six.",
+            "",
+            "A seat with a blank plate.",
+            "Today — someone is sitting there.",
+            "",
+            "White clothes. Seen from behind.",
+            "I come closer.",
+            "",
+            "As I come close — the seat is empty.",
+            "On it, one coat is left.",
+            "",
+            "A coat like mine.",
+            "",
+            "Whether one I left.",
+            "Whether a trace that *I had once been there*.",
+            "Whether — never having been there — there is still a trace.",
+            "",
+            "No answer comes to hand.",
+            "",
+            "I do not pick the coat up.",
+            "Without picking it up — I stay, one beat.",
+            "",
+            "Staying — is the closest answer to *having been there, once*."
+          ]
+        }
+      }
+    },
+    "clueChecks": [
+      {
+        "id": "seatSix",
+        "trigger": "auto",
+        "minRun": 3
+      }
+    ],
+    "returnTo": "car_3",
+    "prop": "bouquet",
+    "propPosition": "center"
   },
   "car_3_window": {
     "id": "car_3_window",

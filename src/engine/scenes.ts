@@ -177,6 +177,9 @@ export function isChoiceAvailable(choice: Choice, state: GameState): boolean {
   if (choice.requiresFlag && !state.flags[choice.requiresFlag]) {
     return false;
   }
+  if (choice.minRun !== undefined && state.runCount < choice.minRun) {
+    return false;
+  }
   return true;
 }
 

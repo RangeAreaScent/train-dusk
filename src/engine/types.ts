@@ -33,6 +33,8 @@ export interface Choice {
   requiresInsight?: string;
   /** Choice only appears after this flag has been set true. */
   requiresFlag?: string;
+  /** Choice only appears from the given run onwards. */
+  minRun?: number;
 }
 
 export interface ClueCheck {
